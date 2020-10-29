@@ -5,20 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class Article extends Model
 {
     use HasFactory;
-    protected $table = "categorie";
-    public $timestamps = false;
+    protected $table = "article";
 
-
-
-    public function product()
-    {
-        return $this->hasMany('App\Models\Product' , 'id_categorie');
-    }
     public function categorie()
     {
         return $this->belongsTo('App\Models\Categorie','id_categorie' );
+    }
+    public function marque()
+    {
+        return $this->belongsTo('App\Models\Marque','id_marque' );
     }
 }

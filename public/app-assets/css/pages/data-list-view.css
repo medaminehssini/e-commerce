@@ -145,9 +145,7 @@ table.data-thumb-view.dataTable {
     table.data-list-view.dataTable thead th input:focus,
     table.data-thumb-view.dataTable thead th input:focus {
       outline: 0; }
-  table.data-list-view.dataTable thead th:first-child,
-  table.data-thumb-view.dataTable thead th:first-child {
-    padding-left: 0; }
+
   table.data-list-view.dataTable thead .sorting_asc,
   table.data-list-view.dataTable thead .sorting_desc,
   table.data-list-view.dataTable thead .sorting,

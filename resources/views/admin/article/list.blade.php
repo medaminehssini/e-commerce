@@ -65,13 +65,15 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th></th>
                         <th>Image</th>
                         <th>NAME</th>
                         <th>CATEGORY</th>
+                        <th>Marque</th>
                         <th>Description</th>
-                        <th>ORDER STATUS</th>
+                        <th>STATUS</th>
                         <th>PRICE</th>
+                        <th>qty</th>
+                        <th>taux_tva</th>
                         <th>ACTION</th>
                     </tr>
                 </thead>
@@ -85,7 +87,7 @@
         <!-- add new sidebar starts -->
         <div class="add-new-data-sidebar">
             <div class="overlay-bg"></div>
-            <form id="edit" action="{{aurl('add/product')}}" method="POST" enctype="multipart/form-data" >
+            <form id="edit" action="{{aurl('add/article')}}" method="POST" enctype="multipart/form-data" >
                     @csrf
                 <div id="add-new-data" class="add-new-data" >
 
@@ -105,14 +107,22 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Name</label>
-                                        <input type="text" class="form-control" name="title" id="data-name">
+                                        <label for="data-name">libelle</label>
+                                        <input type="text" class="form-control" name="libelle" id="data-name">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
                                         <label for="data-category"> Category </label>
                                         <select name="categorie" class="form-control" id="data-category">
                                                 @foreach ($categories as $categorie)
-                                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                                                    <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 data-field-col">
+                                        <label for="data-category"> Marque </label>
+                                        <select name="marque" class="form-control" id="data-marque">
+                                                @foreach ($marques as $marque)
+                                                    <option value="{{$marque->id}}">{{$marque->libelle}}</option>
                                                 @endforeach
                                         </select>
                                     </div>
@@ -127,7 +137,15 @@
                                     </div>
                                     <div class="col-sm-12 data-field-col">
                                         <label for="data-price">Price</label>
-                                        <input type="text" name="price" class="form-control" id="data-price">
+                                        <input type="number" name="prix" class="form-control" id="data-price">
+                                    </div>
+                                    <div class="col-sm-12 data-field-col">
+                                        <label for="data-price">Qty</label>
+                                        <input type="number" name="qty" class="form-control" id="data-qty">
+                                    </div>
+                                    <div class="col-sm-12 data-field-col">
+                                        <label for="data-price">taux_tva</label>
+                                        <input type="number" name="taux_tva" class="form-control" id="data-tva">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
                                         <label for="data-price">Description</label>
@@ -143,7 +161,7 @@
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub" type="submit" value="Add Product">
+                                <input class="btn btn-primary" name="btnsub" type="submit" value="Add Article">
 
                             </div>
                             <div class="cancel-data-btn">
@@ -203,23 +221,22 @@
           // init thumb view datatable
   var dataThumbView = $(".data-thumb-view").DataTable({
     responsive: true,
-    ajax: "{{aurl('product/list/dataTables')}}",
+    ajax: "{{aurl('article/list/dataTables')}}",
     columns: [
-        {data: 'action', name: 'action'},
+
         {data: 'photo', name: 'photo' , className: "product-img"},
-        {data:'title', name: 'title' , className: "product-name"},
-        {data: 'categorie.name', name: 'categorie.name' , className: "product-category"},
+        {data:'libelle', name: 'libelle' , className: "product-name"},
+        {data: 'categorie.nom', name: 'categorie.nom' , className: "product-category"},
+        {data: 'marque.libelle', name: 'categorie.libelle' , className: "product-category"},
         {data: 'description', name: 'description' },
         {data: 'statusDetails', name: 'statusDetails' },
-        {data: 'price', name: 'price' , className: "product-price"},
+        {data: 'prix', name: 'prix' , className: "product-price"},
+        {data: 'qty', name: 'qty' , className: "product-price"},
+        {data: 'taux_tva', name: 'taux_tva' , className: "product-price"},
         {data: 'action', name: 'action' , className: "product-action"}
     ],
     columnDefs: [
-      {
-        orderable: true,
-        targets: 0,
-        checkboxes: { selectRow: true }
-      }
+
     ],
     dom:
       '<"top"<"actions action-btns"B><"action-filters"lf>><"clear">rt<"bottom"<"actions">p>',
@@ -240,13 +257,16 @@
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
-          editForm.action = "{{aurl('add/product')}}";
+          editForm.action = "{{aurl('add/article')}}";
           editForm.description.value = "";
-          editForm.price.value = "";
+          editForm.prix.value = "";
           editForm.categorie.value = "";
-          editForm.title.value = "";
-          editForm.btnsub.value = "Add Product";
+          editForm.libelle.value = "";
+          editForm.btnsub.value = "Add Article";
           editForm.status.value = "";
+          editForm.marque.value = "";
+          editForm.qty.value = "";
+          editForm.taux_tva.value = "";
           $("#add-new-data").addClass("show")
 
           $(".overlay-bg").addClass("show")
@@ -259,13 +279,6 @@
     }
   })
 
-  dataThumbView.on('draw.dt', function(){
-    setTimeout(function(){
-      if (navigator.userAgent.indexOf("Mac OS X") != -1) {
-        $(".dt-checkboxes-cell input, .dt-checkboxes").addClass("mac-checkbox")
-      }
-    }, 50);
-  });
 
 
 
@@ -273,13 +286,16 @@
     editForm = document.getElementById('edit');
 
 
-    editForm.action = "{{aurl('edit/product')}}/"+data.id;
+    editForm.action = "{{aurl('edit/article')}}/"+data.id;
     editForm.description.value = data.description;
-    editForm.price.value = data.price;
-    editForm.categorie.value = data.categorie.id;
-    editForm.title.value = data.title;
+    editForm.prix.value = data.prix;
+    editForm.categorie.value = data.id_categorie;
+    editForm.libelle.value = data.libelle;
     editForm.status.value = data.status;
-    editForm.btnsub.value = "Edit Product";
+    editForm.marque.value = data.id_marque;
+    editForm.qty.value = data.qty;
+    editForm.taux_tva.value = data.taux_tva;
+    editForm.btnsub.value = "Edit Article";
     $("#add-new-data").addClass("show")
     $(".overlay-bg").addClass("show")
 
