@@ -19,14 +19,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Thumb View</h2>
+                <h2 class="content-header-title float-left mb-0">Gérer Article</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
+                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Data List</a>
+                        <li class="breadcrumb-item"><a href="#">Liste des articles</a>
                         </li>
-                        <li class="breadcrumb-item active">Thumb View
+                        <li class="breadcrumb-item active">Gérer Article
                         </li>
                     </ol>
                 </div>
@@ -52,11 +52,12 @@
                         Actions
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Delete</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Supprimer</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archiver</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Imprimer</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Autre Action</a>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -66,15 +67,15 @@
                 <thead>
                     <tr>
                         <th>Image</th>
-                        <th>NAME</th>
-                        <th>CATEGORY</th>
+                        <th>Libelle</th>
+                        <th>Catégorie</th>
                         <th>Marque</th>
                         <th>Description</th>
-                        <th>STATUS</th>
-                        <th>PRICE</th>
-                        <th>qty</th>
-                        <th>taux_tva</th>
-                        <th>ACTION</th>
+                        <th>Etat</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Taxe</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +94,7 @@
 
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
-                            <h4 class="text-uppercase">Thumb View Data</h4>
+                            <h4 class="text-uppercase">Ajouter un article</h4>
                         </div>
                         <div class="hide-data-sidebar">
                             <i class="feather icon-x"></i>
@@ -111,7 +112,7 @@
                                         <input type="text" class="form-control" name="libelle" id="data-name">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-category"> Category </label>
+                                        <label for="data-category"> Categorie </label>
                                         <select name="categorie" class="form-control" id="data-category">
                                                 @foreach ($categories as $categorie)
                                                     <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
@@ -127,24 +128,24 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-status">Order Status</label>
+                                        <label for="data-status">Etat</label>
                                         <select name="status" class="form-control" id="data-status">
-                                            <option value="0">Pending</option>
-                                            <option value="3">Canceled</option>
-                                            <option value="1">Delivered</option>
-                                            <option value="2">On Hold</option>
+                                            <option value="0">En Attente</option>
+                                            <option value="3">Annulé</option>
+                                            <option value="1">Délivré</option>
+                                            <option value="2">En Pause</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Price</label>
+                                        <label for="data-price">Prix</label>
                                         <input type="number" name="prix" class="form-control" id="data-price">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Qty</label>
+                                        <label for="data-price">Quantité</label>
                                         <input type="number" name="qty" class="form-control" id="data-qty">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">taux_tva</label>
+                                        <label for="data-price">Taux_tva</label>
                                         <input type="number" name="taux_tva" class="form-control" id="data-tva">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
@@ -161,11 +162,11 @@
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub" type="submit" value="Add Article">
+                                <input class="btn btn-primary" name="btnsub" type="submit" value="Ajouter">
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">Cancel</button>
+                                <button class="btn btn-outline-danger">Annuler</button>
                             </div>
                         </div>
 
@@ -253,7 +254,7 @@
     pageLength: 4,
     buttons: [
       {
-        text: "<i class='feather icon-plus'></i> Add New",
+        text: "<i class='feather icon-plus'></i> Ajouter",
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
