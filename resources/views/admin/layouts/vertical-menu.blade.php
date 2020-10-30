@@ -26,17 +26,17 @@
                 </li>
                 <li class=" nav-item"><a href="app-todo.html"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-calender.html"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
+                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Users</span></a>
                 </li>
-                <li class=" nav-item has-sub {{ Request::is('admin/article') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Ecommerce</span></a>
+                <li class=" nav-item has-sub {{ Request::is('admin/article') || Request::is('admin/coupon') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Ecommerce</span></a>
                     <ul class="menu-content">
-                        <li class="{{ Request::is('admin/article') ? 'active' : '' }}"  ><a href="{{aurl('article')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Gérer Article</span></a>
+                        <li class="{{ Request::is('admin/article') ? 'active' : '' }}"  ><a href="{{aurl('article')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Article</span></a>
                         </li>
-                        <li class="{{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Gérer Categorie</span></a>
+                        <li class="{{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Categorie</span></a>
                         </li>
-                        <li class="{{ Request::is('admin/marque') ? 'active' : '' }}" ><a href="{{aurl('marque')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Wish List">Gérer Marque</span></a>
+                        <li class="{{ Request::is('admin/marque') ? 'active' : '' }}" ><a href="{{aurl('marque')}}"><i class="feather icon-circle"></i><span class="menu-item">Gérer Marque</span></a>
                         </li>
-                        <li><a href="app-ecommerce-checkout.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Checkout">Checkout</span></a>
+                        <li class="{{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-circle"></i><span class="menu-item" >Coupon</span></a>
                         </li>
                     </ul>
                 </li>

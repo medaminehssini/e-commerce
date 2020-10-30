@@ -171,7 +171,7 @@ $(document).ready(function () {
     /*** GET TABLE DATA FROM URL ***/
     agGrid
       .simpleHttpRequest({
-        url: "../../../app-assets/data/users-list.json"
+        url: "/app-assets/data/users-list.json"
       })
       .then(function (data) {
         gridOptions.api.setRowData(data);

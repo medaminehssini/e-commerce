@@ -5,7 +5,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\MarqueController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -44,6 +46,21 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::post('edit/marque/{id}' , [MarqueController::class , 'editMarque'] );
     Route::get('marque/list/dataTables' , [MarqueController::class , 'marqueData'] );
 
+
+    //user
+    Route::get('user' , [UserController::class , 'index'] );
+    Route::post('add/user' , [UserController::class , 'addMarque'] );
+    Route::get('delete/user/{id}' , [UserController::class , 'remove'] );
+    Route::post('edit/user/{id}' , [UserController::class , 'editMarque'] );
+    Route::get('user/list/dataTables' , [UserController::class , 'userData'] );
+
+
+    //coupon
+    Route::get('coupon' , [CouponController::class , 'index'] );
+    Route::post('add/coupon' , [CouponController::class , 'addCoupon'] );
+    Route::get('delete/coupon/{id}' , [CouponController::class , 'remove'] );
+    Route::post('edit/coupon/{id}' , [CouponController::class , 'editCoupon'] );
+    Route::get('coupon/list/dataTables' , [CouponController::class , 'couponData'] );
 
     Route::get('logout' , [AdminController::class , 'logout'] );
 
