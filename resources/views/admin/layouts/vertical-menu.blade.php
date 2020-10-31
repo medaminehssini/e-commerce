@@ -24,7 +24,7 @@
                 </li>
                 <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
                 </li>
-                <li class=" nav-item"><a href="app-todo.html"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Todo">Todo</span></a>
+                <li class=" nav-item  {{ Request::is('admin/promotion')  ||  Request::is('admin/ligne/promotion/*') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Todo">Promotion</span></a>
                 </li>
                 <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Users</span></a>
                 </li>

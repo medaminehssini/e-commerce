@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\LignePromotionController;
 use App\Http\Controllers\MarqueController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +63,21 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('delete/coupon/{id}' , [CouponController::class , 'remove'] );
     Route::post('edit/coupon/{id}' , [CouponController::class , 'editCoupon'] );
     Route::get('coupon/list/dataTables' , [CouponController::class , 'couponData'] );
+
+    //promotion
+    Route::get('promotion' , [PromotionController::class , 'index'] );
+    Route::post('add/promotion' , [PromotionController::class , 'addPromotion'] );
+    Route::get('delete/promotion/{id}' , [PromotionController::class , 'remove'] );
+    Route::post('edit/promotion/{id}' , [PromotionController::class , 'editPromotion'] );
+    Route::get('promotion/list/dataTables' , [PromotionController::class , 'PromotionData'] );
+
+
+    //ligne promotion
+    Route::get('ligne/promotion/{id}' , [LignePromotionController::class , 'index'] );
+    Route::post('add/ligne/promotion/{id}' , [LignePromotionController::class , 'addPromotion'] );
+    Route::get('delete/ligne/promotion/{id}/{ligne}' , [LignePromotionController::class , 'remove'] );
+    Route::post('edit/ligne/promotion/{id}' , [LignePromotionController::class , 'editPromotion'] );
+    Route::get('ligne/promotion/list/dataTables/{id}' , [LignePromotionController::class , 'PromotionData'] );
 
     Route::get('logout' , [AdminController::class , 'logout'] );
 

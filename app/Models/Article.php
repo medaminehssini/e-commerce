@@ -18,4 +18,10 @@ class Article extends Model
     {
         return $this->belongsTo('App\Models\Marque','id_marque' );
     }
+
+
+    public function promotion()
+    {
+        return $this->belongsToMany('App\Models\Promotion' , 'ligne_promotion' ,'id_article',  'id_promotion' )->withPivot('qty', 'taux' , 'created_at');
+    }
 }
