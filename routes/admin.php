@@ -26,6 +26,17 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('/', function () {
         return view('admin.welcome');
     });
+    Route::get('profile' , [AdminController::class , 'editProfile'] );
+    Route::post('edit/profile' , [AdminController::class , 'editProfileNow'] );
+    Route::post('edit/profile/password' , [AdminController::class , 'editPassword'] );
+
+
+
+
+
+
+
+
 
     //articles
     Route::get('article' , [ArticleController::class , 'index'] );
@@ -82,6 +93,7 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
 
     //contact et réclamation
     Route::get('contact' , [ContactController::class , 'index'] );
+    Route::get('contact/list/dataTables' , [ContactController::class , 'contactData'] );
 
     Route::get('logout' , [AdminController::class , 'logout'] );
 

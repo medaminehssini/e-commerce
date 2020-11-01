@@ -4,6 +4,7 @@
     @stack('css')
     @include('admin.layouts.topbar')
     @include('admin.layouts.vertical-menu')
+    @include('sweetalert::alert')
 
     <!-- BEGIN: Content-->
     <div class="app-content content">

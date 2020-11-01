@@ -33,34 +33,12 @@
             </div>
         </div>
     </div>
-    <!-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
-        <div class="form-group breadcrum-right">
-            <div class="dropdown">
-                <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
-            </div>
-        </div>
-    </div> -->
+
 </div>
 <div class="content-body">
     <!-- Data list view starts -->
     <section id="data-thumb-view" class="data-thumb-view-header">
-        <!-- <div class="action-btns d-none">
-            <div class="btn-dropdown mr-1 mb-1">
-                <div class="btn-group dropdown actions-dropodown">
-                    <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Supprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archiver</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Imprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Autre Action</a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- dataTable starts -->
+
         <div class="table-responsive">
             <table class="table data-thumb-view">
                 <thead>
@@ -69,8 +47,6 @@
                         <th>Email</th>
                         <th>Message</th>
                         <th>Date Réception</th>
-                        <th>Etat</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,8 +107,7 @@
         {data: 'nom', name: 'nom' , className: "contact-name"},
         {data:'email', name: 'email' , className: "contact-mail"},
         {data: 'message' , "defaultContent": ' ' , name: 'message' , className: "contact-msg"},
-        {data:'etat', name: 'etat' , className: "contact-etat"},
-        {data: 'action'   , name: 'action' , className: "contact-action"}
+        {data:'created_at', name: 'created_at' , className: "contact-etat"},
     ],
     columnDefs: [
 
@@ -151,7 +126,7 @@
     bInfo: false,
     pageLength: 4,
     buttons: [
-      
+
     ],
     initComplete: function(settings, json) {
       $(".dt-buttons .btn").removeClass("btn-secondary")

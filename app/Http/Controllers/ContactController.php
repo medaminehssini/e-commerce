@@ -4,56 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use Yajra\DataTables\Facades\DataTables;
 
 class ContactController extends Controller
 {
     public function index ()  {
 
-        $contact = Contact::get();
-        return view('admin.contact.list')->with('contacts' , $contact);
+        return view('admin.contact.list');
+    }
+
+    public function contactData ()
+    {
+        return DataTables::of(Contact::get())
+
+
+
+        ->make(true);
     }
 
 
 
-
-
-    public function addContact (Request $request) {
-        $this->validate($request, [
-
-            'message' => 'required',
-            'email' => 'required|email',
-            'nom' => 'required',
-        ]);
-
-
-        $contact = new  Contact() ;
-
-
-        
-        $contact->id = $request->id;
-        $contact->nom = $request->nom;
-        $contact->email = $request->email;
-        $contact->message = $request->message;
-
-
-        $contact->save();
-
-        return back();
-    }
-
-
-
-    public function remove ($id) {
-
-
-        $contact = Contact::find($id ) ;
-
-        if($contact)
-        {
-            $contact->delete();
-
-        }
-
-        return back();
-    }
 }
