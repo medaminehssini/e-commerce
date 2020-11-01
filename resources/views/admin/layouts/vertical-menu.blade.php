@@ -4,9 +4,14 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="{{url('')}}/html/ltr/vertical-menu-template/index.html">
                         <div class="brand-logo"></div>
-                        <h2 class="brand-text mb-0">Vuexy</h2>
+                        <h2 class="brand-text mb-0">Your Logo</h2>
                     </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i><i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i></a></li>
+                <li class="nav-item nav-toggle">
+                    <a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse">
+                        <i class="feather icon-x d-block d-xl-none font-medium-4 primary toggle-icon"></i>
+                        <i class="toggle-icon feather icon-disc font-medium-4 d-none d-xl-block collapse-toggle-icon primary" data-ticon="icon-disc"></i>
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="shadow-bottom"></div>
@@ -20,27 +25,29 @@
                         </li>
                     </ul>
                 </li>
-                <li class=" navigation-header"><span>Apps</span>
+
                 </li>
-                <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a>
+                <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a> -->
                 </li>
-                <li class=" nav-item  {{ Request::is('admin/promotion')  ||  Request::is('admin/ligne/promotion/*') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-check-square"></i><span class="menu-title" data-i18n="Todo">Promotion</span></a>
+
+                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Gérer Utilisateur</span></a>
                 </li>
-                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Users</span></a>
-                </li>
-                <li class=" nav-item has-sub {{ Request::is('admin/article') || Request::is('admin/coupon') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Ecommerce</span></a>
+                <li class=" nav-item has-sub {{ Request::is('admin/article') || Request::is('admin/coupon') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Géstion Commercial</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('admin/article') ? 'active' : '' }}"  ><a href="{{aurl('article')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Article</span></a>
                         </li>
                         <li class="{{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Categorie</span></a>
                         </li>
                         <li class="{{ Request::is('admin/marque') ? 'active' : '' }}" ><a href="{{aurl('marque')}}"><i class="feather icon-circle"></i><span class="menu-item">Gérer Marque</span></a>
+                        <li class="{{ Request::is('admin/promotion') ? 'active' : '' }}" ><a href="{{aurl('promotion')}}"><i class="feather icon-circle"></i><span class="menu-item">Gérer Promotion</span></a>
                         </li>
-                        <li class="{{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-circle"></i><span class="menu-item" >Coupon</span></a>
+                        <li class="{{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Coupon</span></a>
                         </li>
                     </ul>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
+                <li class=" nav-item {{ Request::is('admin/contact') ? 'active' : '' }}"><a href="{{aurl('contact')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Contact et Réclamation </span></a>
+                </li>
+                <!-- <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
                     <ul class="menu-content">
                         <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
                         </li>
@@ -312,7 +319,7 @@
                 </li>
                 <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="feather icon-life-buoy"></i><span class="menu-title" data-i18n="Raise Support">Raise Support</span></a>
                 </li>
-            </ul>
+            </ul> -->
         </div>
     </div>
     <!-- END: Main Menu-->

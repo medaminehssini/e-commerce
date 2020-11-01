@@ -10,6 +10,7 @@ use App\Http\Controllers\LignePromotionController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -78,6 +79,9 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('delete/ligne/promotion/{id}/{ligne}' , [LignePromotionController::class , 'remove'] );
     Route::post('edit/ligne/promotion/{id}' , [LignePromotionController::class , 'editPromotion'] );
     Route::get('ligne/promotion/list/dataTables/{id}' , [LignePromotionController::class , 'PromotionData'] );
+
+    //contact et réclamation
+    Route::get('contact' , [ContactController::class , 'index'] );
 
     Route::get('logout' , [AdminController::class , 'logout'] );
 

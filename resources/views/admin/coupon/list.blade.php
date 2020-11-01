@@ -19,14 +19,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer catégorie</h2>
+                <h2 class="content-header-title float-left mb-0">Gérer Coupon</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Accueill</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des catégorie</a>
+                        <li class="breadcrumb-item"><a href="#">Liste des coupons</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer catégorie
+                        <li class="breadcrumb-item active">Gérer Coupon
                         </li>
                     </ol>
                 </div>
@@ -37,7 +37,7 @@
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
+                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendrier</a></div>
             </div>
         </div>
     </div>
@@ -55,10 +55,10 @@
                 <thead>
                     <tr>
                         <th>Code</th>
-                        <th>Qty</th>
-                        <th>date_fin</th>
-                        <th>taux</th>
-                        <th>prix_min</th>
+                        <th>Quantité</th>
+                        <th>Date Fin</th>
+                        <th>Taux</th>
+                        <th>Montant Min</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -92,25 +92,25 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">code</label>
+                                        <label for="data-name">Code</label>
                                         <input type="text" class="form-control" name="code" id="data-name">
                                     </div>
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">qty</label>
+                                        <label for="data-name">Quantité</label>
                                         <input type="number" class="form-control" name="qty" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">date_fin</label>
+                                        <label for="data-name">Date Fin</label>
                                         <input type="date" class="form-control" name="date_fin" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">taux</label>
+                                        <label for="data-name">Taux</label>
                                         <input type="number" class="form-control" name="taux" >
                                     </div>
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">prix_min</label>
+                                        <label for="data-name">Montant Min</label>
                                         <input type="number" class="form-control" name="prix_min" >
                                     </div>
                                 </div>
