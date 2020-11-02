@@ -144,7 +144,7 @@
                                                     <p class="mb-0">
                                                         Votre e-mail n'est pas encore confirmé.
                                                     </p>
-                                                    <a href="javascript: void(0);">Renvoyer l'email de confirmation</a>
+                                                    <a href="javascript: void(0);">Renvoyer l'e-mail de confirmation</a>
                                                 </div>
                                             </div> --}}
 
