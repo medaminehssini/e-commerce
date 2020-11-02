@@ -16,14 +16,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Account Settings</h2>
+                <h2 class="content-header-title float-left mb-0">Paramétres du compte</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
+                        <li class="breadcrumb-item"><a href="index.html">Acceiul</a>
                         </li>
                         <li class="breadcrumb-item"><a href="#">Pages</a>
                         </li>
-                        <li class="breadcrumb-item active"> Account Settings
+                        <li class="breadcrumb-item active"> Paramétres du compte
                         </li>
                     </ol>
                 </div>
@@ -34,7 +34,7 @@
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
+                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Discussion</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendrier</a></div>
             </div>
         </div>
     </div>
@@ -59,13 +59,13 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex py-75 active" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
                             <i class="feather icon-globe mr-50 font-medium-3"></i>
-                            General
+                            Genèrale
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link d-flex py-75" id="account-pill-password" data-toggle="pill" href="#account-vertical-password" aria-expanded="false">
                             <i class="feather icon-lock mr-50 font-medium-3"></i>
-                            Change Password
+                            Sécurité
                         </a>
                     </li>
 
@@ -92,12 +92,12 @@
                                         </a>
                                         <div class="media-body mt-75">
                                             <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Upload new photo</label>
+                                                <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Parcourir</label>
                                                 <input type="file" id="account-upload" name="image" hidden>
-                                                <button class="btn btn-sm btn-outline-warning ml-50">Reset</button>
+                                                <button class="btn btn-sm btn-outline-warning ml-50">Réinitialiser</button>
                                             </div>
-                                            <p class="text-muted ml-75 mt-50"><small>Allowed JPG, GIF or PNG. Max
-                                                    size of
+                                            <p class="text-muted ml-75 mt-50"><small>Seulement JPG, GIF ou PNG. Max
+                                                    taille
                                                     800kB</small></p>
                                         </div>
                                     </div>
@@ -107,24 +107,24 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-username">Username</label>
-                                                        <input type="text" name="username" class="form-control" id="account-username" placeholder="Username" value="{{Auth::guard('admin')->user()->username}}" required data-validation-required-message="This username field is required">
+                                                        <label for="account-username">Nom utilisateur</label>
+                                                        <input type="text" name="username" class="form-control" id="account-username" placeholder="Nom utilisateur" value="{{Auth::guard('admin')->user()->username}}" required data-validation-required-message="This username field is required">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-name">First Name</label>
-                                                        <input type="text" class="form-control" id="account-name" placeholder="Name" value="{{Auth::guard('admin')->user()->first_name}}" required name="first_name">
+                                                        <label for="account-name">Prénom</label>
+                                                        <input type="text" class="form-control" id="account-name" placeholder="Prénom" value="{{Auth::guard('admin')->user()->first_name}}" required name="first_name">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-name">Last Name</label>
-                                                        <input type="text" class="form-control" id="account-name" placeholder="Name"  value="{{Auth::guard('admin')->user()->last_name}}" required name="last_name">
+                                                        <label for="account-name">Nom</label>
+                                                        <input type="text" class="form-control" id="account-name" placeholder="Nom"  value="{{Auth::guard('admin')->user()->last_name}}" required name="last_name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -142,16 +142,15 @@
                                                         <span aria-hidden="true">×</span>
                                                     </button>
                                                     <p class="mb-0">
-                                                        Your email is not confirmed. Please check your inbox.
+                                                        Votre e-mail n'est pas encore confirmé.
                                                     </p>
-                                                    <a href="javascript: void(0);">Resend confirmation</a>
+                                                    <a href="javascript: void(0);">Renvoyer l'email de confirmation</a>
                                                 </div>
                                             </div> --}}
 
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                    changes</button>
-                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Enregistrer les changements</button>
+                                                <button type="reset" class="btn btn-outline-warning">Annuler</button>
                                             </div>
                                         </div>
                                     </form>
@@ -163,32 +162,30 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-old-password">Old Password</label>
-                                                        <input type="password" name="current_password" class="form-control" id="account-old-password" required placeholder="Old Password" >
+                                                        <label for="account-old-password">Mot de passe actuelle</label>
+                                                        <input type="password" name="current_password" class="form-control" id="account-old-password" required placeholder="Mot de passe actuelle" >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-new-password">New Password</label>
-                                                        <input type="password" name="password" id="account-new-password" class="form-control" placeholder="New Password" required data-validation-required-message="The password field is required" minlength="6">
+                                                        <label for="account-new-password">Nouvelle mot de passe</label>
+                                                        <input type="password" name="password" id="account-new-password" class="form-control" placeholder="Nouvelle mot de passe" required data-validation-required-message="The password field is required" minlength="6">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-retype-new-password">Retype New
-                                                            Password</label>
-                                                        <input type="password" name="confirmation_password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="New Password" data-validation-required-message="The Confirm password field is required" minlength="6">
+                                                        <label for="account-retype-new-password">Confirmer mot de passe</label>
+                                                        <input type="password" name="confirmation_password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="Confirmer mot de passe" data-validation-required-message="The Confirm password field is required" minlength="6">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                    changes</button>
-                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Enregistrer les changements</button>
+                                                <button type="reset" class="btn btn-outline-warning">Annuler</button>
                                             </div>
                                         </div>
                                     </form>

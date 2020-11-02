@@ -34,7 +34,7 @@ class AdminController extends Controller
             if($request->hasfile('image'))
             {
                 $messages = [
-                    'image.mimes' => 'Please enter current Image',
+                    'image.mimes' => 'Choisir une photo de profil',
                 ];
                 $this->validate($request, [
 
@@ -55,14 +55,16 @@ class AdminController extends Controller
             $user->username =  $request->username;
             $user->save();
 
-        alert()->success('Profile Edited', 'Successfully')->toToast();
+        alert()->success('Profil bien modifié', '')->toToast();
         return back();
     }
 
     public function editPassword (Request $request) {
             $messages = [
-                'current_password.required' => 'Please enter current password',
-                'password.required' => 'Please enter password',
+                'current_password.required' => 'Entrer votre mot de passe actuel',
+                'password.required' => 'Taper la nouvelle mot de passe ',
+                'confirmation_password.required' => 'Re-taper la nouvelle mot de passe ',
+                
             ];
 
             $this->validate($request, [
@@ -77,10 +79,10 @@ class AdminController extends Controller
                 $user = Admin::find(Auth::guard('admin')->user()->id);
                 $user->password =  Hash::make($request->password);
                 $user->save();
-                alert()->success('Profile Edited', 'Successfully')->toToast();
+                alert()->success('Profil bien modifié', '')->toToast();
 
             }else {
-                alert()->error('current password invalid', 'Error')->toToast();
+                alert()->error('Mot de passe actuelle non valide !', 'Error')->toToast();
 
             }
 
