@@ -32,7 +32,7 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span></a>
+                        <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
                         </li>
                         <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
@@ -117,9 +117,11 @@
         </div>
     </nav>
     <ul class="main-search-list-defaultlist d-none">
-        <li class="d-flex align-items-center"><a class="pb-25" href="#">
-                <h6 class="text-primary mb-0">Files</h6>
-            </a></li>
+        <li class="d-flex align-items-center">
+            <a class="pb-25" href="#">
+                <h6 class="text-primary mb-0">Fichiers</h6>
+            </a>
+        </li>
         <li class="auto-suggestion d-flex align-items-center cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100" href="#">
                 <div class="d-flex">
                     <div class="mr-50"><img src="{{url('')}}/app-assets/images/icons/xls.png" alt="png" height="32"></div>
@@ -189,8 +191,13 @@
             </a></li>
     </ul>
     <ul class="main-search-list-defaultlist-other-list d-none">
-        <li class="auto-suggestion d-flex align-items-center justify-content-between cursor-pointer"><a class="d-flex align-items-center justify-content-between w-100 py-50">
-                <div class="d-flex justify-content-start"><span class="mr-75 feather icon-alert-circle"></span><span>No results found.</span></div>
-            </a></li>
+        <li class="auto-suggestion d-flex align-items-center justify-content-between cursor-pointer">
+            <a class="d-flex align-items-center justify-content-between w-100 py-50">
+                <div class="d-flex justify-content-start">
+                    <span class="mr-75 feather icon-alert-circle"></span>
+                    <span>Aucune resultat trouvé.</span>
+                </div>
+            </a>
+        </li>
     </ul>
     <!-- END: Header-->
