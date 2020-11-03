@@ -73,6 +73,25 @@ class PromotionController extends Controller
 
     public function addPromotion (Request $request) {
 
+        $messages = [
+            'taux_min.required' => 'Champs taux obligatoire',
+            'taux_min.min' => 'Taux invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+            'date_debut.required' => 'Champs date debut obligatoire',
+            'date_debut.after' => 'Date debut invalide',
+            'date_fin.required' => 'Champs date fin obligatoire',
+            'date_fin.after' => 'Date fin invalide',
+        ];
+
+        $this->validate($request, [
+
+            'libelle' => 'required',
+            'date_debut' => 'required|date|after:tomorrow',
+            'date_fin' => 'required|date|after:tomorrow',
+            'taux_min' =>  'required|numeric|min:1'
+        ], $messages);
+
+
         $promotion = new  Promotion() ;
 
 
@@ -87,7 +106,23 @@ class PromotionController extends Controller
 
     public function editPromotion  ( Request $request , $id ) {
 
+        $messages = [
+            'taux_min.required' => 'Champs taux obligatoire',
+            'taux_min.min' => 'Taux invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+            'date_debut.required' => 'Champs date debut obligatoire',
+            'date_debut.after' => 'Date debut invalide',
+            'date_fin.required' => 'Champs date fin obligatoire',
+            'date_fin.after' => 'Date fin invalide',
+        ];
 
+        $this->validate($request, [
+
+            'libelle' => 'required',
+            'date_debut' => 'required|date|after:tomorrow',
+            'date_fin' => 'required|date|after:tomorrow',
+            'taux_min' =>  'required|numeric|min:1'
+        ], $messages);
 
 
         $promotion =   Promotion::find($id ) ;

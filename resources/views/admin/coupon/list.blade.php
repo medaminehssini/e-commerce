@@ -85,7 +85,15 @@
                         </div>
                     </div>
 
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">

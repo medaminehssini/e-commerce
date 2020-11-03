@@ -33,10 +33,19 @@ class MarqueController extends Controller
 
 
     public function addMarque (Request $request) {
+
+        $messages = [
+            'logo.required' => 'Vous devez ajouter une photo',
+            'logo.mimes' => 'Format logo invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+        ];
+
         $this->validate($request, [
 
-            'image' => 'required|mimes:jpg,jpeg,png,gif'
-        ]);
+            'libelle' => 'required',
+            'logo' => 'required|mimes:jpg,jpeg,png,gif'
+        ], $messages);
+
 
 
         if($request->hasfile('image'))
@@ -64,7 +73,17 @@ class MarqueController extends Controller
 
     public function editMarque  ( Request $request , $id ) {
 
+        $messages = [
+            'logo.required' => 'Vous devez ajouter une photo',
+            'logo.mimes' => 'Format logo invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+        ];
 
+        $this->validate($request, [
+
+            'libelle' => 'required',
+            'logo' => 'required|mimes:jpg,jpeg,png,gif'
+        ], $messages);
 
         $nameImage = null;
         if($request->hasfile('image'))

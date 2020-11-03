@@ -34,11 +34,12 @@ class AdminController extends Controller
             if($request->hasfile('image'))
             {
                 $messages = [
-                    'image.mimes' => 'Please enter current Image',
+                    'image.mimes' => 'Image invalide',
                 ];
                 $this->validate($request, [
 
-                    'image' => 'mimes:jpg,jpeg,png,gif'
+                    'image' => 'mimes:jpg,jpeg,png,gif',
+
                 ], $messages);
 
 
@@ -61,8 +62,12 @@ class AdminController extends Controller
 
     public function editPassword (Request $request) {
             $messages = [
-                'current_password.required' => 'Please enter current password',
-                'password.required' => 'Please enter password',
+                'current_password.required' => 'Champs obligatoire',
+                'password.required' => 'Champs obligatoire',
+                'confirmation_password.required' => 'Champs obligatoire',
+                'password.same' => 'Mot de passe invalide',
+                'confirmation_password.same' => 'Mot de passe invalide',
+                
             ];
 
             $this->validate($request, [

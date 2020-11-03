@@ -31,6 +31,27 @@ class CouponController extends Controller
 
     public function addCoupon (Request $request) {
 
+        $messages = [
+            'taux.required' => 'Champs taux obligatoire',
+            'taux.min' => 'Taux invalide',
+            'code.required' => 'Champs code obligatoire',
+            'qty.required' => 'Champs quantité obligatoire',
+            'qty.min' => 'Quantité invalide',
+            'date_fin.after' => 'Date  invalide',
+            'prix_min.min' =>  'Prix invalide',
+            'date_fin.required' => 'Champs date obligatoire',
+            'prix_min.required' =>  'Champs prix obligatoire '
+        ];
+
+        $this->validate($request, [
+
+            'code' => 'required',
+            'qty' => 'required|numeric|min:1',
+            'taux' =>  'required|numeric|min:1',
+            'date_fin' => 'required|date|after:tomorrow',
+            'prix_min' =>  'required|numeric|min:1'
+        ], $messages);
+
         $Coupon = new  Coupon() ;
 
 
@@ -48,7 +69,26 @@ class CouponController extends Controller
 
     public function editCoupon  ( Request $request , $id ) {
 
+        $messages = [
+            'taux.required' => 'Champs taux obligatoire',
+            'taux.min' => 'Taux invalide',
+            'code.required' => 'Champs code obligatoire',
+            'qty.required' => 'Champs quantité obligatoire',
+            'qty.min' => 'Quantité invalide',
+            'date_fin.after' => 'Date  invalide',
+            'prix_min.min' =>  'Prix invalide',
+            'date_fin.required' => 'Champs date obligatoire',
+            'prix_min.required' =>  'Champs prix obligatoire '
+        ];
 
+        $this->validate($request, [
+
+            'code' => 'required',
+            'qty' => 'required|numeric|min:1',
+            'taux' =>  'required|numeric|min:1',
+            'date_fin' => 'required|date|after:tomorrow',
+            'prix_min' =>  'required|numeric|min:1'
+        ], $messages);
 
 
 

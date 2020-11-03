@@ -34,10 +34,21 @@ class CategorieController extends Controller
 
 
     public function addCategorie (Request $request) {
+
+
+        $messages = [
+            'image.required' => 'Vous devez ajouter une photo',
+            'image.mimes' => 'Format image invalide',
+            'nom.required' => 'Champs libelle obligatoire',
+            'id_categorie.required' => 'Vous devez choisir une catégorie'
+        ];
+
         $this->validate($request, [
 
+            'nom' => 'required',
+            'id_categorie' => 'required',
             'image' => 'required|mimes:jpg,jpeg,png,gif'
-        ]);
+        ], $messages);
 
 
         if($request->hasfile('image'))
@@ -66,7 +77,19 @@ class CategorieController extends Controller
 
     public function editCategorie  ( Request $request , $id ) {
 
+        $messages = [
+            'image.required' => 'Vous devez ajouter une photo',
+            'image.mimes' => 'Format image invalide',
+            'nom.required' => 'Champs libelle obligatoire',
+            'id_categorie.required' => 'Vous devez choisir une catégorie'
+        ];
 
+        $this->validate($request, [
+
+            'nom' => 'required',
+            'id_categorie' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png,gif'
+        ], $messages);
 
         $nameImage = null;
         if($request->hasfile('image'))

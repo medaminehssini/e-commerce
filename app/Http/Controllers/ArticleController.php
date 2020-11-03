@@ -7,6 +7,7 @@ use App\Models\Categorie;
 use App\Models\Marque;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
+
 class ArticleController extends Controller
 {
     public function index ()  {
@@ -69,10 +70,33 @@ class ArticleController extends Controller
 
 
     public function addArticle (Request $request) {
+
+        $messages = [
+            'images.required' => 'Vous devez ajouter au moins une photo',
+            'images.mimes' => 'Format image invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+            'prix.required' => 'Champs prix obligatoire',
+            'qty.required' => 'Champs quantité obligatoire',
+            'prix.min' => 'Champs prix invalide',
+            'qty.min' => 'Champs quantité invalide',
+            'id_categorie.required' => 'Vous devez choisir une catégorie',
+            'description.required' => 'Champs description obligatoire',
+            'status.required' => 'Vous devez spécifier une état',
+            'id_marque.required' => 'Vous devez sélectionner une marque',
+            
+        ];
+
         $this->validate($request, [
             'images' => 'required',
-            'images.*' => 'mimes:jpg,jpeg,png,gif'
-        ]);
+            'images.*' => 'mimes:jpg,jpeg,png,gif',
+            'libelle' => 'required',
+            'prix' => 'required|numeric|min:1',
+            'qty' => 'required|numeric|min:1',
+            'id_categorie' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'id_marque' => 'required',
+        ], $messages);
 
         $images  = [] ;
         $i= 0 ;
@@ -109,7 +133,32 @@ class ArticleController extends Controller
 
     public function editArticle  ( Request $request , $id ) {
 
+        $messages = [
+            'images.required' => 'Vous devez ajouter au moins une photo',
+            'images.mimes' => 'Format image invalide',
+            'libelle.required' => 'Champs libelle obligatoire',
+            'prix.required' => 'Champs prix obligatoire',
+            'qty.required' => 'Champs quantité obligatoire',
+            'prix.min' => 'Champs prix invalide',
+            'qty.min' => 'Champs quantité invalide',
+            'id_categorie.required' => 'Vous devez choisir une catégorie',
+            'description.required' => 'Champs description obligatoire',
+            'status.required' => 'Vous devez spécifier une état',
+            'id_marque.required' => 'Vous devez sélectionner une marque',
+            
+        ];
 
+        $this->validate($request, [
+            'images' => 'required',
+            'images.*' => 'mimes:jpg,jpeg,png,gif',
+            'libelle' => 'required',
+            'prix' => 'required|numeric|min:1',
+            'qty' => 'required|numeric|min:1',
+            'id_categorie' => 'required',
+            'description' => 'required',
+            'status' => 'required',
+            'id_marque' => 'required',
+        ], $messages);
 
 
         $images  = [] ;

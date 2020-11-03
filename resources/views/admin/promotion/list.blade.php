@@ -85,7 +85,15 @@
                             <i class="feather icon-x"></i>
                         </div>
                     </div>
-
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
 
 
                         <div class="data-items pb-3">
@@ -93,20 +101,20 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">libelle</label>
+                                        <label for="data-name">Libelle</label>
                                         <input type="text" class="form-control" name="libelle" id="data-name">
                                     </div>
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">date_debut</label>
+                                        <label for="data-name">Date debut</label>
                                         <input type="date" class="form-control" name="date_debut" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">date_fin</label>
+                                        <label for="data-name">Date fin</label>
                                         <input type="date" class="form-control" name="date_fin" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">taux_min</label>
+                                        <label for="data-name">Taux min</label>
                                         <input type="number" class="form-control" name="taux_min" >
                                     </div>
 
