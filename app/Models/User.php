@@ -40,4 +40,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function commande()
+    {
+        return $this->hasMany('App\Models\Commande' , 'id_client');
+    }
 }

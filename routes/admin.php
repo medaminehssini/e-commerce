@@ -5,6 +5,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\LignePromotionController;
 use App\Http\Controllers\MarqueController;
@@ -96,6 +97,14 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('contact/list/dataTables' , [ContactController::class , 'contactData'] );
 
     Route::get('logout' , [AdminController::class , 'logout'] );
+
+    //commande
+    Route::get('commande' , [CommandeController::class , 'index'] );
+    Route::get('accpeter/commande/{id}' , [CommandeController::class , 'AccepterCommande'] );
+    Route::get('refuser/commande/{id}' , [CommandeController::class , 'refuserCommande'] );
+    Route::get('commande/list/dataTables' , [CommandeController::class , 'CommandeData'] );
+    Route::get('get/liste/item/{id}' , [CommandeController::class , 'LigneCommandeData'] );
+
 
 
 });

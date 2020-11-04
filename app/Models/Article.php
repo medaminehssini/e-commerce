@@ -24,4 +24,8 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Models\Promotion' , 'ligne_promotion' ,'id_article',  'id_promotion' )->withPivot('qty', 'taux' , 'created_at');
     }
+    public function commande()
+    {
+        return $this->belongsToMany('App\Models\Commande' , 'ligne_commande' ,'id_article' ,  'id_commande' )->withPivot('qty' );
+    }
 }

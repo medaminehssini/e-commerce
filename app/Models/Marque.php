@@ -11,7 +11,7 @@ class Marque extends Model
     protected $table = "marque";
     public $timestamps = false;
 
-    public function product()
+    public function article()
     {
         return $this->hasMany('App\Models\Product' , 'id_marque');
     }
