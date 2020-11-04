@@ -33,24 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
     plugins: ["dayGrid", "timeGrid", "interaction"],
-    customButtons: {
-      addNew: {
-        text: ' Add',
-        click: function () {
-          var calDate = new Date,
-            todaysDate = calDate.toISOString().slice(0, 10);
-          $(".modal-calendar").modal("show");
-          $(".modal-calendar .cal-submit-event").addClass("d-none");
-          $(".modal-calendar .remove-event").addClass("d-none");
-          $(".modal-calendar .cal-add-event").removeClass("d-none")
-          $(".modal-calendar .cancel-event").removeClass("d-none")
-          $(".modal-calendar .add-category .chip").remove();
-          $("#cal-start-date").val(todaysDate);
-          $("#cal-end-date").val(todaysDate);
-          $(".modal-calendar #cal-start-date").attr("disabled", false);
-        }
-      }
-    },
     header: {
       left: "addNew",
       center: "dayGridMonth,timeGridWeek,timeGridDay",
@@ -60,13 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     navLinks: true,
     editable: true,
     allDay: true,
-    navLinkDayClick: function (date) {
-      $(".modal-calendar").modal("show");
-    },
-    dateClick: function (info) {
-      $(".modal-calendar #cal-start-date").val(info.dateStr).attr("disabled", true);
-      $(".modal-calendar #cal-end-date").val(info.dateStr);
-    },
+
     // displays saved event values on click
     eventClick: function (info) {
       $(".modal-calendar").modal("show");
@@ -80,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
       $(".modal-calendar .cancel-event").addClass("d-none");
       $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
       var eventCategory = info.event.extendedProps.dataEventColor;
+      console.log(eventCategory);
       var eventText = categoryText[eventCategory]
       $(".modal-calendar .chip-wrapper .chip").remove();
       $(".modal-calendar .chip-wrapper").append($("<div class='chip chip-" + eventCategory + "'>" +
@@ -101,11 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $(".modal-calendar").modal("hide");
   });
 
-  // Remove Event
-  $(".remove-event").on("click", function () {
-    var removeEvent = calendar.getEventById('newEvent');
-    removeEvent.remove();
-  });
+
 
 
   // reset input element's value for new event
@@ -125,19 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // open add event modal on click of day
-  $(document).on("click", ".fc-day", function () {
-    $(".modal-calendar").modal("show");
-    $(".calendar-dropdown .dropdown-menu").find(".selected").removeClass("selected");
-    $(".modal-calendar .cal-submit-event").addClass("d-none");
-    $(".modal-calendar .remove-event").addClass("d-none");
-    $(".modal-calendar .cal-add-event").removeClass("d-none");
-    $(".modal-calendar .cancel-event").removeClass("d-none");
-    $(".modal-calendar .add-category .chip").remove();
-    $(".modal-calendar .modal-footer .btn").attr("disabled", true);
-    evtColor = colors.primary;
-    eventColor = "primary";
-  });
 
   // change chip's and event's color according to event type
   $(".calendar-dropdown .dropdown-menu .dropdown-item").on("click", function () {
@@ -187,8 +147,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // date picker
-  $(".pickadate").pickadate({
-    format: 'yyyy-mm-dd'
-  });
+    function AddEvent () {
+        calendar.addEvent({
+            id: "newEvent",
+            title: "eventTitle",
+            start: new Date("11/04/2020"),
+            end: new Date("11/15/2020"),
+            description: "eventDescription",
+            color:  colors.primary,
+            dataEventColor: 'success',
+            allDay: true
+        });
+    }
 });

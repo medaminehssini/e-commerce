@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Http\Controllers\admin\CalenderContrller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
@@ -106,5 +105,6 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('get/liste/item/{id}' , [CommandeController::class , 'LigneCommandeData'] );
 
 
-
+       //commande
+       Route::get('calender' , [CalenderContrller::class , 'index'] );
 });
