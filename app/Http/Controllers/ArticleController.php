@@ -79,10 +79,8 @@ class ArticleController extends Controller
             'qty.required' => 'Champs quantité obligatoire',
             'prix.min' => 'Champs prix invalide',
             'qty.min' => 'Champs quantité invalide',
-            'id_categorie.required' => 'Vous devez choisir une catégorie',
             'description.required' => 'Champs description obligatoire',
             'status.required' => 'Vous devez spécifier une état',
-            'id_marque.required' => 'Vous devez sélectionner une marque',
             
         ];
 
@@ -92,10 +90,8 @@ class ArticleController extends Controller
             'libelle' => 'required',
             'prix' => 'required|numeric|min:1',
             'qty' => 'required|numeric|min:1',
-            'id_categorie' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'id_marque' => 'required',
         ], $messages);
 
         $images  = [] ;
@@ -141,10 +137,8 @@ class ArticleController extends Controller
             'qty.required' => 'Champs quantité obligatoire',
             'prix.min' => 'Champs prix invalide',
             'qty.min' => 'Champs quantité invalide',
-            'id_categorie.required' => 'Vous devez choisir une catégorie',
             'description.required' => 'Champs description obligatoire',
             'status.required' => 'Vous devez spécifier une état',
-            'id_marque.required' => 'Vous devez sélectionner une marque',
             
         ];
 
@@ -154,10 +148,8 @@ class ArticleController extends Controller
             'libelle' => 'required',
             'prix' => 'required|numeric|min:1',
             'qty' => 'required|numeric|min:1',
-            'id_categorie' => 'required',
             'description' => 'required',
             'status' => 'required',
-            'id_marque' => 'required',
         ], $messages);
 
 

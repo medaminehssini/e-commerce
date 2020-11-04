@@ -48,12 +48,12 @@ class MarqueController extends Controller
 
 
 
-        if($request->hasfile('image'))
+        if($request->hasfile('logo'))
         {
 
 
-                $name = time().'.'.$request->image->extension();
-                $request->image->move(public_path().'/uploads/img/marque', $name);
+                $name = time().'.'.$request->logo->extension();
+                $request->logo->move(public_path().'/uploads/img/marque', $name);
                 $nameImage = '/uploads/img/marque/'.$name;
 
 
@@ -63,7 +63,7 @@ class MarqueController extends Controller
 
 
         $Marque->logo       = $nameImage;
-        $Marque->libelle      = $request->nom;
+        $Marque->libelle      = $request->libelle;
 
 
         $Marque->save();
@@ -90,12 +90,12 @@ class MarqueController extends Controller
         {
             $this->validate($request, [
 
-                'image' => 'mimes:jpg,jpeg,png,gif'
+                'logo' => 'mimes:jpg,jpeg,png,gif'
             ]);
 
 
-            $name = time().'.'.$request->image->extension();
-            $request->image->move(public_path().'/uploads/img/marque', $name);
+            $name = time().'.'.$request->logo->extension();
+            $request->logo->move(public_path().'/uploads/img/marque', $name);
             $nameImage = '/uploads/img/marque/'.$name;
 
         }
@@ -104,8 +104,8 @@ class MarqueController extends Controller
 
         if($Marque)
         {
-            if ($nameImage) $Marque->image      = $nameImage;
-            $Marque->libelle      = $request->nom;
+            if ($nameImage) $Marque->logo      = $nameImage;
+            $Marque->libelle      = $request->libelle;
 
             $Marque->save();
         }
