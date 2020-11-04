@@ -40,7 +40,9 @@
                 </li> -->
                 <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a> -->
 
-                <li class="nav-item {{ Request::is('welcome') ? 'active' : '' }}"><a href="{{aurl('welcome')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Calender">Tableau de bord</span></a></li>
+                <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}"><a href="{{aurl('')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Calender">Tableau de bord</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/calender') ? 'active' : '' }}"><a href="{{aurl('calender')}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
+                </li>
                 <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-shopping-bag"></i><span class="menu-title" data-i18n="Calender">Gérer Commande</span></a></li>
                 <li class=" nav-item {{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Calender">Gérer Categorie </span></a>
                 <li class=" nav-item {{ Request::is('admin/marque') ? 'active' : '' }}"><a href="{{aurl('marque')}}"><i class="feather icon-tag"></i><span class="menu-title" data-i18n="Calender">Gérer Marque </span></a>
