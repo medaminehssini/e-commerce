@@ -40,13 +40,11 @@ class CategorieController extends Controller
             'image.required' => 'Vous devez ajouter une photo',
             'image.mimes' => 'Format image invalide',
             'nom.required' => 'Champs libelle obligatoire',
-            'id_categorie.required' => 'Vous devez choisir une catégorie'
         ];
 
         $this->validate($request, [
 
             'nom' => 'required',
-            'id_categorie' => 'required',
             'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
 
@@ -71,6 +69,8 @@ class CategorieController extends Controller
 
 
         $Categorie->save();
+        
+        alert()->success('Catégorie bien ajoutée', '')->toToast();
 
         return back();
     }
@@ -81,13 +81,11 @@ class CategorieController extends Controller
             'image.required' => 'Vous devez ajouter une photo',
             'image.mimes' => 'Format image invalide',
             'nom.required' => 'Champs libelle obligatoire',
-            'id_categorie.required' => 'Vous devez choisir une catégorie'
         ];
 
         $this->validate($request, [
 
             'nom' => 'required',
-            'id_categorie' => 'required',
             'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
 
