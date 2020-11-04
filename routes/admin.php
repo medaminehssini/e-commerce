@@ -33,6 +33,10 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
 
 
 
+    //Dashboard
+    Route::get('welcome' , function(){
+        return view('admin.welcome');
+    })->name('welcome');
 
 
 
