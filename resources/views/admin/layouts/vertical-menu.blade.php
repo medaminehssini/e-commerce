@@ -45,6 +45,7 @@
                         </li>
                     </ul>
                 </li>
+                <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Commande </span></a>
                 <li class=" nav-item {{ Request::is('admin/contact') ? 'active' : '' }}"><a href="{{aurl('contact')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Contact et Réclamation </span></a>
                 </li>
                 <!-- <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
