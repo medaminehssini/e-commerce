@@ -19,14 +19,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer catégorie</h2>
+                <h2 class="content-header-title float-left mb-0">Gérer promotion</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Accueill</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des catégorie</a>
+                        <li class="breadcrumb-item"><a href="#">Liste des promotions</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer catégorie
+                        <li class="breadcrumb-item active">Gérer promotion
                         </li>
                     </ol>
                 </div>
@@ -37,7 +37,7 @@
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
+                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Discussion</a><a class="dropdown-item" href="#">E-mail</a><a class="dropdown-item" href="#">Calendrier</a></div>
             </div>
         </div>
     </div>
@@ -54,12 +54,12 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>libelle</th>
-                        <th>date_debut</th>
-                        <th>date_fin</th>
-                        <th>taux_min</th>
-                        <th>status</th>
-                        <th>gerer</th>
+                        <th>Libelle</th>
+                        <th>Date debut</th>
+                        <th>Date fin</th>
+                        <th>Taux min</th>
+                        <th>Status</th>
+                        <th>Gerer</th>
                         <th>Action</th>
                     </tr>
                 </thead>

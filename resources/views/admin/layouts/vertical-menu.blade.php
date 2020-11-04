@@ -15,24 +15,17 @@
             </ul>
         </div>
         <div class="shadow-bottom"></div>
-        <div class="main-menu-content">
+        <div class="main-menu-content mt-2">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
+                <!-- <li class=" nav-item"><a href="index.html"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Dashboard">Dashboard</span><span class="badge badge badge-warning badge-pill float-right mr-2">2</span></a>
                     <ul class="menu-content">
                         <li class="active"><a href="dashboard-analytics.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Analytics">Analytics</span></a>
                         </li>
-                        <li><a href="dashboard-ecommerce.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="eCommerce">eCommerce</span></a>
+                        <li><a href="dashboard-ecommerce.html"><i class="feather icon-home"></i><span class="menu-item" data-i18n="eCommerce">Tableau de bord</span></a>
                         </li>
                     </ul>
-                </li>
-
-                </li>
-                <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a> -->
-                </li>
-
-                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Gérer Utilisateur</span></a>
-                </li>
-                <li class=" nav-item has-sub {{ Request::is('admin/article') || Request::is('admin/coupon') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Géstion Commercial</span></a>
+                </li> -->
+                <!-- <li class=" nav-item has-sub {{ Request::is('admin/article') || Request::is('admin/coupon') ||  Request::is('admin/categorie')   ||  Request::is('admin/marque')  ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Géstion Commercial</span></a>
                     <ul class="menu-content">
                         <li class="{{ Request::is('admin/article') ? 'active' : '' }}"  ><a href="{{aurl('article')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Article</span></a>
                         </li>
@@ -44,10 +37,18 @@
                         <li class="{{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-circle"></i><span class="menu-item" >Gérer Coupon</span></a>
                         </li>
                     </ul>
-                </li>
-                <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Commande </span></a>
+                </li> -->
+                <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a> -->
+
+                <li class="nav-item {{ Request::is('welcome') ? 'active' : '' }}"><a href="{{aurl('welcome')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Calender">Tableau de bord</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-shopping-bag"></i><span class="menu-title" data-i18n="Calender">Gérer Commande</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Calender">Gérer Categorie </span></a>
+                <li class=" nav-item {{ Request::is('admin/marque') ? 'active' : '' }}"><a href="{{aurl('marque')}}"><i class="feather icon-tag"></i><span class="menu-title" data-i18n="Calender">Gérer Marque </span></a>
+                <li class=" nav-item {{ Request::is('admin/article') ? 'active' : '' }}"><a href="{{aurl('article')}}"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Calender">Gérer Article </span></a>
+                <li class=" nav-item {{ Request::is('admin/promotion') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-percent"></i><span class="menu-title" data-i18n="Calender">Gérer Promotion </span></a>
+                <li class=" nav-item {{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-gift"></i><span class="menu-title" data-i18n="Calender">Gérer Coupon </span></a>
+                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Gérer Utilisateur</span></a></li>
                 <li class=" nav-item {{ Request::is('admin/contact') ? 'active' : '' }}"><a href="{{aurl('contact')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Contact et Réclamation </span></a>
-                </li>
                 <!-- <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
                     <ul class="menu-content">
                         <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
