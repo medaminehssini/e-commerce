@@ -123,6 +123,7 @@ class ArticleController extends Controller
 
 
         $article->save();
+        alert()->success('Article bien ajouté', '')->toToast();
 
         return back();
     }
@@ -185,6 +186,8 @@ class ArticleController extends Controller
             $article->taux_tva     = $request->taux_tva;
             $article->id_marque    = $request->marque;
             $article->save();
+            alert()->success('Article bien modifié', '')->toToast();
+
         }
 
 
@@ -202,6 +205,8 @@ class ArticleController extends Controller
         if($article)
         {
             $article->delete();
+            alert()->success('Article bien supprimé', '')->toToast();
+
 
         }
 

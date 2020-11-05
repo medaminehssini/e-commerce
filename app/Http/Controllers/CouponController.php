@@ -63,6 +63,7 @@ class CouponController extends Controller
 
 
         $Coupon->save();
+        alert()->success('Coupon bien ajoutée', '')->toToast();
 
         return back();
     }
@@ -102,6 +103,8 @@ class CouponController extends Controller
             $Coupon->date_fin = $request->date_fin;
             $Coupon->prix_min = $request->prix_min;
             $Coupon->save();
+            alert()->success('Coupon bien modifié', '')->toToast();
+
         }
 
 
@@ -119,6 +122,8 @@ class CouponController extends Controller
         if($Coupon)
         {
             $Coupon->delete();
+            alert()->success('Coupon bien supprimé', '')->toToast();
+
 
         }
 

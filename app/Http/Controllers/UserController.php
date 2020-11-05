@@ -88,6 +88,7 @@ class UserController extends Controller
         if($user)
         {
             $user->delete();
+            alert()->success('Utilisateur bien supprimé', '')->toToast();
 
             return response('',200);
         }else{

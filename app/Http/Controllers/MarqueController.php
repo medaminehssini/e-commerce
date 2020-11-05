@@ -67,6 +67,7 @@ class MarqueController extends Controller
 
 
         $Marque->save();
+        alert()->success('Marque bien ajoutée', '')->toToast();
 
         return back();
     }
@@ -108,6 +109,8 @@ class MarqueController extends Controller
             $Marque->libelle      = $request->libelle;
 
             $Marque->save();
+            alert()->success('Marque bien modifiée', '')->toToast();
+            
         }
 
 
@@ -125,6 +128,7 @@ class MarqueController extends Controller
         if($Marque)
         {
             $Marque->delete();
+            alert()->success('Marque bien supprimée', '')->toToast();
 
         }
 

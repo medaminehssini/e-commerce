@@ -113,6 +113,8 @@ class CategorieController extends Controller
             $Categorie->nom      = $request->nom;
 
             $Categorie->save();
+            
+            alert()->success('Catégorie bien modifiée', '')->toToast();
         }
 
 
@@ -130,6 +132,7 @@ class CategorieController extends Controller
         if($Categorie)
         {
             $Categorie->delete();
+            alert()->success('Catégorie bien supprimée', '')->toToast();
 
         }
 

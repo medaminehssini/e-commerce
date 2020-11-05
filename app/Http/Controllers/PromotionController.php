@@ -100,6 +100,8 @@ class PromotionController extends Controller
         $promotion->date_fin     = $request->date_fin;
         $promotion->taux_min      = $request->taux_min;
         $promotion->save();
+        alert()->success('Promotion bien ajoutée', '')->toToast();
+
 
         return back();
     }
@@ -136,6 +138,8 @@ class PromotionController extends Controller
             $promotion->taux_min      = $request->taux_min;
 
             $promotion->save();
+            alert()->success('Promotion bien modifiée', '')->toToast();
+
         }
 
 
@@ -153,6 +157,7 @@ class PromotionController extends Controller
         if($promotion)
         {
             $promotion->delete();
+            alert()->success('Promotion bien supprimée', '')->toToast();
 
         }
 

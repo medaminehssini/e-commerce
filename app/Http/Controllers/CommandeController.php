@@ -74,6 +74,8 @@ class CommandeController extends Controller
         if($commande) {
             $commande->etat = 1;
             $commande->save();
+            alert()->success('Commande accéptée', '')->toToast();
+
         }
 
 
