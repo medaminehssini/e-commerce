@@ -35,25 +35,25 @@ class MarqueController extends Controller
     public function addMarque (Request $request) {
 
         $messages = [
-            'logo.required' => 'Vous devez ajouter une photo',
-            'logo.mimes' => 'Format logo invalide',
-            'libelle.required' => 'Champs libelle obligatoire',
+            'image.required' => 'Vous devez ajouter une photo',
+            'image.mimes' => 'Format logo invalide',
+            'nom.required' => 'Champs libelle obligatoire',
         ];
 
         $this->validate($request, [
 
-            'libelle' => 'required',
-            'logo' => 'required|mimes:jpg,jpeg,png,gif'
+            'nom' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
 
 
 
-        if($request->hasfile('logo'))
+        if($request->hasfile('image'))
         {
 
 
-                $name = time().'.'.$request->logo->extension();
-                $request->logo->move(public_path().'/uploads/img/marque', $name);
+                $name = time().'.'.$request->image->extension();
+                $request->image->move(public_path().'/uploads/img/marque', $name);
                 $nameImage = '/uploads/img/marque/'.$name;
 
 
@@ -63,7 +63,7 @@ class MarqueController extends Controller
 
 
         $Marque->logo       = $nameImage;
-        $Marque->libelle      = $request->libelle;
+        $Marque->libelle      = $request->nom;
 
 
         $Marque->save();
@@ -75,15 +75,15 @@ class MarqueController extends Controller
     public function editMarque  ( Request $request , $id ) {
 
         $messages = [
-            'logo.required' => 'Vous devez ajouter une photo',
-            'logo.mimes' => 'Format logo invalide',
-            'libelle.required' => 'Champs libelle obligatoire',
+            'image.required' => 'Vous devez ajouter une photo',
+            'image.mimes' => 'Format logo invalide',
+            'nom.required' => 'Champs libelle obligatoire',
         ];
 
         $this->validate($request, [
 
-            'libelle' => 'required',
-            'logo' => 'required|mimes:jpg,jpeg,png,gif'
+            'nom' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
 
         $nameImage = null;
@@ -95,8 +95,8 @@ class MarqueController extends Controller
             ]);
 
 
-            $name = time().'.'.$request->logo->extension();
-            $request->logo->move(public_path().'/uploads/img/marque', $name);
+            $name = time().'.'.$request->image->extension();
+            $request->image->move(public_path().'/uploads/img/marque', $name);
             $nameImage = '/uploads/img/marque/'.$name;
 
         }
@@ -106,11 +106,11 @@ class MarqueController extends Controller
         if($Marque)
         {
             if ($nameImage) $Marque->logo      = $nameImage;
-            $Marque->libelle      = $request->libelle;
+            $Marque->libelle      = $request->nom;
 
             $Marque->save();
             alert()->success('Marque bien modifiée', '')->toToast();
-            
+
         }
 
 

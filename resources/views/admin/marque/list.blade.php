@@ -1,11 +1,9 @@
 
 @extends('admin.index')
 @push('css')
-    <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/vendors/css/file-uploaders/dropzone.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/vendors/css/tables/datatable/datatables.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/vendors/css/tables/datatable/extensions/dataTables.checkboxes.css">
 
-    <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/css/pages/data-list-view.css">
 @endpush
 @section('content')
@@ -92,20 +90,22 @@
                             <i class="feather icon-x"></i>
                         </div>
                     </div>
-                    
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
 
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">
+
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
@@ -126,7 +126,7 @@
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">Annuler</button>
+                                <button class="btn btn-outline-danger" type="reset">Annuler</button>
                             </div>
                         </div>
 
@@ -162,7 +162,6 @@
 
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{url('')}}/app-assets/vendors/js/extensions/dropzone.min.js"></script>
     <script src="{{url('')}}/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
     <script src="{{url('')}}/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
     <script src="{{url('')}}/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
