@@ -67,6 +67,11 @@
                                         <p class="px-2">Welcome back, please login to your account.</p>
                                         <div class="card-content">
                                             <div class="card-body pt-1">
+                                                @if (session()->has('error'))
+                                                    <div class="alert alert-danger" style="margin-bottom: 35px;">
+                                                        votre email ou mot de passe inccorect
+                                                    </div>
+                                                @endif
                                                 <form action=""  method="POST">
                                                     @csrf
                                                     <fieldset class="form-label-group form-group position-relative has-icon-left">

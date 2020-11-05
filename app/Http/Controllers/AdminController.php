@@ -15,6 +15,7 @@ class AdminController extends Controller
             return redirect('/admin');
 
         }else {
+            session()->flash('error','');
             return back();
         }
     }
@@ -67,7 +68,7 @@ class AdminController extends Controller
                 'confirmation_password.required' => 'Champs obligatoire',
                 'password.same' => 'Mot de passe invalide',
                 'confirmation_password.same' => 'Mot de passe invalide',
-                
+
             ];
 
             $this->validate($request, [
