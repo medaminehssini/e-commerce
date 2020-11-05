@@ -57,7 +57,7 @@
                         <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Imprimer</a>
                         <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Autre Action</a>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
@@ -101,18 +101,19 @@
                         </div>
                     </div>
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
