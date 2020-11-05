@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -69,7 +70,7 @@ class CategorieController extends Controller
 
 
         $Categorie->save();
-        
+
         alert()->success('Catégorie bien ajoutée', '')->toToast();
 
         return back();
@@ -113,7 +114,7 @@ class CategorieController extends Controller
             $Categorie->nom      = $request->nom;
 
             $Categorie->save();
-            
+
             alert()->success('Catégorie bien modifiée', '')->toToast();
         }
 

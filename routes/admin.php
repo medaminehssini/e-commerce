@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CalenderContrller;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\CommandeController;
-use App\Http\Controllers\CouponController;
-use App\Http\Controllers\LignePromotionController;
-use App\Http\Controllers\MarqueController;
-use App\Http\Controllers\PromotionController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ContactController;
+use App\Http\Controllers\admin\ArticleController;
+use App\Http\Controllers\admin\CategorieController;
+use App\Http\Controllers\admin\CommandeController;
+use App\Http\Controllers\admin\CouponController;
+use App\Http\Controllers\admin\LignePromotionController;
+use App\Http\Controllers\admin\MarqueController;
+use App\Http\Controllers\admin\PromotionController;
+use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\ContactController;
 use Illuminate\Support\Facades\Route;
 
 

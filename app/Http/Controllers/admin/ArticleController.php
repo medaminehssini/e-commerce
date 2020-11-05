@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Marque;
@@ -81,7 +82,7 @@ class ArticleController extends Controller
             'qty.min' => 'Champs quantité invalide',
             'description.required' => 'Champs description obligatoire',
             'status.required' => 'Vous devez spécifier une état',
-            
+
         ];
 
         $this->validate($request, [
@@ -140,7 +141,7 @@ class ArticleController extends Controller
             'qty.min' => 'Champs quantité invalide',
             'description.required' => 'Champs description obligatoire',
             'status.required' => 'Vous devez spécifier une état',
-            
+
         ];
 
         $this->validate($request, [
