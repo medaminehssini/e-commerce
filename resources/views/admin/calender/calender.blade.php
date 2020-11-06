@@ -30,7 +30,7 @@
                                 <div class="bullets-group-1 mt-2">
                                     <div class="category-business mr-1">
                                         <span class="bullet bullet-success bullet-sm mr-25"></span>
-                                        Coupon
+                                        Promotion
                                     </div>
                                     <div class="category-work mr-1">
                                         <span class="bullet bullet-warning bullet-sm mr-25"></span>
