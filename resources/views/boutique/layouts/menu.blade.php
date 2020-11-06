@@ -6,10 +6,10 @@
                 <div class="col-lg-6 col-md-8">
                 	<div class="header_topbar_info">
                     	<div class="header_offer">
-                    		<span>Free Ground Shipping Over $250</span>
+                    		<span>Livraison gratuite à partir de 100TND</span>
                         </div>
                         <div class="download_wrap">
-                            <span class="mr-3">Download App</span>
+                            <span class="mr-3">Télécharger l'app</span>
                             <ul class="icon_list text-center text-lg-left">
                                 <li><a href="#"><i class="fab fa-apple"></i></a></li>
                                 <li><a href="#"><i class="fab fa-android"></i></a></li>
@@ -31,7 +31,7 @@
                             <select name="countries" class="custome_select">
                                 <option value='USD' data-title="USD">USD</option>
                                 <option value='EUR' data-title="EUR">EUR</option>
-                                <option value='GBR' data-title="GBR">GBR</option>
+                                <option value='TND' data-title="TND">TND</option>
                             </select>
                         </div>
                     </div>
