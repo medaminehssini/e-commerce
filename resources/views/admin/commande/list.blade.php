@@ -109,7 +109,7 @@
 
     <script>
 
-        $(function() {
+$(document).ready(function() {
           // init thumb view datatable
           var templates = Handlebars.compile($("#details-templates").html());
 
