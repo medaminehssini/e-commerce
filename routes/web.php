@@ -29,6 +29,7 @@ Route::group([ 'middleware'=>'auth'], function () {
     //user
     Route::get('edit/account' , [ControllersUserController::class , 'account'] );
     Route::post('edit/account' , [ControllersUserController::class , 'accountNow'] );
+    Route::post('edit/adresse' , [ControllersUserController::class , 'adresse'] );
 
     Route::get('logout' , [ControllersUserController::class , 'logout'] );
 

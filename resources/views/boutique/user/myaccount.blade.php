@@ -89,20 +89,17 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>#1234</td>
-                                                <td>March 15, 2020</td>
-                                                <td>Processing</td>
-                                                <td>$78.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>#2366</td>
-                                                <td>June 20, 2020</td>
-                                                <td>Completed</td>
-                                                <td>$81.00 for 1 item</td>
-                                                <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
-                                            </tr>
+                                            @foreach ($commandes as $commande)
+                                                <tr>
+                                                    <td>#{{$commande->id}}</td>
+                                                    <td>{{$commande->created_at}}</td>
+                                                    <td>{{$commande->status}}</td>
+                                                    <td>{{$commande->total}} TND for {{count($commande->article)}} item</td>
+                                                    <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
+                                                </tr>
+                                            @endforeach
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -110,30 +107,35 @@
                         </div>
                   	</div>
 					<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
-                    	<div class="row">
-                        	<div class="col-lg-6">
-                                <div class="card mb-3 mb-lg-0">
-                                    <div class="card-header">
-                                        <h3>Billing Address</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address>
-                                        <p>New York</p>
-                                        <a href="#" class="btn btn-fill-out">Edit</a>
-                                    </div>
-                                </div>
+                        <div class="card">
+                        	<div class="card-header">
+                                <h3>Account Details</h3>
                             </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>Shipping Address</h3>
+                            <div class="card-body">
+                                <form method="post" action="{{ url('edit/adresse', []) }}" enctype="multipart/form-data" name="enq">
+                                    @csrf
+                                    <div class="row">
+
+
+
+                                        <div class="form-group col-md-12">
+                                        	<label>Adresse <span class="required">*</span></label>
+                                            <input required="" class="form-control" value="{{auth()->user()->adresse}}"  name="adresse" type="text">
+                                         </div>
+                                         <div class="form-group col-md-6">
+                                        	<label>Ville <span class="required">*</span></label>
+                                            <input required="" class="form-control" name="ville" value="{{auth()->user()->ville}}"  type="text">
+                                        </div>
+                                         <div class="form-group col-md-6">
+                                        	<label> Code postale <span class="required">*</span></label>
+                                            <input required="" type="text" class="form-control" value="{{auth()->user()->code_postale}}" name="code_postale">
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Save</button>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <address>House #15<br>Road #1<br>Block #C <br>Angali <br> Vedora <br>1212</address>
-                                        <p>New York</p>
-                                        <a href="#" class="btn btn-fill-out">Edit</a>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
 					</div>

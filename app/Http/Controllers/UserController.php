@@ -10,7 +10,10 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
    public function register  () {
+       if(!Auth::check())
         return view("boutique.signup");
+       else
+        return redirect('');
    }
 
    public function registerNow (Request $request) {
@@ -42,8 +45,10 @@ class UserController extends Controller
 
     public function  login ( ) {
 
-        return view("boutique.login");
-
+        if(!Auth::check())
+            return view("boutique.login");
+        else
+            return redirect('');
     }
 
 
@@ -60,8 +65,27 @@ class UserController extends Controller
 
 
     public function  account ( ) {
+        $commandes =  User::find(Auth::user()->id)->commande;
+        foreach ($commandes as $key => $commande) {
+            switch ($commande->etat) {
+                case 0:
 
-        return view("boutique.user.myaccount");
+                    $commande->status = "pending";
+                    break;
+                case 1:
+                    $commande->status = "Accepted";
+                    break;
+
+                case 2:
+                     $commande->status = "Canceled";
+                    break;
+
+                case 3:
+                   $commande->status = "Delivered";
+                   break;
+            }
+        }
+        return view("boutique.user.myaccount")->with('commandes' , $commandes);
 
     }
     public function  accountNow (Request $request) {
@@ -115,6 +139,24 @@ class UserController extends Controller
             $user->save();
             if( $verif)
             alert()->success('Profile Edited', 'Successfully')->toToast();
+
+
+        }
+        return back();
+    }
+
+
+    public function  adresse (Request $request) {
+
+        $user = User::find(Auth::user()->id);
+        if($user) {
+            $user->adresse = $request->adresse;
+            $user->ville = $request->ville;
+            $user->code_postale = $request->code_postale;
+
+            $user->save();
+
+            alert()->success('adresse Edited', 'Successfully')->toToast();
 
 
         }

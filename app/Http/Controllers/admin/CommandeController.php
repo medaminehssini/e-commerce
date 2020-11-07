@@ -59,6 +59,13 @@ class CommandeController extends Controller
                     </div>
                 </div>';
                     break;
+                case 3:
+                    $message = '<div class="chip chip-success">
+                    <div class="chip-body">
+                        <div class="chip-text">Delivered </div>
+                    </div>
+                </div>';
+                    break;
             }
             return $message ;
         })
