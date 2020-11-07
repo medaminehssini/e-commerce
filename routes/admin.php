@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('admin/login', function () {
     return view('admin.login');
-})->name('login');
+});
 
 
 Route::post('admin/login' , [AdminController::class , 'login'] );

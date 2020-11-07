@@ -1,4 +1,6 @@
 @include('boutique.layouts.headers')
+@include('sweetalert::alert')
+
 @stack('css')
 @include('boutique.layouts.menu')
 @include('boutique.layouts.sectionbar')

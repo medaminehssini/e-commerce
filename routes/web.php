@@ -12,9 +12,26 @@
 |
 */
 
+use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
 
-
+Route::get('signup' , [ControllersUserController::class , 'register'] );
+Route::post('signup' , [ControllersUserController::class , 'registerNow'] );
+Route::get('login' , [ControllersUserController::class , 'login'] )->name('login');
+Route::post('login' , [ControllersUserController::class , 'loginNow'] );
 Route::get('/', function () {
     return view('boutique.welecome');
+});
+
+
+Route::group([ 'middleware'=>'auth'], function () {
+
+    //user
+    Route::get('edit/account' , [ControllersUserController::class , 'account'] );
+    Route::post('edit/account' , [ControllersUserController::class , 'accountNow'] );
+
+    Route::get('logout' , [ControllersUserController::class , 'logout'] );
+
+
+
 });

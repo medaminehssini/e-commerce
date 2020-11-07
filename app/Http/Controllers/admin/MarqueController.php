@@ -92,7 +92,7 @@ class MarqueController extends Controller
         {
             $this->validate($request, [
 
-                'logo' => 'mimes:jpg,jpeg,png,gif'
+                'image' => 'mimes:jpg,jpeg,png,gif'
             ]);
 
 
