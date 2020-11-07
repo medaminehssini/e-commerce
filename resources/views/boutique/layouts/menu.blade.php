@@ -52,7 +52,7 @@
                             <div class="input-group-prepend">
                                 <div class="custom_select">
                                     <select class="first_null not_chosen">
-                                        <option value="">All Category</option>
+                                        <option value="">Tous Les Categories</option>
                                         <option value="Dresses">Dresses</option>
                                         <option value="Shirt-Tops">Shirt &amp; Tops</option>
                                         <option value="T-Shirt">T-Shirt</option>
@@ -61,15 +61,15 @@
                                     </select>
                                 </div>
                             </div>
-                            <input class="form-control" placeholder="Search Product..." required="" type="text">
-                            <button type="submit" class="search_btn3">Search</button>
+                            <input class="form-control" placeholder="Chercher un produit..." required="" type="text">
+                            <button type="submit" class="search_btn3">Chercher</button>
                         </div>
                     </form>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
                     <li><a href="#" class="nav-link"><i class="linearicons-user"></i></a></li>
                     <li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">$</span>159.00</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">TND</span>159.00</span></a>
                         <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
@@ -99,7 +99,7 @@
             	<div class="col-lg-3 col-md-4 col-sm-6 col-3">
                 	<div class="categories_wrap">
                         <button type="button" data-toggle="collapse" data-target="#navCatContent" aria-expanded="false" class="categories_btn categories_menu">
-                            <span>All Categories </span><i class="linearicons-menu"></i>
+                            <span>Nos Categories </span><i class="linearicons-menu"></i>
                         </button>
                         <div id="navCatContent" class="navbar collapse">
                             <ul>
@@ -302,8 +302,8 @@
                         </div>
                         <div class="collapse navbar-collapse mobile_side_menu" id="navbarSidetoggle">
                             <ul class="navbar-nav">
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle active" href="#">Home</a>
+                                <!-- <li class="dropdown">
+                                    <a data-toggle="dropdown" class="nav-link dropdown-toggle active" href="#">Acceuill</a>
                                     <div class="dropdown-menu">
                                         <ul>
                                             <li><a class="dropdown-item nav-link nav_item" href="index.html">Fashion 1</a></li>
@@ -314,8 +314,9 @@
                                             <li><a class="dropdown-item nav-link nav_item active" href="index-6.html">Electronics 2</a></li>
                                         </ul>
                                     </div>
-                                </li>
-                                <li class="dropdown">
+                                 </li> -->
+                                <li><a class="nav-link nav_item" href="#">Acceuill</a></li>
+                                <!-- <li class="dropdown">
                                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu">
                                         <ul>
@@ -328,9 +329,9 @@
                                             <li><a class="dropdown-item nav-link nav_item" href="term-condition.html">Terms and Conditions</a></li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> -->
                                 <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Products</a>
+                                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Nos Produits</a>
                                     <div class="dropdown-menu">
                                         <ul class="mega-menu d-lg-flex">
                                     <li class="mega-menu-col col-lg-3">
@@ -396,7 +397,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="dropdown">
+                                <!-- <li class="dropdown">
                                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Blog</a>
                                     <div class="dropdown-menu dropdown-reverse">
                                         <ul>
@@ -447,9 +448,9 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li> -->
                                 <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Shop</a>
+                                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Boutique</a>
                                     <div class="dropdown-menu">
                                         <ul class="mega-menu d-lg-flex">
                                             <li class="mega-menu-col col-lg-9">
@@ -506,12 +507,12 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a class="nav-link nav_item" href="contact.html">Contact Us</a></li>
+                                <li><a class="nav-link nav_item" href="contact.html">Contacter Nous</a></li>
                             </ul>
                         </div>
                         <div class="contact_phone contact_support">
                             <i class="linearicons-phone-wave"></i>
-                            <span>123-456-7689</span>
+                            <span>+216 22 222 222</span>
                         </div>
                     </nav>
                 </div>

@@ -99,7 +99,7 @@
                     <div class="heading_s4 text-center">
                         <h2>Top Categories</h2>
                     </div>
-                    <p class="text-center leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim Nullam nunc varius.</p>
+                    <p class="text-center leads">Voilà la liste de nos meilleures categories.</p>
                 </div>
             </div>
             <div class="row align-items-center">
@@ -174,7 +174,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="heading_s1 text-center">
-                        <h2>Exclusive Products</h2>
+                        <h2>Les promos du jour à saisir</h2>
                     </div>
                 </div>
             </div>
@@ -1113,7 +1113,7 @@
     <!-- END SECTION SHOP -->
 
     <!-- START SECTION BANNER -->
-    <div class="section pb_20 small_pt">
+    <!-- <div class="section pb_20 small_pt">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -1125,7 +1125,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- END SECTION BANNER -->
 
     <!-- START SECTION SHOP -->
@@ -1134,7 +1134,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="heading_s1 text-center">
-                        <h2>Trending Products</h2>
+                        <h2>les produits les plus consultés</h2>
                     </div>
                 </div>
             </div>
@@ -1376,7 +1376,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="heading_s1 text-center">
-                        <h2>Our Client Say!</h2>
+                        <h2>Nos Client dit!</h2>
                     </div>
                 </div>
             </div>
@@ -1447,7 +1447,7 @@
     <!-- END SECTION TESTIMONIAL -->
 
     <!-- START SECTION BLOG -->
-    <div class="section pb_20">
+    <!-- <div class="section pb_20">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6 col-md-8">
@@ -1517,7 +1517,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- END SECTION BLOG -->
 
     <!-- START SECTION CLIENT LOGO -->

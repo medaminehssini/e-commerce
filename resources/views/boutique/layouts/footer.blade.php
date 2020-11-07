@@ -8,7 +8,7 @@
                         <div class="footer_logo">
                             <a href="#"><img src="{{url('boutique')}}/assets/images/logo_dark.png" alt="logo"></a>
                         </div>
-                        <p class="mb-3">If you are going to use of Lorem Ipsum need to be sure there isn't anything hidden of text</p>
+                        <!-- <p class="mb-3">If you are going to use of Lorem Ipsum need to be sure there isn't anything hidden of text</p> -->
                         <ul class="contact_info">
                             <li>
                                 <i class="ti-location-pin"></i>
@@ -27,35 +27,35 @@
         		</div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
                 	<div class="widget">
-                        <h6 class="widget_title">Useful Links</h6>
+                        <!-- <h6 class="widget_title">Useful Links</h6>
                         <ul class="widget_links">
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">FAQ</a></li>
                             <li><a href="#">Location</a></li>
                             <li><a href="#">Affiliates</a></li>
                             <li><a href="#">Contact</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-6">
                 	<div class="widget">
-                        <h6 class="widget_title">My Account</h6>
+                        <!-- <h6 class="widget_title">My Account</h6>
                         <ul class="widget_links">
                             <li><a href="#">My Account</a></li>
                             <li><a href="#">Discount</a></li>
                             <li><a href="#">Returns</a></li>
                             <li><a href="#">Orders History</a></li>
                             <li><a href="#">Order Tracking</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12">
                 	<div class="widget">
-                    	<h6 class="widget_title">Download App</h6>
+                    	<!-- <h6 class="widget_title">Download App</h6>
                         <ul class="app_list">
                             <li><a href="#"><img src="{{url('boutique')}}/assets/images/f1.png" alt="f1"></a></li>
                             <li><a href="#"><img src="{{url('boutique')}}/assets/images/f2.png" alt="f2"></a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 	<div class="widget">
                     	<h6 class="widget_title">Social</h6>
@@ -83,8 +83,8 @@
                                         <i class="flaticon-shipped"></i>
                                     </div>
                                     <div class="icon_box_content">
-                                    	<h5>Free Delivery</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                                    	<h5>Livraison gratuite</h5>
+                                        <p>Livraison gratuite à partir de 100TND d'achats.</p>
                                     </div>
                                 </div>
                             </div>
@@ -94,8 +94,8 @@
                                         <i class="flaticon-money-back"></i>
                                     </div>
                                     <div class="icon_box_content">
-                                    	<h5>30 Day Returns Guarantee</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                                    	<h5>Guarantie de 10 jours de retour.</h5>
+                                        <p>Possibilité de retour sous quelques conditions.</p>
                                     </div>
                                 </div>
                             </div>
@@ -105,8 +105,8 @@
                                         <i class="flaticon-support"></i>
                                     </div>
                                     <div class="icon_box_content">
-                                    	<h5>27/4 Online Support</h5>
-                                        <p>Phasellus blandit massa enim elit of passage varius nunc.</p>
+                                    	<h5>Support En ligne</h5>
+                                        <p>Service client en ligne .</p>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="text-center text-md-left mb-md-0">© 2020 All Rights Reserved by Bestwebcreator</p>
+                    <p class="text-center text-md-left mb-md-0">© 2020 All Rights Reserved by Alpha Q Solutions</p>
                 </div>
                 <div class="col-lg-6">
                     <ul class="footer_payment text-center text-md-right">
