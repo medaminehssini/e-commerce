@@ -28,4 +28,12 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Models\Commande' , 'ligne_commande' ,'id_article' ,  'id_commande' )->withPivot('qty' );
     }
+
+
+    public function commentaire()
+    {
+        return $this->belongsToMany('App\Models\User' , 'commentaire' ,'id_article',  'id_client' )->withPivot('rate', 'description' , 'created_at');
+    }
+
+
 }

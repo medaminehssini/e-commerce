@@ -41,17 +41,16 @@
                         </a>
                     </div>
                     <div id="pr_item_gallery" class="product_gallery_item slick_slider" data-slides-to-show="4" data-slides-to-scroll="1" data-infinite="false">
-
                         @foreach (explode(",", $article->images) as $key => $item)
-
 
                         <div class="item">
                             <a href="#" class="product_gallery_item @if ($key  == 0)
                             active
                             @endif " data-image="{{url('')}}/{{ $item}}" data-zoom-image="{{url('')}}/{{ $item}}">
-                                <img src="{{url('')}}/{{ $item}}" alt="product_small_img1">
+                                <img src="{{url('')}}/{{ $item}}" alt="" />
                             </a>
                         </div>
+
                         @endforeach
                     </div>
                 </div>
@@ -74,10 +73,19 @@
 
                         </div>
                         <div class="rating_wrap">
-                                <div class="rating">
-                                    <div class="product_rate" style="width:80%"></div>
-                                </div>
-                                <span class="rating_num">(21)</span>
+                            <div class="star_rating" style="display: inline-block;" >
+                                @for ($i = 1 ; $i <= 5 ; $i++)
+                                        @if (getArticleRate($article->id) >= $i)
+                                         <span class="selected" ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                        @else
+                                            <span ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                        @endif
+                                @endfor
+
+                            </div>
+                                <span class="rating_num">({{count($article->commentaire)}})</span>
                             </div>
                         <div class="pr_desc"  style="width: 100%;">
                             <p> {{$article->description}}</p>
@@ -143,7 +151,7 @@
                         	<a class="nav-link" id="Additional-info-tab" data-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>
                       	</li> --}}
                       	<li class="nav-item">
-                        	<a class="nav-link active" id="Reviews-tab" data-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews (2)</a>
+                        	<a class="nav-link active" id="Reviews-tab" data-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews ({{count($article->commentaire)}})</a>
                       	</li>
                     </ul>
                 	<div class="tab-content shop_info_tab">
@@ -174,75 +182,82 @@
                       	</div> --}}
                       	<div class="tab-pane fade show active" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                         	<div class="comments">
-                            	<h5 class="product_tab_title">2 Review For <span>Blue Dress For Woman</span></h5>
+                                <h5 class="product_tab_title">{{count($article->commentaire)}} Review For <span>{{$article->libelle}}</span></h5>
                                 <ul class="list_none comment_list mt-4">
-                                    <li>
-                                        <div class="comment_img">
-                                            <img src="{{url('boutique')}}/assets/images/user1.jpg" alt="user1">
-                                        </div>
-                                        <div class="comment_block">
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:80%"></div>
-                                                </div>
+                                    @foreach ($article->commentaire as $user)
+                                        <li>
+                                            <div class="comment_img">
+                                                @if ($user->image)
+                                                 <img src="{{ url('', []) }}/{{$user->image}}" alt="user1">
+                                                @else
+                                                    <img src="{{ url('', []) }}/boutique/uploads/default/avatar.png" alt="user1">
+                                                @endif
                                             </div>
-                                            <p class="customer_meta">
-                                                <span class="review_author">Alea Brooks</span>
-                                                <span class="comment-date">March 5, 2018</span>
-                                            </p>
-                                            <div class="description">
-                                                <p>Lorem Ipsumin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="comment_img">
-                                            <img src="{{url('boutique')}}/assets/images/user2.jpg" alt="user2">
-                                        </div>
-                                        <div class="comment_block">
-                                            <div class="rating_wrap">
-                                                <div class="rating">
-                                                    <div class="product_rate" style="width:60%"></div>
-                                                </div>
-                                            </div>
-                                            <p class="customer_meta">
-                                                <span class="review_author">Grace Wong</span>
-                                                <span class="comment-date">June 17, 2018</span>
-                                            </p>
-                                            <div class="description">
-                                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                        	</div>
-                            <div class="review_form field_form">
-                                <h5>Add a review</h5>
-                                <form class="row mt-3">
-                                    <div class="form-group col-12">
-                                        <div class="star_rating">
-                                            <span data-value="1"><i class="far fa-star"></i></span>
-                                            <span data-value="2"><i class="far fa-star"></i></span>
-                                            <span data-value="3"><i class="far fa-star"></i></span>
-                                            <span data-value="4"><i class="far fa-star"></i></span>
-                                            <span data-value="5"><i class="far fa-star"></i></span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-12">
-                                        <textarea required="required" placeholder="Your review *" class="form-control" name="message" rows="4"></textarea>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input required="required" placeholder="Enter Name *" class="form-control" name="name" type="text">
-                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <input required="required" placeholder="Enter Email *" class="form-control" name="email" type="email">
-                                    </div>
+                                            <div class="comment_block">
+                                                <div class="rating_wrap">
+                                                    <div class="">
 
-                                    <div class="form-group col-12">
-                                        <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Submit Review</button>
-                                    </div>
-                                </form>
+                                                        <div class="star_rating" >
+                                                            @for ($i = 1 ; $i <= 5 ; $i++)
+                                                                    @if ($user->pivot->rate >= $i)
+                                                                     <span class="selected" ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                                                    @else
+                                                                        <span ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                                                    @endif
+                                                            @endfor
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <p class="customer_meta">
+                                                    <span class="review_author">{{$user->first_name}} {{$user->last_name}}</span>
+                                                    <span class="comment-date">{{$user->pivot->created_at}}</span>
+                                                </p>
+                                                <div class="description">
+                                                    <p>{{$user->pivot->description}}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
+                            @if (Auth::check())
+                                @if (verifCommandeArticle ($article->id))
+
+
+                                <div class="review_form field_form">
+                                    <h5>Add a review</h5>
+                                    <form class="row mt-3" method="POST">
+                                        @csrf
+                                        <input type="text" id="rateinput" name="rate" hidden >
+                                        <div class="form-group col-12">
+                                            <div class="star_rating">
+                                                <span data-value="1" onclick="setData(1)"><i class="far fa-star"></i></span>
+                                                <span data-value="2" onclick="setData(2)"><i class="far fa-star"></i></span>
+                                                <span data-value="3" onclick="setData(3)"><i class="far fa-star"></i></span>
+                                                <span data-value="4" onclick="setData(4)"><i class="far fa-star"></i></span>
+                                                <span data-value="5" onclick="setData(5)"><i class="far fa-star"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <textarea required="required" placeholder="Your review *" class="form-control" name="description" rows="4"></textarea>
+                                        </div>
+                                        <div class="form-group col-12">
+                                            <button type="submit"  class="btn btn-fill-out" name="submit" value="Submit">Submit Review</button>
+                                        </div>
+                                    </form>
+                                    <script>
+                                        function setData(rate) {
+                                            document.getElementById('rateinput').value = rate;
+                                        }
+                                    </script>
+                                </div>
+
+                            @endif
+                            @endif
                       	</div>
                 	</div>
                 </div>
@@ -280,20 +295,34 @@
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="shop-product-detail.html">{{$item->libelle}}</a></h6>
-                                        @if ($item->prixWithPromotion != $item->prix)
-                                            <span class="price">{{$item->prixWithPromotion}} TND</span>
+                                        <h6 class="product_title"><a href="{{ url('product/detail/', []) }}/{{$item->id}}">{{$item->libelle}}</a></h6>
+                                        @php
+                                            $prom = FindPromArticle($item->id);
+                                        @endphp
+                                        @if ($prom != 0)
+                                            <span class="price">{{getPrixWithProm ($article->prix , $prom)}} TND</span>
                                             <del>{{$item->prix}} TND</del>
                                             <div class="on_sale">
-                                                <span>{{$item->off}}% Off</span>
+                                                <span>{{ $prom }}% Off</span>
                                             </div>
                                        @else
                                             <span class="price">{{$item->prix}} TND</span>
 
                                         @endif
                                         <div class="rating_wrap">
-                                            <div class="rating">
-                                                <div class="product_rate" style="width:80%"></div>
+                                            <div >
+                                                <div class="star_rating" >
+                                                    @for ($i = 1 ; $i <= 5 ; $i++)
+                                                            @if (getArticleRate($item->id) >= $i)
+                                                             <span class="selected" ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                                            @else
+                                                                <span ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                                            @endif
+                                                    @endfor
+
+                                                </div>
                                             </div>
                                             <span class="rating_num">(21)</span>
                                         </div>

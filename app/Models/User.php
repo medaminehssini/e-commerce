@@ -46,4 +46,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Commande' , 'id_client');
     }
+
+
+    public function commentaire()
+    {
+        return $this->belongsToMany('App\Models\Article' , 'commentaire' ,  'id_client' ,'id_article' )->withPivot('rate', 'description' , 'created_at');
+    }
 }

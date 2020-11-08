@@ -14,15 +14,7 @@ class ProductController extends Controller
         if ($article) {
 
 
-            $promotions =  Promotion::whereDate('date_debut', '<', Carbon::today())->whereDate('date_fin', '>', Carbon::today())->get();
-            $prom = 0;
-            foreach ($promotions as $key => $promotion) {
-                foreach ($promotion->article as  $value) {
-                    if($value->id == $article->id && $prom <$value->pivot->taux)
-                        {$prom = $value->pivot->taux;
-                         break;}
-                }
-            }
+            $prom = FindPromArticle($id);
             $article->off = $prom;
             $article->prixWithPromotion = number_format($article->prix *   ((100-$prom)/100), 2, '.', ',');
 

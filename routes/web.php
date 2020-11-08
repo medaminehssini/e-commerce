@@ -12,6 +12,7 @@
 |
 */
 
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
@@ -33,7 +34,8 @@ Route::group([ 'middleware'=>'auth'], function () {
     Route::post('edit/adresse' , [ControllersUserController::class , 'adresse'] );
     Route::get('logout' , [ControllersUserController::class , 'logout'] );
 
-
+    //add commentaire
+    Route::post('product/detail/{id}' , [CommentaireController::class , 'addCommentaire'] );
 
 
 });
