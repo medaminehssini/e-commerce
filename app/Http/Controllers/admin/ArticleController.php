@@ -99,10 +99,10 @@ class ArticleController extends Controller
         $i= 0 ;
         if($request->hasfile('images'))
         {
-            foreach($request->file('images') as $file)
+            foreach($request->file('images') as $key=> $file)
             {
 
-                $name = time().'.'.$file->extension();
+                $name = time().$key.'.'.$file->extension();
                 $file->move(public_path().'/uploads/img/articles', $name);
                 $images[$i] = '/uploads/img/articles/'.$name;
                 $i++;
@@ -163,10 +163,10 @@ class ArticleController extends Controller
 
                 'images.*' => 'mimes:jpg,jpeg,png,gif'
             ]);
-            foreach($request->file('images') as $file)
+            foreach($request->file('images') as $key => $file)
             {
 
-                $name = time().'.'.$file->extension();
+                $name = time().$key.'.'.$file->extension();
                 $file->move(public_path().'/uploads/img/article', $name);
                 $images[$i] = '/uploads/img/article/'.$name;
                 $i++;

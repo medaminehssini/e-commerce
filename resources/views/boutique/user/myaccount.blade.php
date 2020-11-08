@@ -12,8 +12,7 @@
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb justify-content-md-end">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('', []) }}">Home</a></li>
                     <li class="breadcrumb-item active">My Account</li>
                 </ol>
             </div>

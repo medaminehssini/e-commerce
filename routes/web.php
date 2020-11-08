@@ -12,6 +12,7 @@
 |
 */
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +31,15 @@ Route::group([ 'middleware'=>'auth'], function () {
     Route::get('edit/account' , [ControllersUserController::class , 'account'] );
     Route::post('edit/account' , [ControllersUserController::class , 'accountNow'] );
     Route::post('edit/adresse' , [ControllersUserController::class , 'adresse'] );
-
     Route::get('logout' , [ControllersUserController::class , 'logout'] );
 
 
 
+
 });
+
+
+  //product
+  Route::get('product/detail/{id}' , [ProductController::class , 'getArticle'] );
+  Route::get('quick/product/detail/{id}' , [ProductController::class , 'getQuikArticle'] );
+

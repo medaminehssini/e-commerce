@@ -1,5 +1,7 @@
 <!-- Latest jQuery -->
 <script src="{{url('boutique')}}/assets/js/jquery-1.12.4.min.js"></script>
+  <!-- jquery-ui -->
+  <script src="{{ url('boutique', []) }}/assets/js/jquery-ui.js"></script>
 <!-- popper min js -->
 <script src="{{url('boutique')}}/assets/js/popper.min.js"></script>
 <!-- Latest compiled and minified Bootstrap -->
