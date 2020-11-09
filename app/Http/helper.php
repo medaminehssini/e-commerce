@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Article;
+use App\Models\Categorie;
 use App\Models\Promotion;
 use App\Models\User;
 use Carbon\Carbon;
@@ -8,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 function aurl ($url=null) {
             return url('admin/'.$url);
+        }
+
+
+        function getCategories()
+        {
+            return Categorie::get();
         }
 
 
@@ -60,5 +67,27 @@ function aurl ($url=null) {
                 }
             }
             return $verif ;
+        }
+
+        function getPanier($arts){
+            $listart = [];
+
+            foreach ($arts as $key => $article) {
+                $listart[$key] = $article->id;
+            }
+            $listart = Article::whereIn('id' , $listart)->get();
+
+            return $listart;
+        }
+
+        function wishCount()
+        {
+            if(Auth::check()){
+                $user = User::find(Auth::user()->id);
+                if($user){
+                    return $user->wishList->count();
+                }
+            }
+            return 0;
         }
 

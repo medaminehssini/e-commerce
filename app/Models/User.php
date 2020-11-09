@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Article' , 'commentaire' ,  'id_client' ,'id_article' )->withPivot('rate', 'description' , 'created_at');
     }
+
+    public function wishList()
+    {
+        return $this->belongsToMany('App\Models\Article' , 'wishlist' ,  'id_client' ,'id_article' )->withPivot('created_at');
+    }
+
 }

@@ -35,5 +35,10 @@ class Article extends Model
         return $this->belongsToMany('App\Models\User' , 'commentaire' ,'id_article',  'id_client' )->withPivot('rate', 'description' , 'created_at');
     }
 
+    public function wishList()
+    {
+        return $this->belongsToMany('App\Models\User' , 'wishlist' ,'id_article',  'id_client' )->withPivot('created_at');
+    }
+
 
 }

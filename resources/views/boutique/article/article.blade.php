@@ -118,7 +118,7 @@
                         <div class="cart_btn">
                             <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
                             <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                            <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
+                            <a class="add_wishlist" href="{{ url('wish/add/', []) }}/{{$article->id}}"><i class="icon-heart"></i></a>
                         </div>
                     </div>
                     <hr>
@@ -290,7 +290,7 @@
                                                 <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
                                                 <li><a href="shop-compare.html"><i class="icon-shuffle"></i></a></li>
                                                 <li><a href="{{url('')}}/quick/product/detail/{{$item->id}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
-                                                <li><a href="#"><i class="icon-heart"></i></a></li>
+                                                <li><a href="{{ url('wish/add/', []) }}/{{$item->id}}"><i class="icon-heart"></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@
                                             $prom = FindPromArticle($item->id);
                                         @endphp
                                         @if ($prom != 0)
-                                            <span class="price">{{getPrixWithProm ($article->prix , $prom)}} TND</span>
+                                            <span class="price">{{getPrixWithProm ($item->prix , $prom)}} TND</span>
                                             <del>{{$item->prix}} TND</del>
                                             <div class="on_sale">
                                                 <span>{{ $prom }}% Off</span>
@@ -352,5 +352,7 @@
 <!-- END MAIN CONTENT -->
 @endsection
 @push('scripts')
+<script>
 
+</script>
 @endpush

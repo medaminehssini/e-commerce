@@ -14,7 +14,9 @@
 
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController as ControllersUserController;
+use App\Http\Controllers\WishListController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('signup' , [ControllersUserController::class , 'register'] );
@@ -36,6 +38,11 @@ Route::group([ 'middleware'=>'auth'], function () {
 
     //add commentaire
     Route::post('product/detail/{id}' , [CommentaireController::class , 'addCommentaire'] );
+    //wishlist
+    Route::get('wish/add/{id}', [WishListController::class , 'add']);
+    Route::get('wish/remove/{id}', [WishListController::class , 'remove']);
+
+    Route::get('wish', [WishListController::class , 'index']);
 
 
 });
@@ -44,4 +51,9 @@ Route::group([ 'middleware'=>'auth'], function () {
   //product
   Route::get('product/detail/{id}' , [ProductController::class , 'getArticle'] );
   Route::get('quick/product/detail/{id}' , [ProductController::class , 'getQuikArticle'] );
+
+  //search
+  Route::get('search', [SearchController::class , 'index']);
+
+
 

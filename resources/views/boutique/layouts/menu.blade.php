@@ -53,11 +53,10 @@
                                 <div class="custom_select">
                                     <select class="first_null not_chosen">
                                         <option value="">Tous Les Categories</option>
-                                        <option value="Dresses">Dresses</option>
-                                        <option value="Shirt-Tops">Shirt &amp; Tops</option>
-                                        <option value="T-Shirt">T-Shirt</option>
-                                        <option value="Pents">Pents</option>
-                                        <option value="Jeans">Jeans</option>
+                                        @foreach (getCategories() as $cat)
+                                             <option value="{{$cat->id}}">{{$cat->nom}}</option>
+                                        @endforeach
+
                                     </select>
                                 </div>
                             </div>
@@ -72,7 +71,7 @@
                     @else
                         <li><a href="{{ url('edit/account', []) }}" class="nav-link"><i class="linearicons-user"></i></a></li>
                     @endif
-                    <li><a href="#" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">0</span></a></li>
+                    <li><a href="{{ url('wish', []) }}" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">{{wishCount()}}</span></a></li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">TND</span>159.00</span></a>
                         <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
