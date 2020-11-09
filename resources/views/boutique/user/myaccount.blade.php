@@ -2,30 +2,30 @@
 
 @section('content')
 <!-- START SECTION BREADCRUMB -->
-<div class="breadcrumb_section bg_gray page-title-mini">
-    <div class="container"><!-- STRART CONTAINER -->
+<!-- <div class="breadcrumb_section bg_gray page-title-mini">
+    <div class="container">
         <div class="row align-items-center">
         	<div class="col-md-6">
                 <div class="page-title">
-            		<h1>My Account</h1>
+            		<h1>Mon compte</h1>
                 </div>
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb justify-content-md-end">
-                    <li class="breadcrumb-item"><a href="{{ url('', []) }}">Home</a></li>
-                    <li class="breadcrumb-item active">My Account</li>
+                    <li class="breadcrumb-item"><a href="{{ url('', []) }}">Acceuill</a></li>
+                    <li class="breadcrumb-item active">Mon compte</li>
                 </ol>
             </div>
         </div>
-    </div><!-- END CONTAINER-->
-</div>
+    </div>
+</div> -->
 <!-- END SECTION BREADCRUMB -->
 
 <!-- START MAIN CONTENT -->
 <div class="main_content">
 
 <!-- START SECTION SHOP -->
-<div class="section">
+<div class="section" style="border-top: 1px solid #dee2e6 !important; border-bottom: 1px solid #dee2e6 !important;">
 	<div class="container">
         <div class="row">
             @if ($errors->any())
@@ -41,19 +41,19 @@
                 <div class="dashboard_menu">
                     <ul class="nav nav-tabs flex-column" role="tablist">
                       <li class="nav-item">
-                        <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="ti-layout-grid2"></i>Dashboard</a>
+                        <a class="nav-link active" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="ti-layout-grid2"></i>Tableau de bord</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Orders</a>
+                        <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="ti-shopping-cart-full"></i>Commandes</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>My Address</a>
+                        <a class="nav-link" id="address-tab" data-toggle="tab" href="#address" role="tab" aria-controls="address" aria-selected="true"><i class="ti-location-pin"></i>Adresse</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" id="account-detail-tab" data-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Account details</a>
+                        <a class="nav-link" id="account-detail-tab" data-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="ti-id-badge"></i>Detailles du compte</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{{ url('logout', []) }}"><i class="ti-lock"></i>Logout</a>
+                        <a class="nav-link" href="{{ url('logout', []) }}"><i class="ti-lock"></i>Deconnecter</a>
                       </li>
                     </ul>
                 </div>
@@ -63,24 +63,24 @@
                   	<div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
                     	<div class="card">
                         	<div class="card-header">
-                                <h3>Dashboard</h3>
+                                <h3>Tableau de bord</h3>
                             </div>
                             <div class="card-body">
-                    			<p>From your account dashboard. you can easily check &amp; view your <a href="javascript:void(0);" onclick="$('#orders-tab').trigger('click')">recent orders</a>, manage your <a href="javascript:void(0);" onclick="$('#address-tab').trigger('click')">shipping and billing addresses</a> and <a href="javascript:void(0);" onclick="$('#account-detail-tab').trigger('click')">edit your password and account details.</a></p>
+                    			<p>D'ici vous pouvez voir vos <a href="javascript:void(0);" onclick="$('#orders-tab').trigger('click')"> commandes recent </a>, gérer votre <a href="javascript:void(0);" onclick="$('#address-tab').trigger('click')"> addresse de livraison</a> et <a href="javascript:void(0);" onclick="$('#account-detail-tab').trigger('click')">editer votre mot de passe et les detailles du compte.</a></p>
                             </div>
                         </div>
                   	</div>
                   	<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                     	<div class="card">
                         	<div class="card-header">
-                                <h3>Orders</h3>
+                                <h3>Commandes</h3>
                             </div>
                             <div class="card-body">
                     			<div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Order</th>
+                                                <th>Numero Commande</th>
                                                 <th>Date</th>
                                                 <th>Status</th>
                                                 <th>Total</th>
@@ -108,7 +108,7 @@
 					<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
                         <div class="card">
                         	<div class="card-header">
-                                <h3>Account Details</h3>
+                                <h3>Detailles du compte</h3>
                             </div>
                             <div class="card-body">
                                 <form method="post" action="{{ url('edit/adresse', []) }}" enctype="multipart/form-data" name="enq">
@@ -131,7 +131,7 @@
                                         </div>
 
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Save</button>
+                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Enregistrer</button>
                                         </div>
                                     </div>
                                 </form>
@@ -141,7 +141,7 @@
                     <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 						<div class="card">
                         	<div class="card-header">
-                                <h3>Account Details</h3>
+                                <h3>Detailles du compte</h3>
                             </div>
                             <div class="card-body">
                                 <form method="post" action="{{ url('edit/account', []) }}" enctype="multipart/form-data" name="enq">
@@ -159,19 +159,19 @@
                                             <input  type="file" class="form-control"  name="image">
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>UserName <span class="required">*</span></label>
+                                        	<label>Nom utilisateur <span class="required">*</span></label>
                                             <input required="" class="form-control" value="{{auth()->user()->username}}" disabled type="text">
                                         </div>
                                         <div class="form-group col-md-6">
-                                        	<label>First Name <span class="required">*</span></label>
+                                        	<label>Prénom <span class="required">*</span></label>
                                             <input required="" class="form-control" value="{{auth()->user()->first_name}}"  name="first_name" type="text">
                                          </div>
                                          <div class="form-group col-md-6">
-                                        	<label>Last Name <span class="required">*</span></label>
+                                        	<label>Nom <span class="required">*</span></label>
                                             <input required="" class="form-control" value="{{auth()->user()->last_name}}" name="last_name">
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>Email Address <span class="required">*</span></label>
+                                        	<label>Addresse Email<span class="required">*</span></label>
                                             <input required="" class="form-control" name="email" value="{{auth()->user()->email}}"  type="email">
                                         </div>
                                         <div class="form-group col-md-12">
@@ -182,23 +182,23 @@
                                                 @endif>Homme</option>
                                                 <option value="Famme" @if (auth()->user()->sexe == 'Famme')
                                                     selected
-                                                @endif>Famme</option>
+                                                @endif>Femme</option>
                                             </select>
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>Current Password <span class="required">*</span></label>
+                                        	<label>Mot de passe actuelle <span class="required">*</span></label>
                                             <input  class="form-control" name="current_password" type="password">
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>New Password <span class="required">*</span></label>
+                                        	<label>Nouvelle mot de passe <span class="required">*</span></label>
                                             <input  class="form-control" name="password" type="password">
                                         </div>
                                         <div class="form-group col-md-12">
-                                        	<label>Confirm Password <span class="required">*</span></label>
+                                        	<label>Confirmer mot de passe <span class="required">*</span></label>
                                             <input class="form-control" name="confirmation_password" type="password">
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Save</button>
+                                            <button type="submit" class="btn btn-fill-out" name="submit" value="Submit">Enregistrer</button>
                                         </div>
                                     </div>
                                 </form>

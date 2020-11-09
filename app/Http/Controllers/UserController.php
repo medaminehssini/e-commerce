@@ -18,16 +18,26 @@ class UserController extends Controller
 
    public function registerNow (Request $request) {
     $messages = [
-        'password.required' => 'Champs obligatoire',
-        'confirmation_password.required' => 'Champs obligatoire',
+        'password.required' => 'Mot de passe obligatoire',
+        'confirmation_password.required' => 'Confirmation obligatoire',
         'password.same' => 'Mot de passe invalide',
         'confirmation_password.same' => 'Mot de passe invalide',
+        'username.required' => 'Nom d\'utilisateur obligatoire',
+        'first_name.required' => 'Prénom  obligatoire',
+        'last_name.required' => 'Nom obligatoire',
+        'email.required' => 'Email obligatoire',
+        'email.email' => 'Adresse email invalide',
+
 
     ];
 
     $this->validate($request, [
         'password' => 'required|same:password',
         'confirmation_password' => 'required|same:password',
+        'username' => 'required',
+        'first_name' => 'required',
+        'last_name' => 'required',
+        'email' => 'required|email',
     ], $messages);
 
 
@@ -39,7 +49,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
         $user->save();
-        alert()->success('register  ', 'Successfully')->toToast();
+        alert()->success('Compte crée avec succès', '')->toToast();
         return redirect('/login');
 }
 
@@ -156,7 +166,7 @@ class UserController extends Controller
 
             $user->save();
 
-            alert()->success('adresse Edited', 'Successfully')->toToast();
+            alert()->success('Adresse modifiée avec succès', '')->toToast();
 
 
         }
