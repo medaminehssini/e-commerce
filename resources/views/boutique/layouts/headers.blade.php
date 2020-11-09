@@ -33,12 +33,17 @@
 <link rel="stylesheet" href="{{url('boutique')}}/assets/owlcarousel/css/owl.theme.default.min.css">
 <!-- Magnific Popup CSS -->
 <link rel="stylesheet" href="{{url('boutique')}}/assets/css/magnific-popup.css">
+
+<link rel="stylesheet" href="{{url('boutique')}}/assets/css/jquery-ui.css">
+
 <!-- Slick CSS -->
 <link rel="stylesheet" href="{{url('boutique')}}/assets/css/slick.css">
 <link rel="stylesheet" href="{{url('boutique')}}/assets/css/slick-theme.css">
 <!-- Style CSS -->
 <link rel="stylesheet" href="{{url('boutique')}}/assets/css/style.css">
 <link rel="stylesheet" href="{{url('boutique')}}/assets/css/responsive.css">
+
+
 
 <!-- Hotjar Tracking Code for bestwebcreator.com -->
 <script>

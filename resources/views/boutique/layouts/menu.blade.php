@@ -42,16 +42,16 @@
     <div class="middle-header dark_skin">
     	<div class="container">
             <div class="nav_block">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="{{ url('', []) }}">
                     <img class="logo_light" src="{{url('boutique')}}/assets/images/logo_light.png" alt="logo">
                     <img class="logo_dark" src="{{url('boutique')}}/assets/images/logo_dark.png" alt="logo">
                 </a>
                 <div class="product_search_form radius_input search_form_btn">
-                    <form>
+                    <form action="{{ url('/search', []) }}">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="custom_select">
-                                    <select class="first_null not_chosen">
+                                    <select class="first_null not_chosen" name="categorie">
                                         <option value="">Tous Les Categories</option>
                                         @foreach (getCategories() as $cat)
                                              <option value="{{$cat->id}}">{{$cat->nom}}</option>
@@ -60,7 +60,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <input class="form-control" placeholder="Chercher un produit..." required="" type="text">
+                            <input class="form-control" placeholder="Chercher un produit..."  name="libelle" type="text">
                             <button type="submit" class="search_btn3">Chercher</button>
                         </div>
                     </form>
