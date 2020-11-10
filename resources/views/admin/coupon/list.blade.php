@@ -131,7 +131,7 @@
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger">Annuler</button>
+                                <button class="btn btn-outline-danger" type="reset">Annuler</button>
                             </div>
                         </div>
 
@@ -181,7 +181,13 @@
     <!-- BEGIN: Page JS-->
     <script src="{{url('')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
-
+    @if ( $errors->any() )
+        <script>
+            $( document ).ready(function() {
+            document.getElementsByClassName('btnAjout')[0].click();
+            });
+        </script>
+    @endif
 
     <script>
           // init thumb view datatable
@@ -234,7 +240,7 @@
 
           $(".overlay-bg").addClass("show")
         },
-        className: "btn-outline-primary"
+        className: "btn-outline-primary btnAjout"
       }
     ],
     initComplete: function(settings, json) {
