@@ -3,11 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Livreur;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
 class PanierController extends Controller
 {
+
+    public function index()
+    {
+        $livreur = Livreur::get();
+        $arts = Article::get();
+        return view('boutique.panier.panier')->with([
+            'livreur'=>$livreur,
+            'articles' => $arts
+            ]);
+    }
+
     public function addPanier($id)
     {
         $art = Article::find($id);

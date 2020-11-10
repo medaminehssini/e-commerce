@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\CommandeController;
 use App\Http\Controllers\admin\CouponController;
 use App\Http\Controllers\admin\LignePromotionController;
 use App\Http\Controllers\admin\MarqueController;
+use App\Http\Controllers\admin\LivreurController;
 use App\Http\Controllers\admin\PromotionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ContactController;
@@ -63,6 +64,13 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('delete/marque/{id}' , [MarqueController::class , 'remove'] );
     Route::post('edit/marque/{id}' , [MarqueController::class , 'editMarque'] );
     Route::get('marque/list/dataTables' , [MarqueController::class , 'marqueData'] );
+
+    //livreur
+    Route::get('livreur' , [LivreurController::class , 'index'] );
+    Route::post('add/livreur' , [LivreurController::class , 'addlivreur'] );
+    Route::get('delete/livreur/{id}' , [LivreurController::class , 'remove'] );
+    Route::post('edit/livreur/{id}' , [LivreurController::class , 'editlivreur'] );
+    Route::get('livreur/list/dataTables' , [LivreurController::class , 'livreurData'] );
 
 
     //user

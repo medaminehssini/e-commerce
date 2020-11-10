@@ -44,6 +44,7 @@
                 <li class=" nav-item {{ Request::is('admin/calender') ? 'active' : '' }}"><a href="{{aurl('calender')}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
                 </li>
                 <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-shopping-bag"></i><span class="menu-title" data-i18n="Calender">Gérer Commande</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/livreur') ? 'active' : '' }}"><a href="{{aurl('livreur')}}"><i class="feather icon-truck"></i><span class="menu-title" data-i18n="Calender">Gérer Sociéte Livraison</span></a></li>
                 <li class=" nav-item {{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Calender">Gérer Categorie </span></a>
                 <li class=" nav-item {{ Request::is('admin/marque') ? 'active' : '' }}"><a href="{{aurl('marque')}}"><i class="feather icon-tag"></i><span class="menu-title" data-i18n="Calender">Gérer Marque </span></a>
                 <li class=" nav-item {{ Request::is('admin/article') ? 'active' : '' }}"><a href="{{aurl('article')}}"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Calender">Gérer Article </span></a>

@@ -78,7 +78,7 @@
                                 @foreach (Cart::content() as $art)
                                     <li>
                                         <a href="{{ url('panier/remove/', []) }}/{{$art->rowId}}" class="item_remove"><i class="ion-close"></i></a>
-                                    <a href="#"><img src="{{url('')}}/{{explode(",", $art->images)[0]}}" alt="">{{$art->name}}</a>
+                                    <a href="#"><img src="{{url('')}}/{{explode(",", $articles->find($art->id)->images)[0]}}" alt="">{{$art->name}}</a>
                                         <span class="cart_quantity"> 1 x <span class="cart_amount"> <span class="price_symbole">TND</span></span>{{$art->price}}</span>
                                     </li>
                                 @endforeach

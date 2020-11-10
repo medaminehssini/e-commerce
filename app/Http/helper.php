@@ -2,6 +2,7 @@
 
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Livreur;
 use App\Models\Promotion;
 use App\Models\Setting;
 use App\Models\User;
@@ -70,15 +71,8 @@ function aurl ($url=null) {
             return $verif ;
         }
 
-        function getPanier($arts){
-            $listart = [];
-
-            foreach ($arts as $key => $article) {
-                $listart[$key] = $article->id;
-            }
-            $listart = Article::whereIn('id' , $listart)->get();
-
-            return $listart;
+        function getFraisLiv($id){
+            return Livreur::find($id)->frais;
         }
 
         function wishCount()

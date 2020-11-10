@@ -12,6 +12,7 @@
 |
 */
 
+use App\Http\Controllers\admin\CommandeController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ContactController;
@@ -79,12 +80,15 @@ Route::group([ 'middleware'=>'auth'], function () {
       return back();
   }] );
 
-  Route::get('panier', [PanierController::class , function ()
-  {
-      return view('boutique.panier.panier');
-  }] );
+  Route::get('panier', [PanierController::class , 'index'] );
 
   Route::get('panier/remove/{id}', [PanierController::class , 'removePanier'] );
+
+
+  //commande
+  Route::get('commande' , [CommandeController::class , 'ajouterCommande'] );
+
+
 
 
 

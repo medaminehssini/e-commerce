@@ -4,7 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Commande;
+use App\Models\Article;
+use App\Models\LigneCommande;
+use DateTime;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class CommandeController extends Controller
@@ -118,6 +123,31 @@ class CommandeController extends Controller
                 ->rawColumns([ 'photo' , "status" ])
                 ->make(true);
          }
+    }
+
+    public function ajouterCommande()
+    {
+        $com = new Commande();
+        $com->id_client = Auth::user()->id;
+        $com->created_at = new DateTime();
+        $com->etat = 1;
+        $com->description = "";
+        $com->total = Cart::total();
+        $com->save();
+
+
+
+        foreach (Cart::content() as $art) {
+            $ligCom= new LigneCommande();
+            $ligCom->id_commande = $com->id;
+            $ligCom->id_article = Article::find($art->id)->id;
+            $ligCom->qty = $art->qty;
+            $ligCom->save();
+        }
+
+        alert()->success('Commande bien passé.', '')->toToast();
+        Cart::destroy();
+        return back();
     }
 
 }
