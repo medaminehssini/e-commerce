@@ -93,7 +93,7 @@
                                                     <td>#{{$commande->id}}</td>
                                                     <td>{{$commande->created_at}}</td>
                                                     <td>{{$commande->status}}</td>
-                                                    <td>{{$commande->total}} TND for {{count($commande->article)}} item</td>
+                                                    <td>{{$commande->total}} {{getSetting('currency')}} for {{count($commande->article)}} item</td>
                                                     <td><a href="#" class="btn btn-fill-out btn-sm">View</a></td>
                                                 </tr>
                                             @endforeach

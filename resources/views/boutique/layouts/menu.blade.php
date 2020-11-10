@@ -6,7 +6,7 @@
                 <div class="col-lg-6 col-md-8">
                 	<div class="header_topbar_info">
                     	<div class="header_offer">
-                    		<span>Livraison gratuite à partir de 100TND</span>
+                    		<span>Livraison gratuite à partir de 100 {{getSetting('currency')}} </span>
                         </div>
                         <div class="download_wrap">
                             <span class="mr-3">Télécharger l'app</span>
@@ -29,9 +29,8 @@
                         </div>
                         <div class="ml-3">
                             <select name="countries" class="custome_select">
-                                <option value='USD' data-title="USD">USD</option>
-                                <option value='EUR' data-title="EUR">EUR</option>
-                                <option value='TND' data-title="TND">TND</option>
+
+                                <option value='{{getSetting('currency')}}' data-title="{{getSetting('currency')}}">{{getSetting('currency')}}</option>
                             </select>
                         </div>
                     </div>
@@ -73,7 +72,7 @@
                     @endif
                     <li><a href="{{ url('wish', []) }}" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">{{wishCount()}}</span></a></li>
                     <li><a href="{{ url('compare') }}"  class="nav-link"><i class="icon-shuffle"     ></i><span class="wishlist_count">{{session()->has('compare') ? count(session('compare')) : '0' }}</span></a></li>
-                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">TND</span>159.00</span></a>
+                    <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">{{getSetting('currency')}}</span>159.00</span></a>
                         <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">
                                 <li>
@@ -319,7 +318,7 @@
                                         </ul>
                                     </div>
                                  </li> -->
-                                <li><a class="nav-link nav_item" href="#">Acceuill</a></li>
+                                <li><a class="nav-link nav_item" href="{{ url('/', []) }}">Acceuill</a></li>
                                 <!-- <li class="dropdown">
                                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu">
@@ -511,12 +510,12 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a class="nav-link nav_item" href="contact.html">Contacter Nous</a></li>
+                                <li><a class="nav-link nav_item" href="{{ url('contact', []) }}">Contacter Nous</a></li>
                             </ul>
                         </div>
                         <div class="contact_phone contact_support">
                             <i class="linearicons-phone-wave"></i>
-                            <span>+216 22 222 222</span>
+                            <span>{{getSetting('phone')}}</span>
                         </div>
                     </nav>
                 </div>

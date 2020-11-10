@@ -62,13 +62,13 @@
                                         $prom = FindPromArticle($item->id);
                                     @endphp
                                     @if ($prom != 0)
-                                        <span class="price">{{getPrixWithProm ($item->prix , $prom)}} TND</span>
-                                        <del>{{$item->prix}} TND</del>
+                                        <span class="price">{{getPrixWithProm ($item->prix , $prom)}} {{getSetting('currency')}}</span>
+                                        <del>{{$item->prix}} {{getSetting('currency')}}</del>
                                         <div class="on_sale">
                                             <span>{{ $prom }}% Off</span>
                                         </div>
                                    @else
-                                        <span class="price">{{$item->prix}} TND</span>
+                                        <span class="price">{{$item->prix}} {{getSetting('currency')}}</span>
 
                                     @endif
                                     <div class="rating_wrap">
@@ -162,7 +162,7 @@
                             <div class="widget">
                                 <h5 class="widget_title">Filter</h5>
                                 <div class="filter_price">
-                                    <div id="price_filter" data-min="0" data-max="500" data-min-value="{{request()->prix_min}}" data-max-value="{{request()->prix_max}}" data-price-sign="TND"></div>
+                                    <div id="price_filter" data-min="0" data-max="500" data-min-value="{{request()->prix_min}}" data-max-value="{{request()->prix_max}}" data-price-sign="{{getSetting('currency')}}"></div>
                                     <div class="price_range">
                                         <span>Price: <span id="flt_price"></span></span>
                                         <input type="hidden" value="{{request()->prix_min}}" name="prix_min" id="price_first">

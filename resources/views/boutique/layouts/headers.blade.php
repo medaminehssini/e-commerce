@@ -10,7 +10,7 @@
 <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
 
 <!-- SITE TITLE -->
-<title>Alpha Q - Boutique</title>
+<title>{{getSetting('name')}} - Boutique</title>
 <!-- Favicon Icon -->
 <link rel="shortcut icon" type="image/x-icon" href="{{url('boutique')}}/assets/images/favicon.png">
 <!-- Animation CSS -->

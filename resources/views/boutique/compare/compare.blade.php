@@ -48,17 +48,17 @@
                                     <td class="row_title">Price</td>
                                     <td class="product_price">
                                         @if (count($compares)>0)
-                                            <span class="price">{{ getPrixWithProm($compares[0]->prix , FindPromArticle($compares[0]->id)) }} TND</span>
+                                            <span class="price">{{ getPrixWithProm($compares[0]->prix , FindPromArticle($compares[0]->id)) }} {{getSetting('currency')}}</span>
                                         @endif
                                     </td>
                                     <td class="product_price">
                                         @if (count($compares)>1)
-                                            <span class="price">{{ getPrixWithProm($compares[1]->prix , FindPromArticle($compares[1]->id)) }} TND</span>
+                                            <span class="price">{{ getPrixWithProm($compares[1]->prix , FindPromArticle($compares[1]->id)) }} {{getSetting('currency')}}</span>
                                         @endif
                                     </td>
                                     <td class="product_price">
                                         @if (count($compares)>2)
-                                            <span class="price">{{ getPrixWithProm($compares[2]->prix , FindPromArticle($compares[2]->id)) }} TND</span>
+                                            <span class="price">{{ getPrixWithProm($compares[2]->prix , FindPromArticle($compares[2]->id)) }} {{getSetting('currency')}}</span>
                                         @endif
                                     </td>
                                 </tr>

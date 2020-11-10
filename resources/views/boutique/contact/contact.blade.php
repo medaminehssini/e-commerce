@@ -16,7 +16,7 @@
                         </div>
                         <div class="contact_text">
                             <span>Address</span>
-                            <p>123 Street, Old Trafford, London, UK</p>
+                            <p>{{getSetting('adresse')}}</p>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="contact_text">
                             <span>Email Address</span>
-                            <a href="mailto:info@sitename.com">info@yourmail.com </a>
+                            <a href="mailto:{{getSetting('mail')}}">{{getSetting('mail')}}</a>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="contact_text">
                             <span>Phone</span>
-                            <p>+ 457 789 789 65</p>
+                            <p>{{getSetting('phone')}}</p>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="heading_s1">
                         <h2>Get In touch</h2>
                     </div>
-                    <p class="leads">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus blandit massa enim. Nullam id varius nunc id varius nunc.</p>
+                    <p class="leads">{{getSetting('contact_description')}}</p>
                     <div class="field_form">
                         <form method="post" >
                             @csrf
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 pt-2 pt-lg-0 mt-4 mt-lg-0">
-                    <div id="map" class="contact_map2" data-zoom="12" data-latitude="40.680" data-longitude="-73.945" data-icon="{{ url('/boutique', []) }}/assets/images/marker.png"></div>
+                    <div id="map" class="contact_map2" data-zoom="12" data-latitude="{{getSetting('latitude')}}" data-longitude="{{getSetting('longitude')}}" data-icon="{{ url('/boutique', []) }}/assets/images/marker.png"></div>
                 </div>
             </div>
         </div>

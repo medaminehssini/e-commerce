@@ -12,15 +12,15 @@
                         <ul class="contact_info">
                             <li>
                                 <i class="ti-location-pin"></i>
-                                <p>123 Street, Old Trafford, NewYork, USA</p>
+                                <p>{{getSetting('adresse')}}</p>
                             </li>
                             <li>
                                 <i class="ti-email"></i>
-                                <a href="mailto:info@sitename.com">info@sitename.com</a>
+                                <a href="mailto:{{getSetting('mail')}}">{{getSetting('mail')}}</a>
                             </li>
                             <li>
                                 <i class="ti-mobile"></i>
-                                <p>+ 216 222 789 65</p>
+                                <p>{{getSetting('phone')}}</p>
                             </li>
                         </ul>
                     </div>
@@ -60,11 +60,21 @@
                 	<div class="widget">
                     	<h6 class="widget_title">Social</h6>
                         <ul class="social_icons">
-                            <li><a href="#" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#" class="sc_google"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
-                            <li><a href="#" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
+                            @if (getSetting('facebook'))
+                                <li><a href="{{getSetting('facebook')}}" class="sc_facebook"><i class="ion-social-facebook"></i></a></li>
+                            @endif
+                            @if (getSetting('twitter'))
+                                <li><a href="{{getSetting('twitter')}}" class="sc_twitter"><i class="ion-social-twitter"></i></a></li>
+                            @endif
+                            @if (getSetting('googleplus'))
+                                <li><a href="{{getSetting('googleplus')}}" class="sc_google"><i class="ion-social-googleplus"></i></a></li>
+                            @endif
+                            @if (getSetting('youtube'))
+                                <li><a href="{{getSetting('youtube')}}" class="sc_youtube"><i class="ion-social-youtube-outline"></i></a></li>
+                            @endif
+                            @if (getSetting('instagrame'))
+                                <li><a href="{{getSetting('instagram')}}" class="sc_instagram"><i class="ion-social-instagram-outline"></i></a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -120,7 +130,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <p class="text-center text-md-left mb-md-0">© 2020 All Rights Reserved by Alpha Q Solutions</p>
+                    <p class="text-center text-md-left mb-md-0">© 2020 All Rights Reserved by {{getSetting('name')}}</p>
                 </div>
                 <div class="col-lg-6">
                     <ul class="footer_payment text-center text-md-right">

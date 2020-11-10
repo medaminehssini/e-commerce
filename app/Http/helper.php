@@ -3,6 +3,7 @@
 use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Promotion;
+use App\Models\Setting;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -89,5 +90,13 @@ function aurl ($url=null) {
                 }
             }
             return 0;
+        }
+
+        function getSetting ($key) {
+            $result = Setting::where('mot' , $key)->first();
+            if($result) {
+                return $result->description;
+            }
+            return '';
         }
 

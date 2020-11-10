@@ -61,13 +61,13 @@
                         <h4 class="product_title"><a href="#">{{$article->libelle}}</a></h4>
                         <div class="product_price">
                             @if ($article->prixWithPromotion != $article->prix)
-                            <span class="price">{{$article->prixWithPromotion}} TND</span>
-                            <del>{{$article->prix}} TND</del>
+                            <span class="price">{{$article->prixWithPromotion}} {{getSetting('currency')}}</span>
+                            <del>{{$article->prix}} {{getSetting('currency')}}</del>
                             <div class="on_sale">
                                 <span>{{$article->off}}% Off</span>
                             </div>
                            @else
-                            <span class="price">{{$article->prix}} TND</span>
+                            <span class="price">{{$article->prix}} {{getSetting('currency')}}</span>
 
                             @endif
 
@@ -300,13 +300,13 @@
                                             $prom = FindPromArticle($item->id);
                                         @endphp
                                         @if ($prom != 0)
-                                            <span class="price">{{getPrixWithProm ($item->prix , $prom)}} TND</span>
-                                            <del>{{$item->prix}} TND</del>
+                                            <span class="price">{{getPrixWithProm ($item->prix , $prom)}} {{getSetting('currency')}}</span>
+                                            <del>{{$item->prix}} {{getSetting('currency')}}</del>
                                             <div class="on_sale">
                                                 <span>{{ $prom }}% Off</span>
                                             </div>
                                        @else
-                                            <span class="price">{{$item->prix}} TND</span>
+                                            <span class="price">{{$item->prix}} {{getSetting('currency')}}</span>
 
                                         @endif
                                         <div class="rating_wrap">
