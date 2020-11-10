@@ -12,7 +12,7 @@
 |
 */
 
-use App\Http\Controllers\admin\CommandeController;
+use App\Http\Controllers\CommandeController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ContactController;
@@ -46,9 +46,13 @@ Route::group([ 'middleware'=>'auth'], function () {
     //wishlist
     Route::get('wish/add/{id}', [WishListController::class , 'add']);
     Route::get('wish/remove/{id}', [WishListController::class , 'remove']);
-
     Route::get('wish', [WishListController::class , 'index']);
+    //commande
+    Route::post('add/commande' , [CommandeController::class , 'ajouterCommande'] );
 
+    //panier
+    Route::post('panier/recalculer' , [PanierController::class , 'recalculer'] );
+    Route::get('panier', [PanierController::class , 'index'] );
 
 });
 
@@ -61,6 +65,8 @@ Route::group([ 'middleware'=>'auth'], function () {
   Route::get('search', [SearchController::class , 'index']);
 
 
+
+
   //compare
     Route::get('compare' , [CompareController::class , 'index'] );
     Route::get('compare/add/{id}' , [CompareController::class , 'addItem'] );
@@ -71,7 +77,6 @@ Route::group([ 'middleware'=>'auth'], function () {
     Route::post('contact' , [ContactController::class , 'store'] );
 
   //Panier
-
   Route::get('panier/add/{id}', [PanierController::class , 'addPanier'] );
   Route::get('panier/vider', [PanierController::class , function ()
   {
@@ -80,13 +85,10 @@ Route::group([ 'middleware'=>'auth'], function () {
       return back();
   }] );
 
-  Route::get('panier', [PanierController::class , 'index'] );
-
   Route::get('panier/remove/{id}', [PanierController::class , 'removePanier'] );
 
 
-  //commande
-  Route::get('commande' , [CommandeController::class , 'ajouterCommande'] );
+
 
 
 

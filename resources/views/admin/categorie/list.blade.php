@@ -189,13 +189,14 @@
     <!-- BEGIN: Page JS-->
     <script src="{{url('')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
-    @if ( $errors->any() )
-        <script>
-            $( document ).ready(function() {
-            document.getElementsByClassName('btnAjout')[0].click();
-            });
-        </script>
+    @if ($errors->any() && session('status'))
+    <script>
+        $( document ).ready(function() {
+            alert('fefefe');
+        });
+    </script>
     @endif
+
 
     <script>
           // init thumb view datatable
