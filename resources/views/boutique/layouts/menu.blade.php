@@ -72,6 +72,7 @@
                         <li><a href="{{ url('edit/account', []) }}" class="nav-link"><i class="linearicons-user"></i></a></li>
                     @endif
                     <li><a href="{{ url('wish', []) }}" class="nav-link"><i class="linearicons-heart"></i><span class="wishlist_count">{{wishCount()}}</span></a></li>
+                    <li><a href="{{ url('compare') }}"  class="nav-link"><i class="icon-shuffle"     ></i><span class="wishlist_count">{{session()->has('compare') ? count(session('compare')) : '0' }}</span></a></li>
                     <li class="dropdown cart_dropdown"><a class="nav-link cart_trigger" href="#" data-toggle="dropdown"><i class="linearicons-bag2"></i><span class="cart_count">2</span><span class="amount"><span class="currency_symbol">TND</span>159.00</span></a>
                         <div class="cart_box cart_right dropdown-menu dropdown-menu-right">
                             <ul class="cart_list">

@@ -1,3 +1,4 @@
+
 <!-- Latest jQuery -->
 <script src="{{url('boutique')}}/assets/js/jquery-1.12.4.min.js"></script>
   <!-- jquery-ui -->

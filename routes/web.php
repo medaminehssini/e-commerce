@@ -13,6 +13,8 @@
 */
 
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\CompareController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController as ControllersUserController;
@@ -54,6 +56,17 @@ Route::group([ 'middleware'=>'auth'], function () {
 
   //search
   Route::get('search', [SearchController::class , 'index']);
+
+
+  //compare
+    Route::get('compare' , [CompareController::class , 'index'] );
+    Route::get('compare/add/{id}' , [CompareController::class , 'addItem'] );
+    Route::get('compare/remove/{id}' , [CompareController::class , 'RemoveItem'] );
+
+  //compare
+    Route::get('contact' , [ContactController::class , 'index'] );
+    Route::post('contact' , [ContactController::class , 'store'] );
+
 
 
 
