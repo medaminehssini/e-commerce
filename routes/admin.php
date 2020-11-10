@@ -11,6 +11,7 @@ use App\Http\Controllers\admin\MarqueController;
 use App\Http\Controllers\admin\PromotionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -98,8 +99,10 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     //contact et réclamation
     Route::get('contact' , [ContactController::class , 'index'] );
     Route::get('contact/list/dataTables' , [ContactController::class , 'contactData'] );
+    Route::get('contact/setting' , [ContactController::class , 'setting'] );
+    Route::post('contact/setting' , [ContactController::class , 'UpdateSetting'] );
 
-    Route::get('logout' , [AdminController::class , 'logout'] );
+
 
     //commande
     Route::get('commande' , [CommandeController::class , 'index'] );
@@ -109,6 +112,15 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('get/liste/item/{id}' , [CommandeController::class , 'LigneCommandeData'] );
 
 
-       //commande
-       Route::get('calender' , [CalenderContrller::class , 'index'] );
+    //calender
+    Route::get('calender' , [CalenderContrller::class , 'index'] );
+
+
+    //settings
+        Route::get('settings' , [SettingController::class , 'setting'] );
+        Route::post('settings' , [SettingController::class , 'UpdateSetting'] );
+
+
+
+    Route::get('logout' , [AdminController::class , 'logout'] );
 });

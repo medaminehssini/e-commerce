@@ -50,7 +50,20 @@
                 <li class=" nav-item {{ Request::is('admin/promotion') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-percent"></i><span class="menu-title" data-i18n="Calender">Gérer Promotion </span></a>
                 <li class=" nav-item {{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-gift"></i><span class="menu-title" data-i18n="Calender">Gérer Coupon </span></a>
                 <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Gérer Utilisateur</span></a></li>
-                <li class=" nav-item {{ Request::is('admin/contact') ? 'active' : '' }}"><a href="{{aurl('contact')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Contact et Réclamation </span></a>
+                 <li class=" nav-item has-sub {{ Request::is('admin/contact') || Request::is('admin/contact/setting') ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Ecommerce">Contact et Réclamation</span></a>
+                    <ul class="menu-content">
+                        <li class="{{ Request::is('admin/contact') ? 'active' : '' }}"  ><a href="{{aurl('contact')}}"><i class="feather icon-circle"></i><span class="menu-item" >Contact</span></a>
+                        </li>
+                        <li class="{{ Request::is('admin/contact/setting') ? 'active' : '' }}"><a href="{{aurl('contact/setting')}}"><i class="feather icon-circle"></i><span class="menu-item" >Settings</span></a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class=" nav-item {{ Request::is('admin/settings') ? 'active' : '' }}"><a href="{{aurl('settings')}}"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Calender">Site Settings </span></a></li>
+
+
+
+
                 <!-- <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">User</span></a>
                     <ul class="menu-content">
                         <li><a href="app-user-list.html"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="List">List</span></a>
