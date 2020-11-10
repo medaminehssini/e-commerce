@@ -17,8 +17,10 @@ use App\Http\Controllers\CompareController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PanierController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use App\Http\Controllers\WishListController;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
 
 Route::get('signup' , [ControllersUserController::class , 'register'] );
@@ -51,7 +53,7 @@ Route::group([ 'middleware'=>'auth'], function () {
 
 
   //product
-  Route::get('product/detail/{id}' , [ProductController::class , 'getArticle'] );
+  Route::get('product/detail/{id}' , [ProductController::class , 'getArticle'] )->name('product.index');
   Route::get('quick/product/detail/{id}' , [ProductController::class , 'getQuikArticle'] );
 
   //search
@@ -66,6 +68,24 @@ Route::group([ 'middleware'=>'auth'], function () {
   //compare
     Route::get('contact' , [ContactController::class , 'index'] );
     Route::post('contact' , [ContactController::class , 'store'] );
+
+  //Panier
+
+  Route::get('panier/add/{id}', [PanierController::class , 'addPanier'] );
+  Route::get('panier/vider', [PanierController::class , function ()
+  {
+      Cart::destroy();
+      alert()->success('Panier bien vidé.', '')->toToast();
+      return back();
+  }] );
+
+  Route::get('panier', [PanierController::class , function ()
+  {
+      return view('boutique.panier.panier');
+  }] );
+
+  Route::get('panier/remove/{id}', [PanierController::class , 'removePanier'] );
+
 
 
 
