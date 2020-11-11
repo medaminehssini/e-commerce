@@ -19,6 +19,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PanierController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use App\Http\Controllers\WishListController;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -28,9 +29,8 @@ Route::get('signup' , [ControllersUserController::class , 'register'] );
 Route::post('signup' , [ControllersUserController::class , 'registerNow'] );
 Route::get('login' , [ControllersUserController::class , 'login'] )->name('login');
 Route::post('login' , [ControllersUserController::class , 'loginNow'] );
-Route::get('/', function () {
-    return view('boutique.welecome');
-});
+Route::get('/', [PublicController::class , 'index']);
+
 
 
 Route::group([ 'middleware'=>'auth'], function () {

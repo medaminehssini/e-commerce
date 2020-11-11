@@ -72,8 +72,8 @@
 
                                     @endif
                                     <div class="rating_wrap">
-                                        <div >
-                                            <div class="star_rating" >
+
+                                            <div class="star_rating"  style="display: inline-block;width: 70%;">
                                                 @for ($i = 1 ; $i <= 5 ; $i++)
                                                         @if (getArticleRate($item->id) >= $i)
                                                          <span class="selected" ><i class="far fa-star" style="font-size: 14px"></i></span>
@@ -85,8 +85,8 @@
                                                 @endfor
 
                                             </div>
-                                        </div>
-                                        <span class="rating_num">(21)</span>
+
+                                        <span class="rating_num">({{count($item->commentaire)}})</span>
                                     </div>
 
                                     <div class="pr_switch_wrap">

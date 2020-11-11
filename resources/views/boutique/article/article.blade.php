@@ -307,7 +307,7 @@
 
                                                 </div>
                                             </div>
-                                            <span class="rating_num">(21)</span>
+                                            <span class="rating_num">({{count($item->commentaire)}})</span>
                                         </div>
 
                                         <div class="pr_switch_wrap">
