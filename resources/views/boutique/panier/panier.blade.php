@@ -24,6 +24,7 @@
                             <tbody>
                                 @php
                                     $sommeTax = 0;
+                                    $SetCoupon =    gettype($coupon) == "integer"  ? 0 : $coupon->taux;
                                 @endphp
                                 @foreach (Cart::content() as $art)
                                     <tr>
@@ -50,12 +51,35 @@
                                         <div class="row no-gutters align-items-center">
 
                                             <div class="col-lg-4 col-md-6 mb-3 mb-md-0">
-                                                <div class="coupon field_form input-group">
-                                                    <input type="text" value="" class="form-control form-control-sm" placeholder="Enter Coupon Code..">
-                                                    <div class="input-group-append">
-                                                        <button class="btn btn-fill-out btn-sm" type="submit">Appliquez un coupon</button>
+                                                @if (gettype($coupon) == "integer" &&  ($coupon ==  0 || $coupon ==  -1 ) )
+                                                    <div class="coupon field_form input-group">
+                                                        <input type="text" value="{{request()->coupon}}" class="form-control form-control-sm" id="couponInput" placeholder="Enter Coupon Code..">
+                                                        <div class="input-group-append">
+                                                            <button class="btn btn-fill-out btn-sm" id="submitCoupon"  type="button">Appliquez un coupon</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    @if ($coupon ==  -1)
+                                                        <p style=" color: red;text-align: left;">Coupon invalide</p>
+                                                        <style>
+                                                            #couponInput {
+                                                                border: 1px solid red;
+                                                            }
+                                                        </style>
+                                                    @endif
+                                                @else
+
+                                                        <div class="coupon field_form input-group">
+                                                            <input type="text" disabled value="{{$coupon->code . ' ( '. $coupon->taux .'% ) '}}" class="form-control form-control-sm" id="couponRemove" placeholder="Enter Coupon Code..">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-fill-out btn-sm" id="RemoveCoupon"  type="button">Remove</button>
+                                                            </div>
+                                                        </div>
+
+                                                @endif
+
+
+
+
                                             </div>
                                             <div class="col-lg-8 col-md-6 text-left text-md-right">
                                                 <form action="{{ url('panier/recalculer', []) }}" method="post" name="recalculerCommande">
@@ -136,17 +160,25 @@
                                         <td class="cart_total_label">Sous total</td>
                                     <td class="cart_total_amount">{{Cart::subTotal().' '.getSetting('currency')}}</td>
                                     </tr>
+                                    @if ($SetCoupon != 0)
+                                        <tr>
+                                            <td class="cart_total_label">Coupon</td>
+                                            <td class="cart_total_amount">{{ ($SetCoupon * (Cart::total())/100)  .' '.getSetting('currency') }}</td>
+                                        </tr>
+                                    @endif
                                     <tr>
                                     <td class="cart_total_label">Frais de livraison</td>
                                         <td class="cart_total_amount">{{ $fraislivreur == 0 ? 'Gratuit' : $fraislivreur .' '.getSetting('currency')}}</td>
                                     </tr>
+
+
                                     <tr>
                                         <td class="cart_total_label">Tax</td>
-                                            <td class="cart_total_amount">{{ $sommeTax .' '.getSetting('currency')}}</td>
-                                        </tr>
+                                        <td class="cart_total_amount">{{ $sommeTax .' '.getSetting('currency')}}</td>
+                                    </tr>
                                     <tr>
                                         <td class="cart_total_label">Total TTC</td>
-                                        <td class="cart_total_amount"><strong>{{Cart::total()+ $sommeTax + $fraislivreur.' '.getSetting('currency')}}</strong></td>
+                                        <td class="cart_total_amount"><strong>{{Cart::total()+ $sommeTax + $fraislivreur  -  (Cart::total()*$SetCoupon /100)  .' '.getSetting('currency')}}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -216,9 +248,19 @@
                 return rtn;
             }
             $( document ).ready(function() {
-                document.getElementById('livreur').value = "{{request()->livreur}}" ;
+                if(document.getElementById('livreur'))
+                    document.getElementById('livreur').value = "{{request()->livreur}}" ;
                 document.getElementById('ville').value = "{{request()->ville}}" ;
-
+                if(document.getElementById('submitCoupon'))
+                    document.getElementById('submitCoupon').addEventListener('click' , ()=>{
+                        changeUrl("coupon",document.getElementById('couponInput').value  ) ;
+                    })
+                if(document.getElementById('RemoveCoupon'))
+                    document.getElementById('RemoveCoupon').addEventListener('click' , ()=>{
+                       url =  removeParam("coupon",  window.location.href ) ;
+                       window.location.href = url;
+                    })
             })
+
         </script>
 @endpush

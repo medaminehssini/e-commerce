@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Coupon;
 use App\Models\Livreur;
+use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -23,12 +24,14 @@ class PanierController extends Controller
                     $fraislivreur = $livreur->frais;
                 }
             }
-            // if(request()->coupon){
-            //     $coup = Coupon::where(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->orWhere(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->first();
-            //     if( $coup) {
-            //         $coupon=$coup->taux;
-            //     }
-            // }
+            if(request()->coupon){
+                $coup = Coupon::where(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->orWhere(['code'=>request()->coupon  , ['date_fin' ,'<' , Carbon::now()] ])->first();
+                if( $coup) {
+                    $coupon=$coup;
+                }else {
+                    $coupon= -1;
+                }
+            }
             $livreurs = Livreur::get();
             $arts = Article::get();
             return view('boutique.panier.panier')->with([

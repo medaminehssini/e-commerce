@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Commande;
+use App\Models\Coupon;
 use App\Models\LigneCommande;
 use App\Models\Livreur;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -37,12 +38,20 @@ class CommandeController extends Controller
             return back();
         }
 
-
         $com = new Commande();
-        // if (request()->adresse != '') {
-        //     $com->adresse = request()->adresse;
-        //     $com->ville =  request()->ville;
-        // }
+        if(request()->coupon){
+            $coup = Coupon::where(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->orWhere(['code'=>request()->coupon  , ['date_fin' ,'<' , Carbon::now()] ])->first();
+            if( $coup) {
+                $com->id_coupon =  $coup->id ;
+            }else {
+                alert()->error('Coupon non valide.', '')->toToast();
+                return back();
+            }
+
+
+        }
+
+
         $com->id_client = Auth::user()->id;
         $com->description = "";
         $com->id_livreur = $id_livreur;
