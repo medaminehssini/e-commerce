@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Categorie;
+use App\Models\Contact;
 use App\Models\Marque;
 use App\Models\Promotion;
 use Carbon\Carbon;
@@ -29,7 +30,7 @@ class PublicController extends Controller
 
         $bestSellers = Article::withCount('commande')->latest('commande_count')->take(10)->get();
 
-
+        $contact = Contact::where('publish_state' , 1 )->take(10)->get();
 
 
         return view('boutique.welecome')->with([
@@ -38,7 +39,8 @@ class PublicController extends Controller
             'newArticles' => $newArticle,
             "specialOffres"=> $specialOffres,
             "bestSellers"=>$bestSellers,
-            "bestpromSellers"=>$bestpromSellers
+            "bestpromSellers"=>$bestpromSellers,
+            "contacts"=>$contact
         ]);
     }
 }
