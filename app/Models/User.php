@@ -57,5 +57,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Article' , 'wishlist' ,  'id_client' ,'id_article' )->withPivot('created_at');
     }
-
+    public function verifyUser()
+    {
+      return $this->hasOne('App\Models\VerifyUser');
+    }
 }

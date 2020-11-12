@@ -89,21 +89,25 @@
                         </div> --}}
                     </div>
                     <hr>
-                    <div class="cart_extra">
-                        <div class="cart-product-quantity">
-                            <div class="quantity">
-                                <input type="button" value="-" class="minus">
-                                <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
-                                <input type="button" value="+" class="plus">
-                            </div>
+                    <form action="{{ url('panier/add/', []) }}/{{$article->id}}" method="get">
+                        <div class="cart_extra">
+
+                                <div class="cart-product-quantity" style="display: inline-block;">
+                                    <div class="quantity">
+                                        <input type="button" value="-" class="minus">
+                                        <input type="text" name="qty" value="1" title="Qty" class="qty" size="4">
+                                        <input type="button" value="+" class="plus">
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id" value="{{$article->id}}">
+                                <div class="cart_btn" style="display: inline-block;">
+                                    <button type="submit" class="btn btn-fill-out btn-addtocart" ><i class="icon-basket-loaded"></i> Ajouter au panier</button>
+                                    <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
+                                    <a class="add_wishlist" href="{{ url('wish/add/', []) }}/{{$article->id}}"><i class="icon-heart"></i></a>
+                                </div>
+
                         </div>
-                        <input type="hidden" name="id" value="{{$article->id}}">
-                        <div class="cart_btn">
-                            <a href="{{ url('panier/add/', []) }}/{{$article->id}}" class="btn btn-fill-out btn-addtocart" ><i class="icon-basket-loaded"></i> Ajouter au panier</a>
-                            <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                            <a class="add_wishlist" href="{{ url('wish/add/', []) }}/{{$article->id}}"><i class="icon-heart"></i></a>
-                        </div>
-                    </div>
+                    </form>
                     <hr>
 
 

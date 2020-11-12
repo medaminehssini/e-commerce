@@ -149,7 +149,12 @@
                                     <div class="row">
                                         <div class="form-group col-md-3">
                                             @if (auth()->user()->image)
-                                             <img style="width: 100px; height: 100px; margin: 10px; border-radius: 50%" src="{{ url('', []) }}/{{auth()->user()->image}}" alt="">
+                                            @if (  strpos(auth()->user()->image , '://') !== false)
+                                                <img style="width: 100px; height: 100px; margin: 10px; border-radius: 50%" src="{{auth()->user()->image}}" alt="">
+
+                                            @else
+                                                <img style="width: 100px; height: 100px; margin: 10px; border-radius: 50%" src="{{ url('', []) }}/{{auth()->user()->image}}" alt="">
+                                            @endif
                                             @else
                                                 <img style="width: 100px; height: 100px; margin: 10px; border-radius: 50%" src="{{ url('', []) }}/boutique/uploads/default/avatar.png" alt="">
                                             @endif

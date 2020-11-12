@@ -48,17 +48,25 @@ class PanierController extends Controller
 
     public function addPanier($id)
     {
+        $qty = 1 ;
+
+        if(request()->qty && request()->qty>0) {
+            $qty = (int)request()->qty ;
+        }
         $art = Article::find($id);
-        $duplicata = Cart::search(function ($cartItem, $rowId) use($art) {
+        $duplicata = Cart::search(function ($cartItem, $rowId) use($art , $qty) {
             if ($cartItem->id == $art->id) {
-                $cartItem->qty = $cartItem->qty +1 ;
+                if (request()->qty  && request()->qty>0 ) {
+                    $cartItem->qty = $qty;
+                }else
+                    $cartItem->qty = $cartItem->qty +1 ;
                 return $cartItem->id == $art->id;
             }
         });
 
          if (!$duplicata->isNotEmpty()) {
             //  alert()->warning('Le produit déja ajouté.', '')->toToast();
-            Cart::add($art->id,$art->libelle,1,$art->prix , ["image"=> explode(",", $art->images)[0]])
+            Cart::add($art->id,$art->libelle,$qty,$art->prix , ["image"=> explode(",", $art->images)[0]])
             ->associate('App\Models\Article');
          }
 

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerifyMail;
 use App\Models\User;
+use App\Models\VerifyUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -27,6 +30,7 @@ class UserController extends Controller
         'last_name.required' => 'Nom obligatoire',
         'email.required' => 'Email obligatoire',
         'email.email' => 'Adresse email invalide',
+        'email.unique' => 'Adresse email deja utilisée',
 
 
     ];
@@ -37,7 +41,7 @@ class UserController extends Controller
         'username' => 'required',
         'first_name' => 'required',
         'last_name' => 'required',
-        'email' => 'required|email',
+        'email' => 'required|email|unique:client',
     ], $messages);
 
 
@@ -49,6 +53,11 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password =  Hash::make($request->password);
         $user->save();
+        $verifyUser = VerifyUser::create([
+            'user_id' => $user->id,
+            'token' => sha1(time())
+        ]);
+        Mail::to($user->email)->send(new VerifyMail($user));
         alert()->success('Compte crée avec succès', '')->toToast();
         return redirect('/login');
 }
@@ -65,6 +74,11 @@ class UserController extends Controller
     public function  loginNow (Request $request) {
 
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password ], $request->remember)) {
+            if (!Auth::user()->status) {
+                Auth::logout();
+                alert()->error('You need to confirm your account. We have sent you an activation code, please check your email.')->toToast();
+                return back();
+            }
             return redirect('/');
 
         }else {
@@ -179,5 +193,23 @@ class UserController extends Controller
         return redirect(url('login'));
     }
 
-
+    public function verifyUser($token)
+    {
+      $verifyUser = VerifyUser::where('token', $token)->first();
+      if(isset($verifyUser) ){
+        $user = $verifyUser->user;
+        if(!$user->status) {
+          $verifyUser->user->status = 1;
+          $verifyUser->user->save();
+          $status = "Your e-mail is verified. You can now login.";
+        } else {
+          $status = "Your e-mail is already verified. You can now login.";
+        }
+      } else {
+        alert()->error('warning', "Sorry your email cannot be identified.")->toToast();
+        return redirect()->route('login');
+      }
+      alert()->success('warning', $status)->toToast();
+      return redirect()->route('login');
+    }
 }

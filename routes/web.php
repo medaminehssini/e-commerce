@@ -20,6 +20,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\UserController as ControllersUserController;
 use App\Http\Controllers\WishListController;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -29,7 +30,15 @@ Route::get('signup' , [ControllersUserController::class , 'register'] );
 Route::post('signup' , [ControllersUserController::class , 'registerNow'] );
 Route::get('login' , [ControllersUserController::class , 'login'] )->name('login');
 Route::post('login' , [ControllersUserController::class , 'loginNow'] );
-Route::get('/', [PublicController::class , 'index']);
+Route::get('/user/verify/{token}',  [ControllersUserController::class , 'verifyUser']);
+
+
+    //facebook
+    Route::get('login/{provider}', [SocialiteController::class, 'redirect']);
+    Route::get('login/{provider}/callback', [SocialiteController::class, 'Callback']);
+
+
+Route::get('/', [PublicController::class , 'index'])->name('home');
 
 
 
