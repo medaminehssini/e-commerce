@@ -125,6 +125,23 @@ class CommandeController extends Controller
          }
     }
 
+    public function ajouterCommande()
+    {
+        $com = new Commande();
+        $com->id_client = Auth::user()->id;
+        $com->created_at = new DateTime();
+        $com->etat = 1;
+        $com->description = "";
+        $com->total = Cart::total();
+        $com->save();
 
+        foreach (Cart::content() as $art) {
+            $ligCom= new LigneCommande();
+            $ligCom->id_commande = $com->id;
+            $ligCom->id_article = Article::find($art->id)->id;
+            $ligCom->qty = $art->qty;
+            $ligCom->save();
+        }
+    }
 
 }
