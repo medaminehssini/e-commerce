@@ -85,6 +85,10 @@ class CommandeController extends Controller
 
 
         if($commande) {
+            foreach ($commande->article as $key => $article) {
+                $article->qty -= $article->pivot->qty;
+                $article->save();
+            }
             $commande->etat = 1;
             $commande->save();
             alert()->success('Commande accéptée', '')->toToast();
@@ -101,6 +105,14 @@ class CommandeController extends Controller
 
 
         if($commande) {
+            if( $commande->etat == 1 ) {
+
+                foreach ($commande->article as $key => $article) {
+                    $article->qty += $article->pivot->qty;
+                    $article->save();
+                }
+            }
+
             $commande->etat = 2;
             $commande->save();
         }

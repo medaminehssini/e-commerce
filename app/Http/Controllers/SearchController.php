@@ -43,7 +43,7 @@ class SearchController extends Controller
 
 
 
-        $articles = Article::where($filtres)->orderBy($orderBy , $desc_asc)->paginate($nbrPaginate);
+        $articles = Article::where($filtres)->where("qty" , '>' , 0)->orderBy($orderBy , $desc_asc)->paginate($nbrPaginate);
         $categorie = Categorie::get();
         $marque = Marque::get();
         return view('boutique.search.search')->with([

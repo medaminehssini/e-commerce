@@ -49,29 +49,59 @@ class PanierController extends Controller
     public function addPanier($id)
     {
         $qty = 1 ;
-
-        if(request()->qty && request()->qty>0) {
-            $qty = (int)request()->qty ;
-        }
         $art = Article::find($id);
-        $duplicata = Cart::search(function ($cartItem, $rowId) use($art , $qty) {
-            if ($cartItem->id == $art->id) {
-                if (request()->qty  && request()->qty>0 ) {
-                    $cartItem->qty = $qty;
-                }else
-                    $cartItem->qty = $cartItem->qty +1 ;
-                return $cartItem->id == $art->id;
+
+
+
+        if($art ){
+            if(request()->qty && request()->qty>0) {
+                $qty = (int)request()->qty ;
+                if($qty  > $art->qty){
+                    alert()->error('Vous avez atteint la taille de stoke.', '')->toToast();
+                    return back();
+                }
             }
-        });
 
-         if (!$duplicata->isNotEmpty()) {
-            //  alert()->warning('Le produit déja ajouté.', '')->toToast();
-            Cart::add($art->id,$art->libelle,$qty,$art->prix , ["image"=> explode(",", $art->images)[0]])
-            ->associate('App\Models\Article');
-         }
+            $duplicata = Cart::search(function ($cartItem, $rowId) use($art , $qty  ) {
+                if ($cartItem->id == $art->id) {
+                    if (request()->qty  && request()->qty>0 ) {
+                        $cartItem->qty = $qty;
+                    }else{
+
+                        if($cartItem->qty + 1 > $art->qty )
+                        {
+                            $cartItem->qty = 0;
+                        }else {
+                            $cartItem->qty = $cartItem->qty +1 ;
+                        }
+
+                    }
+
+                    return $cartItem->id == $art->id;
+                }
+            });
+
+                if ($duplicata->isNotEmpty()) {
+                    if (Cart::content()->where('id', $id)->first()->qty == 0 ) {
+                        Cart::content()->where('id', $id)->first()->qty = $art->qty;
+                        alert()->error('Vous avez atteint la taille de stoke.', '')->toToast();
+                        return back();
+                    }
+
+                }
+
+             if (!$duplicata->isNotEmpty()) {
+                //  alert()->warning('Le produit déja ajouté.', '')->toToast();
+                Cart::add($art->id,$art->libelle,$qty,$art->prix , ["image"=> explode(",", $art->images)[0]])
+                ->associate('App\Models\Article');
+             }
 
 
-        alert()->success('Le produit à été bien ajouté.', '')->toToast();
+            alert()->success('Le produit à été bien ajouté.', '')->toToast();
+
+        }else
+            abort(404);
+
         return back();
     }
 

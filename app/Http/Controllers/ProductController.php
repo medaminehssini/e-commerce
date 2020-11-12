@@ -11,7 +11,9 @@ class ProductController extends Controller
 {
     public function getArticle ( $id) {
         $article = Article::find($id);
-        if ($article) {
+        if ($article  ) {
+
+            if ($article->qty > 0) {
 
 
             $prom = FindPromArticle($id);
@@ -20,7 +22,10 @@ class ProductController extends Controller
 
 
                 return view('boutique.article.article')->with(['article'=>$article]);
-
+            }else {
+                alert()->error('Article out of solde.', '')->toToast();
+                return back();
+            }
 
 
         }else

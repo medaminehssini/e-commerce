@@ -18,17 +18,17 @@ class PublicController extends Controller
         $marques = Marque::withCount('article')->latest('article_count')->take(10)->get();
         $newArticle = Article::whereHas('promotion', function ($q)  {
             $q->where('date_fin', '>' , Carbon::now() );
-        })->latest()->take(10)->get();
+        })->where("qty" , '>' , 0)->latest()->take(10)->get();
         $specialOffres = Article::whereHas('promotion', function ($q)  {
             $q->where('date_fin', '>' , Carbon::now() );
-        })->take(10)->get();
+        })->where("qty" , '>' , 0)->take(10)->get();
 
         $bestpromSellers = Article::whereHas('promotion', function ($q)  {
             $q->where('date_fin', '>' , Carbon::now() );
-        })->withCount('commande')->latest('commande_count')->take(10)->get();
+        })->withCount('commande')->where("qty" , '>' , 0)->latest('commande_count')->take(10)->get();
 
 
-        $bestSellers = Article::withCount('commande')->latest('commande_count')->take(10)->get();
+        $bestSellers = Article::withCount('commande')->where("qty" , '>' , 0)->latest('commande_count')->take(10)->get();
 
         $contact = Contact::where('publish_state' , 1 )->take(10)->get();
 
