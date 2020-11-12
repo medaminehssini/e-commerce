@@ -21,16 +21,33 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\PanierController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SocialiteController;
-use App\Http\Controllers\UserController as ControllersUserController;
+use App\Http\Controllers\UserController ;
 use App\Http\Controllers\WishListController;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Route;
 
-Route::get('signup' , [ControllersUserController::class , 'register'] );
-Route::post('signup' , [ControllersUserController::class , 'registerNow'] );
-Route::get('login' , [ControllersUserController::class , 'login'] )->name('login');
-Route::post('login' , [ControllersUserController::class , 'loginNow'] );
-Route::get('/user/verify/{token}',  [ControllersUserController::class , 'verifyUser']);
+Route::get('signup' , [UserController::class , 'register'] );
+Route::post('signup' , [UserController::class , 'registerNow'] );
+Route::get('login' , [UserController::class , 'login'] )->name('login');
+Route::post('login' , [UserController::class , 'loginNow'] );
+Route::get('/user/verify/{token}',  [UserController::class , 'verifyUser']);
+
+
+
+Route::get('reset/password' , [UserController::class , 'restPassword'] );
+Route::post('reset/password' , [UserController::class , 'restPasswordNow'] );
+Route::get('change/password/{token}' , [UserController::class , 'RestPasswordUser'] );
+Route::post('change/password/{token}' , [UserController::class , 'RestPasswordUserNow'] );
+
+
+
+Route::name('language')->get('language/{lang}',function($locale) {
+    if (! in_array($locale, ['en', 'es', 'fr'])) {
+        abort(400);
+    }
+    session()->put('locale', $locale);
+    return redirect()->back();
+});
 
 
     //facebook
@@ -45,10 +62,10 @@ Route::get('/', [PublicController::class , 'index'])->name('home');
 Route::group([ 'middleware'=>'auth'], function () {
 
     //user
-    Route::get('edit/account' , [ControllersUserController::class , 'account'] );
-    Route::post('edit/account' , [ControllersUserController::class , 'accountNow'] );
-    Route::post('edit/adresse' , [ControllersUserController::class , 'adresse'] );
-    Route::get('logout' , [ControllersUserController::class , 'logout'] );
+    Route::get('edit/account' , [UserController::class , 'account'] );
+    Route::post('edit/account' , [UserController::class , 'accountNow'] );
+    Route::post('edit/adresse' , [UserController::class , 'adresse'] );
+    Route::get('logout' , [UserController::class , 'logout'] );
 
     //add commentaire
     Route::post('product/detail/{id}' , [CommentaireController::class , 'addCommentaire'] );

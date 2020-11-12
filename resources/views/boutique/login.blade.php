@@ -50,7 +50,7 @@
                                         <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
                                     </div>
                                 </div> -->
-                                <a href="#">Mot de passe oublié?</a>
+                                <a href="{{ url('/reset/password', []) }}">Mot de passe oublié?</a>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-fill-out btn-block" name="login">Se Connecter</button>

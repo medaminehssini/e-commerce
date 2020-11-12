@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\RestPassword;
 use App\Mail\VerifyMail;
 use App\Models\User;
 use App\Models\VerifyUser;
@@ -201,15 +202,89 @@ class UserController extends Controller
         if(!$user->status) {
           $verifyUser->user->status = 1;
           $verifyUser->user->save();
+          $verifyUser->delete();
           $status = "Your e-mail is verified. You can now login.";
         } else {
           $status = "Your e-mail is already verified. You can now login.";
         }
       } else {
-        alert()->error('warning', "Sorry your email cannot be identified.")->toToast();
+        alert()->error( "Sorry your email cannot be identified.")->toToast();
         return redirect()->route('login');
       }
-      alert()->success('warning', $status)->toToast();
+      alert()->success( $status)->toToast();
       return redirect()->route('login');
     }
+
+
+
+
+
+    public function restPassword()
+    {
+        return view('boutique.resetPassword');
+    }
+
+
+    public function restPasswordNow(Request $request)
+    {
+        $user = User::where("email", $request->email)->first();
+        if($user) {
+            $verifyUser = VerifyUser::create([
+                'user_id' => $user->id,
+                'token' => sha1(time()),
+                'rest'=>1,
+            ]);
+            Mail::to($user->email)->send(new RestPassword($user));
+            alert()->success("Mail " )->toToast();
+        }else{
+            alert()->error( "Sorry your email cannot be identified.")->toToast();
+        }
+
+        return back();
+
+    }
+
+    public function RestPasswordUser($token)
+    {
+      $verifyUser = VerifyUser::where(['token'=> $token , 'rest' => 1])->first();
+      if(isset($verifyUser) ){
+        $user = $verifyUser->user;
+        return view('boutique.resetPasswordNow');
+      } else {
+        alert()->error( "Sorry invalid Url.")->toToast();
+        return redirect()->route('login');
+      }
+      return redirect()->route('login');
+    }
+
+    public function RestPasswordUserNow(Request $request , $token)
+    {
+
+        $messages = [
+            'password.required' => 'Mot de passe obligatoire',
+            'password_confirmation.required' => 'Confirmation obligatoire',
+            'password.same' => 'Mot de passe invalide',
+            'password_confirmation.same' => 'Mot de passe invalide',
+        ];
+
+        $this->validate($request, [
+            'password' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
+
+        ], $messages);
+
+
+      $verifyUser = VerifyUser::where(['token'=> $token , 'rest' => 1])->first();
+      if(isset($verifyUser) ){
+        $user = $verifyUser->user;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        alert()->success( "Password changed.")->toToast();
+      } else {
+        alert()->error( "Sorry your email cannot be identified.")->toToast();
+        return redirect()->route('login');
+      }
+      return redirect()->route('login');
+    }
+
 }
