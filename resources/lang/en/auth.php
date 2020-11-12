@@ -12,7 +12,16 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    "title" => "Login Page",
+    "heading" => "Login",
+    "description" => "Welcome back, please login to your account.",
+    "placeholder_login" => "Email",
+    "placeholder_pass" => "Password",
+    "remember" => "Remember me",
+    "forgot"=>"Forgot password ? " ,
+    "btn_reg" => "Register",
+    "btn_log" => "Login",
+    "hr" => "OR",
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading" lang="fr" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>{{__('auth.title')}}</title>
     <link rel="apple-touch-icon" href="{{url('')}}/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="{{url('')}}/app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
@@ -61,33 +61,33 @@
                                     <div class="card rounded-0 mb-0 px-2">
                                         <div class="card-header pb-1">
                                             <div class="card-title">
-                                                <h4 class="mb-0">Login</h4>
+                                                <h4 class="mb-0">{{__('auth.heading')}}</h4>
                                             </div>
                                         </div>
-                                        <p class="px-2">Welcome back, please login to your account.</p>
+                                        <p class="px-2">{{__('auth.description')}}</p>
                                         <div class="card-content">
                                             <div class="card-body pt-1">
                                                 @if (session()->has('error'))
                                                     <div class="alert alert-danger" style="margin-bottom: 35px;">
-                                                        votre email ou mot de passe inccorect
+                                                        {{__('auth.failed')}}
                                                     </div>
                                                 @endif
                                                 <form action=""  method="POST">
                                                     @csrf
                                                     <fieldset class="form-label-group form-group position-relative has-icon-left">
-                                                        <input type="text" name="email" class="form-control" id="user-name" placeholder="Email" required>
+                                                        <input type="text" name="email" class="form-control" id="user-name" placeholder="{{__('auth.placeholder_login')}}" required>
                                                         <div class="form-control-position">
                                                             <i class="feather icon-user"></i>
                                                         </div>
-                                                        <label for="user-name">Email</label>
+                                                        <label for="user-name">{{__('auth.placeholder_login')}}</label>
                                                     </fieldset>
 
                                                     <fieldset class="form-label-group position-relative has-icon-left">
-                                                        <input type="password" name="password" class="form-control" id="user-password" placeholder="Password" required>
+                                                        <input type="password" name="password" class="form-control" id="user-password" placeholder="{{__('auth.placeholder_pass')}}" required>
                                                         <div class="form-control-position">
                                                             <i class="feather icon-lock"></i>
                                                         </div>
-                                                        <label for="user-password">Password</label>
+                                                        <label for="user-password">{{__('auth.placeholder_login')}}</label>
                                                     </fieldset>
                                                     <div class="form-group d-flex justify-content-between align-items-center">
                                                         <div class="text-left">
@@ -99,20 +99,20 @@
                                                                             <i class="vs-icon feather icon-check"></i>
                                                                         </span>
                                                                     </span>
-                                                                    <span class="">Remember me</span>
+                                                                    <span class="">{{__('auth.remember')}}</span>
                                                                 </div>
                                                             </fieldset>
                                                         </div>
-                                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link">Forgot Password?</a></div>
+                                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link">{{__('auth.forgot')}}</a></div>
                                                     </div>
-                                                    <a href="auth-register.html" class="btn btn-outline-primary float-left btn-inline">Register</a>
-                                                    <button type="submit" class="btn btn-primary float-right btn-inline">Login</button>
+                                                    {{-- <a href="auth-register.html" class="btn btn-outline-primary float-left btn-inline">{{__('auth.btn_reg')}}</a> --}}
+                                                    <button type="submit" class="btn btn-primary float-right btn-inline">{{__('auth.btn_log')}}</button>
                                                 </form>
                                             </div>
                                         </div>
                                         <div class="login-footer">
                                             <div class="divider">
-                                                <div class="divider-text">OR</div>
+                                                <div class="divider-text">{{__('auth.hr')}}</div>
                                             </div>
                                             <div class="footer-btn d-inline">
                                                 <a href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>

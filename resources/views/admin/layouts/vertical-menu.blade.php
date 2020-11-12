@@ -40,27 +40,27 @@
                 </li> -->
                 <!-- <li class=" nav-item"><a href="app-chat.html"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Chat">Chat</span></a> -->
 
-                <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}"><a href="{{aurl('')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Calender">Tableau de bord</span></a></li>
-                <li class=" nav-item {{ Request::is('admin/calender') ? 'active' : '' }}"><a href="{{aurl('calender')}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">Calender</span></a>
+                <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}"><a href="{{aurl('')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.dashbord')}}</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/calender') ? 'active' : '' }}"><a href="{{aurl('calender')}}"><i class="feather icon-calendar"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.calendar')}}</span></a>
                 </li>
-                <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-shopping-bag"></i><span class="menu-title" data-i18n="Calender">Gérer Commande</span></a></li>
-                <li class=" nav-item {{ Request::is('admin/livreur') ? 'active' : '' }}"><a href="{{aurl('livreur')}}"><i class="feather icon-truck"></i><span class="menu-title" data-i18n="Calender">Gérer Sociéte Livraison</span></a></li>
-                <li class=" nav-item {{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Calender">Gérer Categorie </span></a>
-                <li class=" nav-item {{ Request::is('admin/marque') ? 'active' : '' }}"><a href="{{aurl('marque')}}"><i class="feather icon-tag"></i><span class="menu-title" data-i18n="Calender">Gérer Marque </span></a>
-                <li class=" nav-item {{ Request::is('admin/article') ? 'active' : '' }}"><a href="{{aurl('article')}}"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Calender">Gérer Article </span></a>
-                <li class=" nav-item {{ Request::is('admin/promotion') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-percent"></i><span class="menu-title" data-i18n="Calender">Gérer Promotion </span></a>
-                <li class=" nav-item {{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-gift"></i><span class="menu-title" data-i18n="Calender">Gérer Coupon </span></a>
-                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">Gérer Utilisateur</span></a></li>
-                 <li class=" nav-item has-sub {{ Request::is('admin/contact') || Request::is('admin/contact/setting') ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Ecommerce">Contact et Réclamation</span></a>
+                <li class=" nav-item {{ Request::is('admin/commande') ? 'active' : '' }}"><a href="{{aurl('commande')}}"><i class="feather icon-shopping-bag"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.commande')}}</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/livreur') ? 'active' : '' }}"><a href="{{aurl('livreur')}}"><i class="feather icon-truck"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.livraison')}}</span></a></li>
+                <li class=" nav-item {{ Request::is('admin/categorie') ? 'active' : '' }}"><a href="{{aurl('categorie')}}"><i class="feather icon-square"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.categorie')}} </span></a>
+                <li class=" nav-item {{ Request::is('admin/marque') ? 'active' : '' }}"><a href="{{aurl('marque')}}"><i class="feather icon-tag"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.marque')}}</span></a>
+                <li class=" nav-item {{ Request::is('admin/article') ? 'active' : '' }}"><a href="{{aurl('article')}}"><i class="feather icon-grid"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.article')}}</span></a>
+                <li class=" nav-item {{ Request::is('admin/promotion') ? 'active' : '' }}"><a href="{{aurl('promotion')}}"><i class="feather icon-percent"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.promo')}}</span></a>
+                <li class=" nav-item {{ Request::is('admin/coupon') ? 'active' : '' }}"><a href="{{aurl('coupon')}}"><i class="feather icon-gift"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.coupon')}}</span></a>
+                <li class=" nav-item {{ Request::is('admin/user') ? 'active' : '' }}"><a href="{{aurl('user')}}"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.user')}}</span></a></li>
+                 <li class=" nav-item has-sub {{ Request::is('admin/contact') || Request::is('admin/contact/setting') ? 'sidebar-group-active open' : '' }} "><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="Ecommerce">{{__('verticalmenu.contact')}}</span></a>
                     <ul class="menu-content">
-                        <li class="{{ Request::is('admin/contact') ? 'active' : '' }}"  ><a href="{{aurl('contact')}}"><i class="feather icon-circle"></i><span class="menu-item" >Contact</span></a>
+                        <li class="{{ Request::is('admin/contact') ? 'active' : '' }}"  ><a href="{{aurl('contact')}}"><i class="feather icon-file"></i><span class="menu-item" >{{__('verticalmenu.contact_1')}}</span></a>
                         </li>
-                        <li class="{{ Request::is('admin/contact/setting') ? 'active' : '' }}"><a href="{{aurl('contact/setting')}}"><i class="feather icon-circle"></i><span class="menu-item" >Settings</span></a>
+                    <li class="{{ Request::is('admin/contact/setting') ? 'active' : '' }}"><a href="{{aurl('contact/setting')}}"><i class="feather icon-settings"></i><span class="menu-item" >{{__('verticalmenu.contact_2')}}</span></a>
                         </li>
 
                     </ul>
                 </li>
-                <li class=" nav-item {{ Request::is('admin/settings') ? 'active' : '' }}"><a href="{{aurl('settings')}}"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Calender">Site Settings </span></a></li>
+                <li class=" nav-item {{ Request::is('admin/settings') ? 'active' : '' }}"><a href="{{aurl('settings')}}"><i class="feather icon-settings"></i><span class="menu-title" data-i18n="Calender">{{__('verticalmenu.setting')}}</span></a></li>
 
 
 
