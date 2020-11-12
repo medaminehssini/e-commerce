@@ -142,10 +142,6 @@ class CommandeController extends Controller
             $ligCom->qty = $art->qty;
             $ligCom->save();
         }
-
-        alert()->success('Commande bien passé.', '')->toToast();
-        Cart::destroy();
-        return back();
     }
 
 }

@@ -13,6 +13,6 @@ class Marque extends Model
 
     public function article()
     {
-        return $this->hasMany('App\Models\Product' , 'id_marque');
+        return $this->hasMany('App\Models\Article' , 'id_marque');
     }
 }

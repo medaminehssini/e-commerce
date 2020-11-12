@@ -47,6 +47,8 @@
                         <th>Email</th>
                         <th>Message</th>
                         <th>Date Réception</th>
+                        <th>Publier</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -107,7 +109,10 @@
         {data: 'nom', name: 'nom' , className: "contact-name"},
         {data:'email', name: 'email' , className: "contact-mail"},
         {data: 'message' , "defaultContent": ' ' , name: 'message' , className: "contact-msg"},
+
         {data:'created_at', name: 'created_at' , className: "contact-etat"},
+        {data: 'publish' , "defaultContent": ' ' , name: 'publish' , className: "contact-msg"},
+
     ],
     columnDefs: [
 

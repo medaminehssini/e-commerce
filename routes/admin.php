@@ -109,6 +109,7 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('contact/list/dataTables' , [ContactController::class , 'contactData'] );
     Route::get('contact/setting' , [ContactController::class , 'setting'] );
     Route::post('contact/setting' , [ContactController::class , 'UpdateSetting'] );
+    Route::get('contact/publish/{id}' , [ContactController::class , 'publish'] );
 
 
 
