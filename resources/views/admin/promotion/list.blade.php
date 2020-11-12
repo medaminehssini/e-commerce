@@ -19,28 +19,28 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer promotion</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('promo.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('promo.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des promotions</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('promo.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer promotion
+                        <li class="breadcrumb-item active">{{__('promo.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+    {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Discussion</a><a class="dropdown-item" href="#">E-mail</a><a class="dropdown-item" href="#">Calendrier</a></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="content-body">
     <!-- Data list view starts -->
@@ -54,13 +54,13 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>Libelle</th>
-                        <th>Date debut</th>
-                        <th>Date fin</th>
-                        <th>Taux min</th>
-                        <th>Status</th>
-                        <th>Gerer</th>
-                        <th>Action</th>
+                        <th>{{__('promo.th_1')}}</th>
+                        <th>{{__('promo.th_2')}}</th>
+                        <th>{{__('promo.th_3')}}</th>
+                        <th>{{__('promo.th_4')}}</th>
+                        <th>{{__('promo.th_5')}}</th>
+                        <th>{{__('promo.th_6')}}</th>
+                        <th>{{__('promo.th_7')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,7 +79,7 @@
 
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
-                            <h4 class="text-uppercase">Ajouter Promotion</h4>
+                            <h4 class="text-uppercase">{{__('promo.form_h')}}</h4>
                         </div>
                         <div class="hide-data-sidebar">
                             <i class="feather icon-x"></i>
@@ -102,20 +102,20 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Libelle</label>
+                                        <label for="data-name">{{__('promo.form_1')}}</label>
                                         <input type="text" class="form-control" name="libelle" id="data-name">
                                     </div>
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Date debut</label>
+                                        <label for="data-name">{{__('promo.form_2')}}</label>
                                         <input type="date" class="form-control" name="date_debut" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Date fin</label>
+                                        <label for="data-name">{{__('promo.form_3')}}</label>
                                         <input type="date" class="form-control" name="date_fin" >
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Taux min</label>
+                                        <label for="data-name">{{__('promo.form_4')}}</label>
                                         <input type="number" class="form-control" name="taux_min" >
                                     </div>
 
@@ -129,7 +129,7 @@
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger" type="reset">Annuler</button>
+                                <button class="btn btn-outline-danger" type="reset">{{__('promo.btn_3')}}</button>
                             </div>
                         </div>
 
@@ -219,7 +219,7 @@
     pageLength: 4,
     buttons: [
       {
-        text: "<i class='feather icon-plus'></i> Ajouter",
+        text: "<i class='feather icon-plus'></i> {{__('promo.btn_1')}}",
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
@@ -231,7 +231,7 @@
           editForm.taux_min.value = "";
 
 
-          editForm.btnsub.value = "Ajouter Promotion";
+          editForm.btnsub.value = "{{__('promo.btn_2')}}";
 
           $("#add-new-data").addClass("show")
 

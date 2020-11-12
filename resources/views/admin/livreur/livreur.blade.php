@@ -17,28 +17,28 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer Sociéte de livraison</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('livraison.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('livraison.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des livreur</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('livraison.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer Sociéte de livraison
+                        <li class="breadcrumb-item active">{{__('livraison.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+    {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="content-body">
     <!-- Data list view starts -->
@@ -50,10 +50,10 @@
                         Actions
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Supprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archiver</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Imprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Autre Action</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>{{__('livraison.act_1')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>{{__('livraison.act_2')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>{{__('livraison.act_3')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>{{__('livraison.act_4')}}</a>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,10 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>Nom Sociéte</th>
-                        <th>Frais Livraison</th>
-                        <th>Délai d'attente</th>
-                        <th>Action</th>
+                        <th>{{__('livraison.th_1')}}</th>
+                        <th>{{__('livraison.th_2')}}</th>
+                        <th>{{__('livraison.th_3')}}</th>
+                        <th>{{__('livraison.th_4')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -85,7 +85,7 @@
 
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
-                            <h4 class="text-uppercase">Ajouter sociéte livraison</h4>
+                            <h4 class="text-uppercase">{{__('livraison.form_h')}}</h4>
                         </div>
                         <div class="hide-data-sidebar">
                             <i class="feather icon-x"></i>
@@ -110,15 +110,15 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Nom Sociéte</label>
+                                        <label for="data-name">{{__('livraison.form_1')}}</label>
                                         <input type="text" class="form-control" name="nom" id="data-name">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Frais Livraison</label>
+                                        <label for="data-name">{{__('livraison.form_2')}}</label>
                                         <input type="text" class="form-control" name="frais" id="data-name">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">Délai d'attente</label>
+                                        <label for="data-name">{{__('livraison.form_3')}}</label>
                                         <input type="text" class="form-control" name="delai" id="data-name">
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger" type="reset">Annuler</button>
+                                <button class="btn btn-outline-danger" type="reset">{{__('livraison.btn_3')}}</button>
                             </div>
                         </div>
 
@@ -211,14 +211,14 @@
     pageLength: 4,
     buttons: [
       {
-        text: "<i class='feather icon-plus'></i> Ajouter",
+        text: "<i class='feather icon-plus'></i> {{__('livraison.btn_1')}}",
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
           editForm.action = "{{aurl('add/livreur')}}";
 
           editForm.nom.value = "";
-          editForm.btnsub.value = "Ajouter livreur";
+          editForm.btnsub.value = "{{__('livraison.btn_2')}}";
 
           $("#add-new-data").addClass("show")
 

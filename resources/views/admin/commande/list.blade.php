@@ -19,14 +19,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer commandes</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('commande.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('commande.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des commandes</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('commande.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer commandes
+                        <li class="breadcrumb-item active">{{__('commande.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
@@ -48,13 +48,13 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Client</th>
-                        <th>prix total</th>
-                        <th>description</th>
-                        <th>Coupon</th>
-                        <th>status</th>
-                        <th>Action</th>
+                        <th>{{__('commande.th_1')}}</th>
+                        <th>{{__('commande.th_2')}}</th>
+                        <th>{{__('commande.th_3')}}</th>
+                        <th>{{__('commande.th_4')}}</th>
+                        <th>{{__('commande.th_5')}}</th>
+                        <th>{{__('commande.th_6')}}</th>
+                        <th>{{__('commande.th_7')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -200,11 +200,11 @@ $(document).ready(function() {
      <table  class="table details-table" id="posts-@{{id}}">
          <thead>
          <tr>
-            <th>Id</th>
-            <th>Image</th>
-            <th>Libelle</th>
-            <th>prix</th>
-            <th>qty</th>
+            <th>{{__('commande.th_01')}}</th>
+            <th>{{__('commande.th_02')}}</th>
+            <th>{{__('commande.th_03')}}</th>
+            <th>{{__('commande.th_04')}}</th>
+            <th>{{__('commande.th_05')}}</th>
          </tr>
          </thead>
      </table>

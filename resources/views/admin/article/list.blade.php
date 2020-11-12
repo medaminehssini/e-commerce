@@ -19,28 +19,28 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Gérer Article</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('article.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('article.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des articles</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('article.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Gérer Article
+                        <li class="breadcrumb-item active">{{__('article.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+    {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="content-body">
     <!-- Data list view starts -->
@@ -52,10 +52,10 @@
                         Actions
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>Supprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archiver</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Imprimer</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Autre Action</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>{{__('article.act_1')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>{{__('article.act_2')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>{{__('article.act_3')}}</a>
+                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>{{__('article.act_4')}}</a>
                     </div>
 
                 </div>
@@ -66,16 +66,16 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Libelle</th>
-                        <th>Catégorie</th>
-                        <th>Marque</th>
-                        <th>Description</th>
-                        <th>Etat</th>
-                        <th>Prix</th>
-                        <th>Quantité</th>
-                        <th>Taxe</th>
-                        <th>Action</th>
+                        <th>{{__('article.th_1')}}</th>
+                        <th>{{__('article.th_2')}}</th>
+                        <th>{{__('article.th_3')}}</th>
+                        <th>{{__('article.th_4')}}</th>
+                        <th>{{__('article.th_5')}}</th>
+                        <th>{{__('article.th_6')}}</th>
+                        <th>{{__('article.th_7')}}</th>
+                        <th>{{__('article.th_8')}}</th>
+                        <th>{{__('article.th_9')}}</th>
+                        <th>{{__('article.th_10')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -94,7 +94,7 @@
 
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
-                            <h4 class="text-uppercase">Ajouter un article</h4>
+                            <h4 class="text-uppercase">{{__('article.form_h')}}</h4>
                         </div>
                         <div class="hide-data-sidebar">
                             <i class="feather icon-x"></i>
@@ -117,11 +117,11 @@
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-name">libelle</label>
+                                        <label for="data-name">{{__('article.form_1')}}</label>
                                         <input type="text" class="form-control" name="libelle" id="data-name">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-category"> Categorie </label>
+                                        <label for="data-category"> {{__('article.form_2')}} </label>
                                         <select name="categorie" class="form-control" id="data-category">
                                                 @foreach ($categories as $categorie)
                                                     <option value="{{$categorie->id}}">{{$categorie->nom}}</option>
@@ -129,7 +129,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-category"> Marque </label>
+                                        <label for="data-category"> {{__('article.form_3')}} </label>
                                         <select name="marque" class="form-control" id="data-marque">
                                                 @foreach ($marques as $marque)
                                                     <option value="{{$marque->id}}">{{$marque->libelle}}</option>
@@ -137,33 +137,32 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-status">Etat</label>
+                                        <label for="data-status">{{__('article.form_4')}}</label>
                                         <select name="status" class="form-control" id="data-status">
-                                            <option value="0">En Attente</option>
-                                            <option value="3">Annulé</option>
-                                            <option value="1">Délivré</option>
-                                            <option value="2">En Pause</option>
+                                            <option value="0">{{__('article.opt_1')}}</option>
+                                            <option value="3">{{__('article.opt_2')}}</option>
+                                            <option value="1">{{__('article.opt_3')}}</option>
                                         </select>
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Prix</label>
+                                        <label for="data-price">{{__('article.form_5')}}</label>
                                         <input type="number" name="prix" class="form-control" id="data-price">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Quantité</label>
+                                        <label for="data-price">{{__('article.form_6')}}</label>
                                         <input type="number" name="qty" class="form-control" id="data-qty">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Taux_tva</label>
+                                        <label for="data-price">{{__('article.form_7')}}</label>
                                         <input type="number" name="taux_tva" class="form-control" id="data-tva">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Description</label>
+                                        <label for="data-price">{{__('article.form_8')}}</label>
                                         <textarea name="description" id="data-description" class="form-control" cols="30" rows="10"></textarea>
 
                                     </div>
                                     <div class="col-sm-12 data-field-col">
-                                        <label for="data-price">Images</label>
+                                        <label for="data-price">{{__('article.form_9')}}</label>
                                         <input multiple type="file" name="images[]" accept="image/*" class="form-control" id="data-image">
                                     </div>
                                 </div>
@@ -171,11 +170,11 @@
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub" type="submit" value="Ajouter">
+                                <input class="btn btn-primary" name="btnsub" type="submit" value="{{__('article.form_4')}}">
 
                             </div>
                             <div class="cancel-data-btn">
-                                <button class="btn btn-outline-danger" type="reset">Annuler</button>
+                                <button class="btn btn-outline-danger" type="reset">{{__('article.btn_3')}}</button>
                             </div>
                         </div>
 
@@ -270,7 +269,7 @@
     pageLength: 4,
     buttons: [
       {
-        text: "<i class='feather icon-plus'></i> Ajouter",
+        text: "<i class='feather icon-plus'></i> {{__('article.btn_1')}}",
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
@@ -279,7 +278,7 @@
           editForm.prix.value = "";
           editForm.categorie.value = "";
           editForm.libelle.value = "";
-          editForm.btnsub.value = "Add Article";
+          editForm.btnsub.value = "{{__('article.btn_2')}}";
           editForm.status.value = "";
           editForm.marque.value = "";
           editForm.qty.value = "";
