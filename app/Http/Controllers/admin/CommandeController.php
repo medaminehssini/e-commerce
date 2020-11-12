@@ -135,8 +135,6 @@ class CommandeController extends Controller
         $com->total = Cart::total();
         $com->save();
 
-
-
         foreach (Cart::content() as $art) {
             $ligCom= new LigneCommande();
             $ligCom->id_commande = $com->id;
