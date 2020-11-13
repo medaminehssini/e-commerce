@@ -16,5 +16,7 @@ return [
     'setting' => 'Settings',
     'contact_1' => 'Contact',
     'contact_2' => 'Settings',
+    'general' => 'General',
+    'slide' => 'Slider',
 
 ];

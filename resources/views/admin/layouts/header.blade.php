@@ -11,7 +11,7 @@
     <meta name="author" content="PIXINVENT">
     <title>{{getSetting('name')}} - {{__('header.title')}}</title>
     <link rel="apple-touch-icon" href="{{url('')}}/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="{{url('')}}/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="{{url('')}}/app-assets/images/logo/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->

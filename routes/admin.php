@@ -13,6 +13,7 @@ use App\Http\Controllers\admin\PromotionController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\SettingController;
+use App\Http\Controllers\admin\SliderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -119,6 +120,14 @@ Route::group(['prefix' => 'admin'  , 'middleware'=>'admin'], function () {
     Route::get('refuser/commande/{id}' , [CommandeController::class , 'refuserCommande'] );
     Route::get('commande/list/dataTables' , [CommandeController::class , 'CommandeData'] );
     Route::get('get/liste/item/{id}' , [CommandeController::class , 'LigneCommandeData'] );
+
+    //slider
+    Route::get('slider' , [SliderController::class , 'index'] );
+    Route::get('slider/list/dataTables' , [SliderController::class , 'SliderData'] );
+    Route::get('delete/slider/{id}' , [SliderController::class , 'suppimer'] );
+    Route::post('add/slider' , [SliderController::class , 'addSlider'] );
+    Route::post('edit/slider/{id}' , [SliderController::class , 'editSlider'] );
+    Route::get('accepter/slider/{id}' , [SliderController::class , 'AccepterRefuser'] );
 
 
     //calender

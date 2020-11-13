@@ -139,8 +139,43 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-12">
-                                <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" disabled value="{{Auth::user()->adresse.' '.Auth::user()->code_postale.' '.Auth::user()->ville}}">
+                                <div>
+                                    <div class="col-md-12" style="height: 35px;">
+                                        <input type="radio" checked style="width: 18px; height: 18px;display: inline-block;" class="form-control" name="adresse" id="olddresse" value="olddresse" >
+                                        <p style="transform: translateY(-103%);margin-left: 30px;">Adresse compte</p>
+                                    </div>
+                                    <div>
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Ville</label>
+                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" disabled value="{{Auth::user()->ville}}">
+                                        </div>
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Adreese</label>
+                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" disabled value="{{Auth::user()->adresse}}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <div class="col-md-12" style="height: 35px;">
+                                        <input type="radio" style="width: 18px; height: 18px;display: inline-block;"  id="newAdresse" class="form-control" name="adresse"  value="newAdresse" >
+                                        <p style="transform: translateY(-103%);margin-left: 30px;">Adresse compte</p>
+                                    </div>
+                                    <div>
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Ville</label>
+                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" value="">
+                                        </div>
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Adreese</label>
+                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text"  value="">
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
+
                             <div class="form-group col-lg-12">
                                 <input placeholder="Adresse de facturation" class="form-control" name="adressfac" type="text">
                             </div>

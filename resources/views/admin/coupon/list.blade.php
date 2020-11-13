@@ -127,7 +127,7 @@
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub" type="submit" value="{{__('coupon.btn_2')}}">
+                                <input class="btn btn-primary"  onclick="document.getElementById('edit').submit()" name="btnsub" type="submit" value="{{__('coupon.btn_2')}}">
 
                             </div>
                             <div class="cancel-data-btn">

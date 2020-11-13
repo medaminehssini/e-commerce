@@ -7,6 +7,7 @@ use App\Models\Categorie;
 use App\Models\Contact;
 use App\Models\Marque;
 use App\Models\Promotion;
+use App\Models\Slider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class PublicController extends Controller
 
         $contact = Contact::where('publish_state' , 1 )->take(10)->get();
 
-
+        $slider = Slider::where('status' , 1 )->get();
         return view('boutique.welecome')->with([
             'categories'=>$categories,
             'marques'=>$marques,
@@ -40,7 +41,8 @@ class PublicController extends Controller
             "specialOffres"=> $specialOffres,
             "bestSellers"=>$bestSellers,
             "bestpromSellers"=>$bestpromSellers,
-            "contacts"=>$contact
+            "contacts"=>$contact,
+            "sliders"=>$slider
         ]);
     }
 }
