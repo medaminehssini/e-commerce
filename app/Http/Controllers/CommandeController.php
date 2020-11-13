@@ -16,6 +16,7 @@ class CommandeController extends Controller
 {
     public function ajouterCommande()
     {
+
         $id_livreur = null;
         if(request()->ville) {
             if( request()->livreur != ''  ) {
@@ -40,6 +41,27 @@ class CommandeController extends Controller
         }
 
         $com = new Commande();
+
+        if(request()->adresse){
+            if(request()->adresse == "olddresse") {
+                if(!Auth::user()->adresse && !Auth::user()->ville) {
+                    alert()->error('votre adresse de compte est vide.', '')->toToast();
+                    return back();
+                }
+            }else {
+                if (request()->nadresseliv && request()->nville) {
+                    $com->adresseliv = request()->nadresseliv ;
+                    $com->villeliv =  request()->nville ;
+                }else{
+                    alert()->error('l\'adresse de livraison est vide.', '')->toToast();
+                    return back();
+                }
+
+            }
+        }
+
+
+
         if(request()->coupon){
             $coup = Coupon::where(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->orWhere(['code'=>request()->coupon  , ['date_fin' ,'<' , Carbon::now()] ])->first();
             if( $coup) {

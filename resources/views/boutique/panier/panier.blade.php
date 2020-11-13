@@ -103,12 +103,15 @@
                     <div class="medium_divider"></div>
                 </div>
             </div>
+            <form action="{{ url('add/commande', []) }}" method="post">
+                @csrf
             <div class="row">
+
                 <div class="col-md-6">
                     <div class="heading_s1 mb-3">
                         <h6>Options de livraison</h6>
                     </div>
-                    <form class="field_form shipping_calculator" action="">
+
                         <div class="form-row">
                             <div class="form-group col-lg-12">
                                 <div class="custom_select">
@@ -141,17 +144,17 @@
                             <div class="form-group col-lg-12">
                                 <div>
                                     <div class="col-md-12" style="height: 35px;">
-                                        <input type="radio" checked style="width: 18px; height: 18px;display: inline-block;" class="form-control" name="adresse" id="olddresse" value="olddresse" >
+                                        <input type="radio" checked style="width: 18px; height: 18px;display: inline-block;" onclick="changesAdresse(this)"  class="form-control" name="adresse" id="oldadresse" value="olddresse" >
                                         <p style="transform: translateY(-103%);margin-left: 30px;">Adresse compte</p>
                                     </div>
-                                    <div>
+                                    <div id="oadreese">
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
                                             <label for="">Ville</label>
-                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" disabled value="{{Auth::user()->ville}}">
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="oldville" type="text" disabled value="{{Auth::user()->ville}}">
                                         </div>
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
                                             <label for="">Adreese</label>
-                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" disabled value="{{Auth::user()->adresse}}">
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="oldadrressliv" type="text" disabled value="{{Auth::user()->adresse}}">
                                         </div>
                                     </div>
                                 </div>
@@ -159,29 +162,44 @@
 
                                 <div>
                                     <div class="col-md-12" style="height: 35px;">
-                                        <input type="radio" style="width: 18px; height: 18px;display: inline-block;"  id="newAdresse" class="form-control" name="adresse"  value="newAdresse" >
+                                        <input type="radio" style="width: 18px; height: 18px;display: inline-block;"  onclick="changesAdresse(this)" class="form-control" name="adresse"  value="newAdresse" >
                                         <p style="transform: translateY(-103%);margin-left: 30px;">Adresse compte</p>
                                     </div>
-                                    <div>
+                                    <div id="nadresse" style="display: none">
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
                                             <label for="">Ville</label>
-                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" value="">
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="nadresseliv" type="text" value="">
                                         </div>
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
                                             <label for="">Adreese</label>
-                                            <input required="required" placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text"  value="">
+                                            <input  placeholder="Ville" class="form-control" name="nville" type="text"  value="">
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
-
                             <div class="form-group col-lg-12">
-                                <input placeholder="Adresse de facturation" class="form-control" name="adressfac" type="text">
+                                <div>
+                                    <div class="col-md-12" style="height: 35px;">
+                                        <input type="checkbox" style="width: 18px; height: 18px;display: inline-block;"  onclick="changesAdresse(this)" class="form-control" name="adresse"  value="societeinfo" >
+                                        <p style="transform: translateY(-103%);margin-left: 30px;">Dommande une facturation</p>
+                                    </div>
+                                    <div id="societeinfo" style="display: none">
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Adresse Facturation</label>
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" value="">
+                                        </div>
+                                        <div class="form-group col-lg-11" style="margin-left: 20px" >
+                                            <label for="">Code societe</label>
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text"  value="">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
-                    </form>
+
                 </div>
                 <div class="col-md-6">
                     <div class="border p-3 p-md-4">
@@ -218,16 +236,17 @@
                                 </tbody>
                             </table>
                         </div>
-                        <form action="{{ url('add/commande', []) }}" method="post">
-                            @csrf
+
                             <input type="hidden" value="{{request()->ville}}" name="ville">
                             <input type="hidden" value="{{request()->livreur}}" name="livreur">
 
                             <button type="submit" class="btn btn-fill-out">Confirmer</button>
-                        </form>
+
+                        </div>
                     </div>
-                </div>
+
             </div>
+        </form>
         </div>
     </div>
     <!-- END SECTION SHOP -->
@@ -237,6 +256,32 @@
 @endsection
 
 @push('scripts')
+
+        <script>
+            function changesAdresse(input) {
+                if(input.checked){
+
+                    if(input.value == "olddresse")
+                        {
+                            document.getElementById("oadreese").style.display = "block";
+                            document.getElementById('nadresse').style.display = "none";
+                        }
+                    else if(input.value == "newAdresse")
+                        {
+                            document.getElementById("oadreese").style.display = "none";
+                            document.getElementById('nadresse').style.display = "block";
+                        }
+                    else if(input.value == "societeinfo") {
+                        document.getElementById('societeinfo').style.display = "block";
+                    }
+                }else {
+                    if(input.value == "societeinfo") {
+                        document.getElementById('societeinfo').style.display = "none";
+                    }
+                }
+            }
+
+        </script>
         <script>
             function Recalculer() {
                 articlesId  = document.getElementsByClassName('productId');
