@@ -16,28 +16,28 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Account Settings</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('profile.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('profile.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Pages</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('profile.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active"> Account Settings
+                        <li class="breadcrumb-item active"> {{__('profile.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
+    {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
         <div class="form-group breadcrum-right">
             <div class="dropdown">
                 <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
                 <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 <div class="content-body">
     <!-- account setting page start -->
@@ -59,13 +59,13 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex py-75 active" id="account-pill-general" data-toggle="pill" href="#account-vertical-general" aria-expanded="true">
                             <i class="feather icon-globe mr-50 font-medium-3"></i>
-                            General
+                            {{__('profile.menu_1')}}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link d-flex py-75" id="account-pill-password" data-toggle="pill" href="#account-vertical-password" aria-expanded="false">
                             <i class="feather icon-lock mr-50 font-medium-3"></i>
-                            Change Password
+                            {{__('profile.menu_2')}}
                         </a>
                     </li>
 
@@ -92,13 +92,11 @@
                                         </a>
                                         <div class="media-body mt-75">
                                             <div class="col-12 px-0 d-flex flex-sm-row flex-column justify-content-start">
-                                                <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">Upload new photo</label>
+                                                <label class="btn btn-sm btn-primary ml-50 mb-50 mb-sm-0 cursor-pointer" for="account-upload">{{__('profile.btn_4')}}</label>
                                                 <input type="file" id="account-upload" name="image" hidden>
-                                                <button class="btn btn-sm btn-outline-warning ml-50">Reset</button>
+                                                <button class="btn btn-sm btn-outline-warning ml-50">{{__('profile.btn_5')}}</button>
                                             </div>
-                                            <p class="text-muted ml-75 mt-50"><small>Allowed JPG, GIF or PNG. Max
-                                                    size of
-                                                    800kB</small></p>
+                                            <p class="text-muted ml-75 mt-50"><small>{{__('profile.img')}}</small></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -107,7 +105,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-username">Username</label>
+                                                        <label for="account-username">{{__('profile.form_1')}}</label>
                                                         <input type="text" name="username" class="form-control" id="account-username" placeholder="Username" value="{{Auth::guard('admin')->user()->username}}" required data-validation-required-message="This username field is required">
                                                     </div>
                                                 </div>
@@ -115,7 +113,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-name">First Name</label>
+                                                        <label for="account-name">{{__('profile.form_2')}}</label>
                                                         <input type="text" class="form-control" id="account-name" placeholder="Name" value="{{Auth::guard('admin')->user()->first_name}}" required name="first_name">
                                                     </div>
                                                 </div>
@@ -123,7 +121,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-name">Last Name</label>
+                                                        <label for="account-name">{{__('profile.form_3')}}</label>
                                                         <input type="text" class="form-control" id="account-name" placeholder="Name"  value="{{Auth::guard('admin')->user()->last_name}}" required name="last_name">
                                                     </div>
                                                 </div>
@@ -131,7 +129,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-e-mail">E-mail</label>
+                                                        <label for="account-e-mail">{{__('profile.form_4')}}</label>
                                                         <input type="email" disabled class="form-control" id="account-e-mail" placeholder="Email" value="{{Auth::guard('admin')->user()->email}}">
                                                     </div>
                                                 </div>
@@ -149,9 +147,8 @@
                                             </div> --}}
 
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                    changes</button>
-                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">{{__('profile.btn_2')}}</button>
+                                                <button type="reset" class="btn btn-outline-warning">{{__('profile.btn_3')}}</button>
                                             </div>
                                         </div>
                                     </form>
@@ -163,32 +160,30 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-old-password">Old Password</label>
-                                                        <input type="password" name="current_password" class="form-control" id="account-old-password" required placeholder="Old Password" >
+                                                        <label for="account-old-password">{{__('profile.form_5')}}</label>
+                                                        <input type="password" name="current_password" class="form-control" id="account-old-password" required placeholder="{{__('profile.ph_5')}}" >
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-new-password">New Password</label>
-                                                        <input type="password" name="password" id="account-new-password" class="form-control" placeholder="New Password" required data-validation-required-message="The password field is required" minlength="6">
+                                                        <label for="account-new-password">{{__('profile.form_6')}}</label>
+                                                        <input type="password" name="password" id="account-new-password" class="form-control" placeholder="{{__('profile.ph_6')}}" required data-validation-required-message="The password field is required" minlength="6">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label for="account-retype-new-password">Retype New
-                                                            Password</label>
-                                                        <input type="password" name="confirmation_password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="New Password" data-validation-required-message="The Confirm password field is required" minlength="6">
+                                                        <label for="account-retype-new-password">{{__('profile.form_7')}}</label>
+                                                        <input type="password" name="confirmation_password" class="form-control" required id="account-retype-new-password" data-validation-match-match="password" placeholder="{{__('profile.ph_7')}}" data-validation-required-message="The Confirm password field is required" minlength="6">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12 d-flex flex-sm-row flex-column justify-content-end">
-                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">Save
-                                                    changes</button>
-                                                <button type="reset" class="btn btn-outline-warning">Cancel</button>
+                                                <button type="submit" class="btn btn-primary mr-sm-1 mb-1 mb-sm-0">{{__('profile.btn_2')}}</button>
+                                                <button type="reset" class="btn btn-outline-warning">{{__('profile.btn_3')}}</button>
                                             </div>
                                         </div>
                                     </form>

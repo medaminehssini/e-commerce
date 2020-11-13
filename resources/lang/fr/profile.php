@@ -1,0 +1,37 @@
+<?php
+
+return [
+
+    'breadcrumb_1' => 'Paramétres du compte',
+    'breadcrumb_2' => 'Accueill',
+    'breadcrumb_3' => 'Pages',
+    'menu_1' => 'Génerale',
+    'menu_2' => 'Modifier mot de passe',
+    'th_1' => 'Code',
+    'th_2' => 'Quantité',
+    'th_3' => 'Date fin',
+    'th_4' => 'Taux',
+    'th_5' => 'Montant min',
+    'th_6' => 'Action',
+    'act_1' => 'Supprimer',
+    'act_2' => 'Archiver',
+    'act_3' => 'Imprimer',
+    'act_4' => 'Autre Action',
+    'btn_1' => 'Ajouter',
+    'btn_2' => 'Enregistrer',
+    'btn_3' => 'Annuler',
+    'btn_4' => 'Choisir une nouvelle image',
+    'btn_5' => 'Réinitialiser',
+    'img' => 'Format JPG, GIF ou PNG. Max taille 800kB',
+    'form_1' => 'Nom utilisateur',
+    'form_2' => 'Prénom',
+    'form_3' => 'Nom',
+    'form_4' => 'Adresse email',
+    'form_5' => 'Mot de passe actuelle',
+    'form_6' => 'Nouvelle mot de passe',
+    'form_7' => 'Retapez nouvelle mot de passe',
+    'ph_5' => 'Mot de passe actuelle',
+    'ph_6' => 'Nouvelle mot de passe',
+    'ph_7' => 'Retapez nouvelle mot de passe',
+
+];

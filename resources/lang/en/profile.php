@@ -1,0 +1,37 @@
+<?php
+
+return [
+
+    'breadcrumb_1' => 'Account setting ',
+    'breadcrumb_2' => 'Home',
+    'breadcrumb_3' => 'Pages',
+    'menu_1' => 'General',
+    'menu_2' => 'Change password',
+    'th_1' => 'Code',
+    'th_2' => 'Quantity',
+    'th_3' => 'End day',
+    'th_4' => 'Rate',
+    'th_5' => 'Min amount',
+    'th_6' => 'Action',
+    'act_1' => 'Delete',
+    'act_2' => 'Archve',
+    'act_3' => 'Print',
+    'act_4' => 'Other Action',
+    'btn_1' => 'Add',
+    'btn_2' => 'Save changes',
+    'btn_3' => 'Cancel',
+    'btn_4' => 'Upload new photo',
+    'btn_5' => 'Reset',
+    'img' => 'Allowed JPG, GIF or PNG. Max size of 800kB',
+    'form_1' => 'Username',
+    'form_2' => 'First name',
+    'form_3' => 'Last name',
+    'form_4' => 'E-mail',
+    'form_5' => 'Old password',
+    'form_6' => 'New password',
+    'form_7' => 'Retype new password',
+    'ph_5' => 'Old password',
+    'ph_6' => 'New password',
+    'ph_7' => 'Retype new password',
+
+];
