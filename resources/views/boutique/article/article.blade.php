@@ -17,7 +17,7 @@
             <div class="col-lg-6 col-md-6 mb-4 mb-md-0">
               <div class="product-image">
                     <div class="product_img_box">
-                    <img id="product_img" src="{{url('')}}/{{explode(",", $article->images)[0]}}" data-zoom-image="{{url('')}}/{{explode(" ", $article->images)[0]}}" alt="product_img1">
+                    <img id="product_img" src="{{url('')}}/{{explode(",", $article->images)[0]}}" data-zoom-image="{{url('')}}/{{explode(",", $article->images)[0]}}" alt="product_img1">
                         <a href="#" class="product_img_zoom" title="Zoom">
                             <span class="linearicons-zoom-in"></span>
                         </a>
@@ -40,7 +40,7 @@
             <div class="col-lg-6 col-md-6">
                 <div class="pr_detail">
                     <div class="product_description">
-                        <h4 class="product_title"><a href="#">{{$article->libelle}}</a></h4>
+                    <h4 class="product_title"><a href="{{ url('product/detail/', []) }}/{{$article->id}}">{{$article->libelle}}</a></h4>
                         <div class="product_price">
                             @if ($article->prixWithPromotion != $article->prix)
                             <span class="price">{{$article->prixWithPromotion}} {{getSetting('currency')}}</span>
@@ -79,14 +79,7 @@
                                 <li><i class="linearicons-bag-dollar"></i>Marque :  {{$article->marque->libelle}}</li>
                             </ul>
                         </div>
-                        {{-- <div class="pr_switch_wrap">
-                            <span class="switch_lable">Color</span>
-                            <div class="product_color_switch">
-                                <span class="active" data-color="#87554B"></span>
-                                <span data-color="#333333"></span>
-                                <span data-color="#DA323F"></span>
-                            </div>
-                        </div> --}}
+
                     </div>
                     <hr>
                     <form action="{{ url('panier/add/', []) }}/{{$article->id}}" method="get">
@@ -102,7 +95,7 @@
                                 <input type="hidden" name="id" value="{{$article->id}}">
                                 <div class="cart_btn" style="display: inline-block;">
                                     <button type="submit" class="btn btn-fill-out btn-addtocart" ><i class="icon-basket-loaded"></i> Ajouter au panier</button>
-                                    <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
+                                    <a class="add_compare" href="{{ url('compare/add/', []) }}/{{$article->id}}"><i class="icon-shuffle"></i></a>
                                     <a class="add_wishlist" href="{{ url('wish/add/', []) }}/{{$article->id}}"><i class="icon-heart"></i></a>
                                 </div>
 
@@ -131,42 +124,13 @@
         	<div class="col-12">
             	<div class="tab-style3">
 					<ul class="nav nav-tabs" role="tablist">
-						{{-- <li class="nav-item">
-							<a class="nav-link active" id="Description-tab" data-toggle="tab" href="#Description" role="tab" aria-controls="Description" aria-selected="true">Description</a>
-                      	</li>
-                      	<li class="nav-item">
-                        	<a class="nav-link" id="Additional-info-tab" data-toggle="tab" href="#Additional-info" role="tab" aria-controls="Additional-info" aria-selected="false">Additional info</a>
-                      	</li> --}}
+
                       	<li class="nav-item">
                         	<a class="nav-link active" id="Reviews-tab" data-toggle="tab" href="#Reviews" role="tab" aria-controls="Reviews" aria-selected="false">Reviews ({{count($article->commentaire)}})</a>
                       	</li>
                     </ul>
                 	<div class="tab-content shop_info_tab">
-                      	{{-- <div class="tab-pane fade show active" id="Description" role="tabpanel" aria-labelledby="Description-tab">
-                        	<p>
-                                {{$article->description}}
-                            </p>
-                      	</div>
-                      	<div class="tab-pane fade" id="Additional-info" role="tabpanel" aria-labelledby="Additional-info-tab">
-                        	<table class="table table-bordered">
-                            	<tr>
-                                	<td>Capacity</td>
-                                	<td>5 Kg</td>
-                            	</tr>
-                                <tr>
-                                    <td>Color</td>
-                                    <td>Black, Brown, Red,</td>
-                                </tr>
-                                <tr>
-                                    <td>Water Resistant</td>
-                                    <td>Yes</td>
-                                </tr>
-                                <tr>
-                                    <td>Material</td>
-                                    <td>Artificial Leather</td>
-                                </tr>
-                        	</table>
-                      	</div> --}}
+
                       	<div class="tab-pane fade show active" id="Reviews" role="tabpanel" aria-labelledby="Reviews-tab">
                         	<div class="comments">
                                 <h5 class="product_tab_title">{{count($article->commentaire)}} Review For <span>{{$article->libelle}}</span></h5>
@@ -175,7 +139,11 @@
                                         <li>
                                             <div class="comment_img">
                                                 @if ($user->image)
-                                                 <img src="{{ url('', []) }}/{{$user->image}}" alt="user1">
+                                                    @if (  strpos($user->image , '://') !== false)
+                                                        <img style="max-width: 77px;" src="{{$user->image}}" alt="">
+                                                    @else
+                                                        <img style="max-width: 77px;"  src="{{ url('', []) }}/{{$user->image}}" alt="">
+                                                    @endif
                                                 @else
                                                     <img src="{{ url('', []) }}/boutique/uploads/default/avatar.png" alt="user1">
                                                 @endif
@@ -200,7 +168,7 @@
                                                     </div>
                                                 </div>
                                                 <p class="customer_meta">
-                                                    <span class="review_author">{{$user->first_name}} {{$user->last_name}}</span>
+                                                    <span class="review_author">{{$user->username}} </span>
                                                     <span class="comment-date">{{$user->pivot->created_at}}</span>
                                                 </p>
                                                 <div class="description">
@@ -268,14 +236,14 @@
                         @if ($item->id != $article->id)
                             <div class="item">
                                 <div class="product">
-                                    <div class="product_img">
-                                        <a href="shop-product-detail.html">
-                                            <img src="{{url('')}}/{{explode(",", $item->images)[0]}}" alt="product_img1">
+                                    <div class="product_img" style="    height: 281px;">
+                                        <a href="{{ url('product/detail/', []) }}/{{$item->id}}">
+                                            <img  style="margin-top: 50%; transform: translateY(-50%);" src="{{url('')}}/{{explode(",", $item->images)[0]}}" alt="product_img1">
                                         </a>
                                         <div class="product_action_box">
                                             <ul class="list_none pr_action_btn">
-                                                <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                                <li><a href="shop-compare.html"><i class="icon-shuffle"></i></a></li>
+                                                <li class="add-to-cart"><a href="{{ url('panier/add/', []) }}/{{$item->id}}"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
+                                                <li><a href="{{ url('compare/add/', []) }}/{{$item->id}}"><i class="icon-shuffle"></i></a></li>
                                                 <li><a href="{{url('')}}/quick/product/detail/{{$item->id}}" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
                                                 <li><a href="{{ url('wish/add/', []) }}/{{$item->id}}"><i class="icon-heart"></i></a></li>
                                             </ul>

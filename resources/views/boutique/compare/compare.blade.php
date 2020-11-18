@@ -123,17 +123,17 @@
                                     <td class="row_title">Add To Cart</td>
                                     <td class="row_btn">
                                         @if (count($compares)>0)
-                                            <a href="#" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
+                                            <a href="{{ url('panier/add/', []) }}/{{$compares[0]->id}}" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
                                         @endif
                                     </td>
                                     <td class="row_btn">
                                         @if (count($compares)>1)
-                                            <a href="#" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
+                                            <a href="{{ url('panier/add/', []) }}/{{$compares[1]->id}}" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
                                         @endif
                                     </td>
                                     <td class="row_btn">
                                         @if (count($compares)>2)
-                                            <a href="#" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
+                                            <a href="{{ url('panier/add/', []) }}/{{$compares[2]->id}}" class="btn btn-fill-out"><i class="icon-basket-loaded"></i> Add To Cart</a>
                                         @endif
                                     </td>
                                 </tr>

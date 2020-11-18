@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class CouponController extends Controller
@@ -44,7 +45,7 @@ class CouponController extends Controller
             'prix_min.required' =>  'Champs prix obligatoire '
         ];
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
 
             'code' => 'required',
             'qty' => 'required|numeric|min:1',
@@ -52,7 +53,9 @@ class CouponController extends Controller
             'date_fin' => 'required|date|after:tomorrow',
             'prix_min' =>  'required|numeric|min:1'
         ], $messages);
-
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
         $Coupon = new  Coupon() ;
 
 
@@ -64,9 +67,9 @@ class CouponController extends Controller
 
 
         $Coupon->save();
-        alert()->success('Coupon bien ajoutée', '')->toToast();
 
-        return back();
+        return response()->json(['success' => 'Coupon bien ajoutée'],200);
+
     }
 
     public function editCoupon  ( Request $request , $id ) {
@@ -83,15 +86,17 @@ class CouponController extends Controller
             'prix_min.required' =>  'Champs prix obligatoire '
         ];
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
 
             'code' => 'required',
             'qty' => 'required|numeric|min:1',
             'taux' =>  'required|numeric|min:1',
-            'date_fin' => 'required|date|after:tomorrow',
+            'date_fin' => 'required|date|after:today',
             'prix_min' =>  'required|numeric|min:1'
         ], $messages);
-
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
 
 
         $Coupon =   Coupon::find($id ) ;
@@ -104,14 +109,15 @@ class CouponController extends Controller
             $Coupon->date_fin = $request->date_fin;
             $Coupon->prix_min = $request->prix_min;
             $Coupon->save();
-            alert()->success('Coupon bien modifié', '')->toToast();
+
 
         }
 
 
 
 
-        return back();
+        return response()->json(['success' => 'Coupon bien modifié'],200);
+
     }
 
 

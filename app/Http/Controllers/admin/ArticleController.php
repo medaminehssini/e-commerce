@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Categorie;
 use App\Models\Marque;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\Datatables\Datatables;
 
 class ArticleController extends Controller
@@ -22,7 +23,7 @@ class ArticleController extends Controller
     {
         return Datatables::of(Article::with('categorie' , 'marque')->get())
         ->addColumn('action', function ($article) {
-            return '<span class="action-edit" onclick=\'openUpdate('.$article.')\'><i class="feather icon-edit"></i></span>
+            return '<span class="action-edit" onclick=\'openUpdate(JSON.stringify('.$article.'))\'><i class="feather icon-edit"></i></span>
             <a href="'.aurl('delete/article/').'/'.$article->id.'"><span class="action-delete"><i class="feather icon-trash"></i></span></a>';
         })
         ->addColumn('photo', function ($article) {
@@ -81,19 +82,21 @@ class ArticleController extends Controller
             'prix.min' => 'Champs prix invalide',
             'qty.min' => 'Champs quantité invalide',
             'description.required' => 'Champs description obligatoire',
-            'status.required' => 'Vous devez spécifier une état',
 
         ];
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'images' => 'required',
             'images.*' => 'mimes:jpg,jpeg,png,gif',
             'libelle' => 'required',
             'prix' => 'required|numeric|min:1',
             'qty' => 'required|numeric|min:1',
             'description' => 'required',
-            'status' => 'required',
         ], $messages);
+
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
 
         $images  = [] ;
         $i= 0 ;
@@ -117,22 +120,21 @@ class ArticleController extends Controller
         $article->libelle      = $request->libelle;
         $article->prix         = $request->prix;
         $article->description  = $request->description;
-        $article->status       = $request->status;
+        $article->status       = 0;
         $article->qty          = $request->qty;
         $article->taux_tva     = $request->taux_tva;
         $article->id_marque    = $request->marque;
 
 
         $article->save();
-        alert()->success('Article bien ajouté', '')->toToast();
 
-        return back();
+
+        return response()->json(['success' => 'Article bien ajouté'],200);
     }
 
     public function editArticle  ( Request $request , $id ) {
 
         $messages = [
-            'images.required' => 'Vous devez ajouter au moins une photo',
             'images.mimes' => 'Format image invalide',
             'libelle.required' => 'Champs libelle obligatoire',
             'prix.required' => 'Champs prix obligatoire',
@@ -140,29 +142,31 @@ class ArticleController extends Controller
             'prix.min' => 'Champs prix invalide',
             'qty.min' => 'Champs quantité invalide',
             'description.required' => 'Champs description obligatoire',
-            'status.required' => 'Vous devez spécifier une état',
 
         ];
 
-        $this->validate($request, [
-            'images' => 'required',
+        $validator = Validator::make($request->all(), [
             'images.*' => 'mimes:jpg,jpeg,png,gif',
             'libelle' => 'required',
             'prix' => 'required|numeric|min:1',
             'qty' => 'required|numeric|min:1',
             'description' => 'required',
-            'status' => 'required',
         ], $messages);
-
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
 
         $images  = [] ;
         $i= 0 ;
         if($request->hasfile('images'))
         {
-            $this->validate($request, [
+            $validator = Validator::make($request->all(), [
 
                 'images.*' => 'mimes:jpg,jpeg,png,gif'
             ]);
+            if(  $validator->fails()){
+                return response()->json($validator->errors()->all() , 400);
+            }
             foreach($request->file('images') as $key => $file)
             {
 
@@ -182,19 +186,20 @@ class ArticleController extends Controller
             $article->libelle      = $request->libelle;
             $article->prix         = $request->prix;
             $article->description  = $request->description;
-            $article->status       = $request->status;
+            $article->status       = 0;
             $article->qty          = $request->qty;
             $article->taux_tva     = $request->taux_tva;
             $article->id_marque    = $request->marque;
             $article->save();
-            alert()->success('Article bien modifié', '')->toToast();
+
 
         }
 
 
 
 
-        return back();
+        return response()->json(['success' => 'Article bien modifié'],200);
+
     }
 
 

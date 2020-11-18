@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description" content="{{getSetting('site_description')}}">
+    <meta name="keywords" content="e-commerce">
     <meta name="author" content="PIXINVENT">
     <title>{{__('auth.title')}}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{url('')}}/app-assets/images/logo/favicon.png">
@@ -102,7 +102,7 @@
                                                                 </div>
                                                             </fieldset>
                                                         </div>
-                                                        <div class="text-right"><a href="auth-forgot-password.html" class="card-link">{{__('auth.forgot')}}</a></div>
+                                                        <div class="text-right"><a href="#" class="card-link">{{__('auth.forgot')}}</a></div>
                                                     </div>
                                                     {{-- <a href="auth-register.html" class="btn btn-outline-primary float-left btn-inline">{{__('auth.btn_reg')}}</a> --}}
                                                     <button type="submit" class="btn btn-primary float-right btn-inline">{{__('auth.btn_log')}}</button>
@@ -110,15 +110,7 @@
                                             </div>
                                         </div>
                                         <div class="login-footer">
-                                            <div class="divider">
-                                                <div class="divider-text">{{__('auth.hr')}}</div>
-                                            </div>
-                                            <div class="footer-btn d-inline">
-                                                <a href="#" class="btn btn-facebook"><span class="fa fa-facebook"></span></a>
-                                                <a href="#" class="btn btn-twitter white"><span class="fa fa-twitter"></span></a>
-                                                <a href="#" class="btn btn-google"><span class="fa fa-google"></span></a>
-                                                <a href="#" class="btn btn-github"><span class="fa fa-github-alt"></span></a>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

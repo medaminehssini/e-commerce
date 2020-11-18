@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables;
 
 class CategorieController extends Controller
@@ -43,12 +44,15 @@ class CategorieController extends Controller
             'nom.required' => 'Champs libelle obligatoire',
         ];
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
 
             'nom' => 'required',
             'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
 
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
 
         if($request->hasfile('image'))
         {
@@ -63,41 +67,54 @@ class CategorieController extends Controller
 
         $Categorie = new  Categorie() ;
 
+        if($request->icon || $request->categorie){
+                if($request->icon){
+                    $Categorie->icon = $request->icon;
+
+                }else {
+                    $Categorie->id_categorie = $request->categorie;
+                }
+        }else {
+            alert()->success('icon ou categorie', '')->toToast();
+
+        }
+
+
 
         $Categorie->image       = $nameImage;
-        $Categorie->id_categorie = $request->categorie;
         $Categorie->nom      = $request->nom;
 
 
         $Categorie->save();
 
-        alert()->success('Catégorie bien ajoutée', '')->toToast();
 
-        return back();
+        return response()->json(['success' => 'Catégorie bien ajoutée'],200);
+
     }
 
     public function editCategorie  ( Request $request , $id ) {
 
         $messages = [
-            'image.required' => 'Vous devez ajouter une photo',
-            'image.mimes' => 'Format image invalide',
             'nom.required' => 'Champs libelle obligatoire',
         ];
 
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
 
             'nom' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,gif'
         ], $messages);
-
+        if(  $validator->fails()){
+            return response()->json($validator->errors()->all() , 400);
+        }
         $nameImage = null;
         if($request->hasfile('image'))
         {
-            $this->validate($request, [
+            $validator = Validator::make($request->all(), [
 
                 'image' => 'mimes:jpg,jpeg,png,gif'
             ]);
-
+            if(  $validator->fails()){
+                return response()->json($validator->errors()->all() , 400);
+            }
 
             $name = time().'.'.$request->image->extension();
             $request->image->move(public_path().'/uploads/img/categorie', $name);
@@ -107,20 +124,34 @@ class CategorieController extends Controller
 
         $Categorie =   Categorie::find($id ) ;
 
+
+        if($request->icon || $request->categorie){
+            if($request->icon){
+                $Categorie->icon = $request->icon;
+
+                }else {
+                    $Categorie->id_categorie = $request->categorie;
+                }
+        }else {
+            alert()->success('icon ou categorie', '')->toToast();
+
+        }
+
+
         if($Categorie)
         {
             if ($nameImage) $Categorie->image      = $nameImage;
-            $Categorie->id_categorie = $request->categorie;
             $Categorie->nom      = $request->nom;
 
             $Categorie->save();
 
-            alert()->success('Catégorie bien modifiée', '')->toToast();
+
         }
 
+        return response()->json(['success' => 'Catégorie bien modifiée'],200);
 
 
-        return back();
+
     }
 
 

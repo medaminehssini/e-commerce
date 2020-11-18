@@ -5,26 +5,25 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-8">
                 	<div class="header_topbar_info">
-                    	<div class="header_offer">
+                    	<div class="header_offer" style="border: none">
                     		<span>Livraison gratuite à partir de 100 {{getSetting('currency')}} </span>
                         </div>
-                        <div class="download_wrap">
+                        {{-- <div class="download_wrap">
                             <span class="mr-3">Télécharger l'app</span>
                             <ul class="icon_list text-center text-lg-left">
-                                <li><a href="#"><i class="fab fa-apple"></i></a></li>
+                                 <li><a href="#"><i class="fab fa-apple"></i></a></li>
                                 <li><a href="#"><i class="fab fa-android"></i></a></li>
                                 <li><a href="#"><i class="fab fa-windows"></i></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-4">
+                {{-- <div class="col-lg-6 col-md-4">
                 	<div class="d-flex align-items-center justify-content-center justify-content-md-end">
                         <div class="lng_dropdown">
-                            <select name="countries" class="custome_select">
-                                <option value='en' data-image="{{url('boutique')}}/assets/images/eng.png" data-title="English">English</option>
-                                <option value='fn' data-image="{{url('boutique')}}/assets/images/fn.png" data-title="France">France</option>
-                                <option value='us' data-image="{{url('boutique')}}/assets/images/us.png" data-title="United States">United States</option>
+                            <select name="countries" class="custome_select" onchange="window.location.href='{{url('lang')}}'+ '/' + this.value">
+                                <option @if (App::getLocale() == 'fr') selected  @endif value='fr' data-image="{{url('boutique')}}/assets/images/fn.png" data-title="France">France</option>
+                                <option @if (App::getLocale() == 'en') selected  @endif value='en' data-image="{{url('boutique')}}/assets/images/us.png" data-title="United States">English</option>
                             </select>
                         </div>
                         <div class="ml-3">
@@ -34,7 +33,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -45,12 +44,12 @@
                     <img class="logo_light" src="{{url('boutique')}}/assets/images/logo_light.png" alt="logo">
                     <img class="logo_dark" src="{{url('boutique')}}/assets/images/logo_dark.png" alt="logo">
                 </a>
-                <div class="product_search_form radius_input search_form_btn">
+                <div id="searchProduct" class="product_search_form radius_input search_form_btn" style="overflow: initial">
                     <form action="{{ url('/search', []) }}">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <div class="custom_select">
-                                    <select class="first_null not_chosen" name="categorie">
+                                    <select class="first_null not_chosen" id="categorieSearch" onchange ="getData(document.getElementById('inputSearch'))" name="categorie">
                                         <option value="">Tous Les Categories</option>
                                         @foreach (getCategories() as $cat)
                                              <option value="{{$cat->id}}">{{$cat->nom}}</option>
@@ -59,10 +58,14 @@
                                     </select>
                                 </div>
                             </div>
-                            <input class="form-control" placeholder="Chercher un produit..."  name="libelle" type="text">
+                            <input autocomplete="off" class="form-control" placeholder="Chercher un produit..." id="inputSearch" onkeyup="getData(this)"  name="libelle" type="text">
+
                             <button type="submit" class="search_btn3">Chercher</button>
                         </div>
                     </form>
+                    <ul style="width: 100% ; float: right; position: absolute;z-index: 99;" id="ResultSearch" >
+
+                    </ul>
                 </div>
                 <ul class="navbar-nav attr-nav align-items-center">
                     @if (!Auth::check())
@@ -101,192 +104,67 @@
                         <button type="button" data-toggle="collapse" data-target="#navCatContent" aria-expanded="false" class="categories_btn categories_menu">
                             <span>Nos Categories </span><i class="linearicons-menu"></i>
                         </button>
-                        <div id="navCatContent" class="navbar collapse">
+                        <div id="navCatContent" class="navbar collapse" style="z-index: 999;">
                             <ul>
+                                @foreach (getMenuCategories() as $categorie)
+
+                                @if (count($categorie->categorie) > 0)
+
                                 <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="flaticon-tv"></i> <span>Computer</span></a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-7">
-                                                <ul class="d-lg-flex">
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Featured Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vestibulum sed</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur tempus</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Quisque condimentum</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Popular Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur laoreet</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Quisque condimentum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur tempus</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-5">
-                                                <div class="header-banner2">
-                                                    <img src="{{url('boutique')}}/assets/images/menu_banner7.jpg" alt="menu_banner1">
-                                                    <div class="banne_info">
-                                                        <h6>10% Off</h6>
-                                                        <h4>Computers</h4>
-                                                        <a href="#">Shop now</a>
-                                                    </div>
+                                <a class="dropdown-item nav-link dropdown-toggler" href="{{ url('search', []) }}?categorie={{$categorie->id}}" data-toggle="dropdown"><i class="{{$categorie->icon}}"></i> <span>{{$categorie->nom}}</span></a>
+                                <div class="dropdown-menu">
+                                    <ul class="mega-menu d-lg-flex">
+                                        <li class="mega-menu-col col-lg-7">
+                                            <ul class="d-lg-flex">
+                                                <li class="mega-menu-col col-lg-6">
+                                                    <ul>
+                                                        <li class="dropdown-header">Sous catégories</li>
+                                                        @foreach ($categorie->categorie as $key => $sousCategorie)
+                                                            @if($key < 10)
+                                                            <li><a class="dropdown-item nav-link nav_item" href="{{ url('search', []) }}?categorie={{$sousCategorie->id}}">{{$sousCategorie->nom}}</a></li>
+                                                            @endif
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+
+                                                <li class="mega-menu-col col-lg-6">
+                                                    <ul>
+                                                        <li class="dropdown-header">Articles populaires</li>
+                                                        @foreach (popularArticle($categorie->id) as $article)
+                                                            <li><a class="dropdown-item nav-link nav_item" href="{{ url('product/detail') }}/{{$article->id}}">{{$article->libelle}}</a></li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                        {{-- <li class="mega-menu-col col-lg-5">
+                                            <div class="header-banner2">
+                                                <img src="{{getImageFromCategorie($categorie->id)[0]}}" alt="menu_banner1">
+                                                <div class="banne_info">
+                                                    <h6>10% Off</h6>
+                                                    <h4>Computers</h4>
+                                                    <a href="#">Shop now</a>
                                                 </div>
-                                                <div class="header-banner2">
-                                                    <img src="{{url('boutique')}}/assets/images/menu_banner8.jpg" alt="menu_banner2">
-                                                    <div class="banne_info">
-                                                        <h6>15% Off</h6>
-                                                        <h4>Top Laptops</h4>
-                                                        <a href="#">Shop now</a>
-                                                    </div>
+                                            </div>
+                                            <div class="header-banner2">
+                                                <img src="{{getImageFromCategorie($categorie->id)[1]}}" alt="menu_banner2">
+                                                <div class="banne_info">
+                                                    <h6>15% Off</h6>
+                                                    <h4>Top Laptops</h4>
+                                                    <a href="#">Shop now</a>
                                                 </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="flaticon-responsive"></i> <span>Mobile & Tablet</span></a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-7">
-                                                <ul class="d-lg-flex">
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Featured Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vestibulum sed</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur tempus</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Popular Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur laoreet</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Quisque condimentum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-5">
-                                                <div class="header-banner2">
-                                                    <a href="#"><img src="{{url('boutique')}}/assets/images/menu_banner6.jpg" alt="menu_banner"></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="flaticon-camera"></i> <span>Camera</span></a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-7">
-                                                <ul class="d-lg-flex">
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Featured Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vestibulum sed</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur tempus</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li class="mega-menu-col col-lg-6">
-                                                        <ul>
-                                                            <li class="dropdown-header">Popular Item</li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Curabitur laoreet</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Vivamus in tortor</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae facilisis</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Quisque condimentum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Etiam ac rutrum</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec vitae ante ante</a></li>
-                                                            <li><a class="dropdown-item nav-link nav_item" href="#">Donec porttitor</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-5">
-                                                <div class="header-banner2">
-                                                    <a href="#"><img src="{{url('boutique')}}/assets/images/menu_banner9.jpg" alt="menu_banner"></a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-item nav-link dropdown-toggler" href="#" data-toggle="dropdown"><i class="flaticon-plugins"></i> <span>Accessories</span></a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                            <li class="mega-menu-col col-lg-4">
-                                                <ul>
-                                                    <li class="dropdown-header">Woman's</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-list-left-sidebar.html">Vestibulum sed</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-left-sidebar.html">Donec porttitor</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-right-sidebar.html">Donec vitae facilisis</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-list.html">Curabitur tempus</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-load-more.html">Vivamus in tortor</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-4">
-                                                <ul>
-                                                    <li class="dropdown-header">Men's</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-cart.html">Donec vitae ante ante</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="checkout.html">Etiam ac rutrum</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="wishlist.html">Quisque condimentum</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="compare.html">Curabitur laoreet</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="order-completed.html">Vivamus in tortor</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="mega-menu-col col-lg-4">
-                                                <ul>
-                                                    <li class="dropdown-header">Kid's</li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail.html">Donec vitae facilisis</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">Quisque condimentum</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">Etiam ac rutrum</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec vitae ante ante</a></li>
-                                                    <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec porttitor</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-headphones"></i> <span>Headphones</span></a></li>
-                                <li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-console"></i> <span>Gaming</span></a></li>
-                                <li><a class="dropdown-item nav-link nav_item" href="login.html"><i class="flaticon-watch"></i> <span>Watches</span></a></li>
-                                <li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-music-system"></i> <span>Home Audio & Theater</span></a></li>
-                                <li><a class="dropdown-item nav-link nav_item" href="coming-soon.html"><i class="flaticon-monitor"></i> <span>TV & Smart Box</span></a></li>
-                                <li><a class="dropdown-item nav-link nav_item" href="404.html"><i class="flaticon-printer"></i> <span>Printer</span></a></li>
-                                <li>
-                                	<ul class="more_slide_open">
-                                    	<li><a class="dropdown-item nav-link nav_item" href="login.html"><i class="flaticon-fax"></i> <span>Fax Machine</span></a></li>
-                                        <li><a class="dropdown-item nav-link nav_item" href="register.html"><i class="flaticon-mouse"></i> <span>Mouse</span></a></li>
+                                            </div>
+                                        </li> --}}
                                     </ul>
+                                </div>
+
                                 </li>
+                                @else
+                                <li><a class="dropdown-item nav-link nav_item" href="{{ url('search', []) }}?categorie={{$categorie->id}}"><i class="{{$categorie->icon}}"></i> <span>{{$categorie->nom}}</span></a></li>
+                                @endif
+
+                                @endforeach
                             </ul>
                             <div class="more_categories">More Categories</div>
                         </div>
@@ -330,72 +208,9 @@
                                         </ul>
                                     </div>
                                 </li> -->
-                                <li class="dropdown dropdown-mega-menu">
-                                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Nos Produits</a>
-                                    <div class="dropdown-menu">
-                                        <ul class="mega-menu d-lg-flex">
-                                    <li class="mega-menu-col col-lg-3">
-                                        <ul>
-                                            <li class="dropdown-header">Woman's</li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-list-left-sidebar.html">Vestibulum sed</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-left-sidebar.html">Donec porttitor</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-right-sidebar.html">Donec vitae facilisis</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-list.html">Curabitur tempus</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-load-more.html">Vivamus in tortor</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega-menu-col col-lg-3">
-                                        <ul>
-                                            <li class="dropdown-header">Men's</li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-cart.html">Donec vitae ante ante</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="checkout.html">Etiam ac rutrum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="wishlist.html">Quisque condimentum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="compare.html">Curabitur laoreet</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="order-completed.html">Vivamus in tortor</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega-menu-col col-lg-3">
-                                        <ul>
-                                            <li class="dropdown-header">Kid's</li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail.html">Donec vitae facilisis</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">Quisque condimentum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">Etiam ac rutrum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec vitae ante ante</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec porttitor</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega-menu-col col-lg-3">
-                                        <ul>
-                                            <li class="dropdown-header">Accessories</li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail.html">Donec vitae facilisis</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-left-sidebar.html">Quisque condimentum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-right-sidebar.html">Etiam ac rutrum</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec vitae ante ante</a></li>
-                                            <li><a class="dropdown-item nav-link nav_item" href="shop-product-detail-thumbnails-left.html">Donec porttitor</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                        <div class="d-lg-flex menu_banners">
-                                            <div class="col-lg-6">
-                                                <div class="header-banner">
-                                                    <div class="sale-banner">
-                                                        <a class="hover_effect1" href="#">
-                                                            <img src="{{url('boutique')}}/assets/images/shop_banner_img7.jpg" alt="shop_banner_img7">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="header-banner">
-                                                    <div class="sale-banner">
-                                                        <a class="hover_effect1" href="#">
-                                                            <img src="{{url('boutique')}}/assets/images/shop_banner_img8.jpg" alt="shop_banner_img8">
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <li >
+                                    <a class="nav-link nav_item" href="{{ url('/search', []) }}" >Nos Produits</a>
+
                                 </li>
                                 <!-- <li class="dropdown">
                                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Blog</a>
@@ -449,9 +264,9 @@
                                         </ul>
                                     </div>
                                 </li> -->
-                                <li class="dropdown dropdown-mega-menu">
+                                 {{--   <li class="dropdown dropdown-mega-menu">
                                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">Boutique</a>
-                                    <div class="dropdown-menu">
+                                 <div class="dropdown-menu">
                                         <ul class="mega-menu d-lg-flex">
                                             <li class="mega-menu-col col-lg-9">
                                                 <ul class="d-lg-flex">
@@ -506,7 +321,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li>--}}
                                 <li><a class="nav-link nav_item" href="{{ url('contact', []) }}">Contacter Nous</a></li>
                             </ul>
                         </div>

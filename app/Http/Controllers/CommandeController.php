@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
+use App\Mail\OrederCompleted;
 use App\Models\Commande;
 use App\Models\Coupon;
-use App\Models\LigneCommande;
 use App\Models\Livreur;
+use App\Models\User;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CommandeController extends Controller
 {
     public function ajouterCommande()
     {
 
+        if(!Auth::user()->first_name  || !Auth::user()->last_name || !Auth::user()->tel) {
+            alert()->error('Vous devez compléter votre profil', '')->toToast();
+            return redirect("edit/account?type=accountDetail");
+        }
         $id_livreur = null;
         if(request()->ville) {
             if( request()->livreur != ''  ) {
@@ -32,11 +37,11 @@ class CommandeController extends Controller
                     }
                 }
             }else {
-                alert()->error('please select livreur.', '')->toToast();
+                alert()->error('Aucun livreur sélectionné .', '')->toToast();
                 return back();
             }
         }else {
-            alert()->error('please select city.', '')->toToast();
+            alert()->error('Vous devez remplir ville de livraison.', '')->toToast();
             return back();
         }
 
@@ -44,41 +49,60 @@ class CommandeController extends Controller
 
         if(request()->adresse){
             if(request()->adresse == "olddresse") {
-                if(!Auth::user()->adresse && !Auth::user()->ville) {
-                    alert()->error('votre adresse de compte est vide.', '')->toToast();
-                    return back();
-                }
+
             }else {
                 if (request()->nadresseliv && request()->nville) {
-                    $com->adresseliv = request()->nadresseliv ;
-                    $com->villeliv =  request()->nville ;
+                    if(!Auth::user()->adresse || !Auth::user()->ville) {
+                        $user = User::find(Auth::user()->id);
+                        $user->adresse = request()->nadresseliv ;
+                        $user->ville = request()->nville ;
+                        $user->save();
+                    }else {
+                        $com->adresseliv = request()->nadresseliv ;
+                        $com->villeliv =  request()->nville ;
+                    }
+
                 }else{
-                    alert()->error('l\'adresse de livraison est vide.', '')->toToast();
+                    alert()->error('Vous devez remplir l\'adresse de livraison.', '')->toToast();
                     return back();
                 }
 
             }
         }
 
+        if (request()->adressefact && request()->villefact) {
+                $com->adressefact = request()->adressefact ;
+                $com->villefact =  request()->villefact ;
+        }
 
-
+        $SetCoupon = 0;
         if(request()->coupon){
             $coup = Coupon::where(['code'=>request()->coupon , ['qty' ,'>' , '0'] ])->orWhere(['code'=>request()->coupon  , ['date_fin' ,'<' , Carbon::now()] ])->first();
             if( $coup) {
                 $com->id_coupon =  $coup->id ;
+                $SetCoupon  = $coup->taux;
             }else {
-                alert()->error('Coupon non valide.', '')->toToast();
+                alert()->error('Coupon exipiré ou non valide.', '')->toToast();
                 return back();
             }
 
 
         }
 
+        $liv = Livreur::find( $id_livreur);
+        if($liv)
+            $liv = $liv->frais;
+        else
+            $liv = 0;
+        $sommeTax = 0 ;
+        foreach (Cart::content() as $art){
+            $sommeTax += $art->total * $art->model->taux_tva/100;
+        }
 
         $com->id_client = Auth::user()->id;
         $com->description = "";
         $com->id_livreur = $id_livreur;
-        $com->total = Cart::total();
+        $com->total = Cart::total(2,'.','') + $sommeTax + $liv -  (Cart::total(2,'.','')*$SetCoupon /100);
         $com->save();
 
         $articles = [] ;
@@ -89,6 +113,7 @@ class CommandeController extends Controller
 
         alert()->success('Commande bien passé.', '')->toToast();
         Cart::destroy();
+        Mail::to(auth()->user()->email)->send(new OrederCompleted(Commande::find($com->id)));
         return view('boutique.commande.success');
     }
 }

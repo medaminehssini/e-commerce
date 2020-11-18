@@ -71,7 +71,7 @@
                                                         <div class="coupon field_form input-group">
                                                             <input type="text" disabled value="{{$coupon->code . ' ( '. $coupon->taux .'% ) '}}" class="form-control form-control-sm" id="couponRemove" placeholder="Enter Coupon Code..">
                                                             <div class="input-group-append">
-                                                                <button class="btn btn-fill-out btn-sm" id="RemoveCoupon"  type="button">Remove</button>
+                                                                <button class="btn btn-fill-out btn-sm" id="RemoveCoupon"  type="button">Retirer le coupon</button>
                                                             </div>
                                                         </div>
 
@@ -116,9 +116,8 @@
                             <div class="form-group col-lg-12">
                                 <div class="custom_select">
                                     <select class="form-control" id="ville" onchange="changeUrl('ville' , this.value)">
-                                            <option value="">Choisir ville</option>
                                             <option value="grand_tunis">Grand tunis</option>
-                                            <option value="rest">Reste</option>
+                                            <option value="rest">Autre ville</option>
                                     </select>
                                 </div>
                             </div>
@@ -126,11 +125,14 @@
 
 
                             <div class="form-group col-lg-12">
+                            <div class="heading_s1 mb-3">
+                                <h6>Choisir un de nos livreur</h6>
+                            </div>
                                 <div class="custom_select">
                                     <select class="form-control" id="livreur" onchange="changeUrl('livreur' , this.value)">
                                             <option value="">Choisir livreur</option>
                                             @if (request()->ville == 'grand_tunis' )
-                                            <option value="0">Societe gratuite</option>
+                                            <option value="0">Tunex (disponible seulement en grand tunis)</option>
                                             @endif
                                         @foreach ($livreur as $liv)
                                             <option value="{{$liv->id}}">{{ $liv->nom." Frais =".$liv->frais.getSetting('currency')." Delais =".$liv->delai."heures" }}</option>
@@ -142,6 +144,11 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-lg-12">
+
+
+                               @if (Auth::user()->adresse != null || Auth::user()->ville != null)
+
+
                                 <div>
                                     <div class="col-md-12" style="height: 35px;">
                                         <input type="radio" checked style="width: 18px; height: 18px;display: inline-block;" onclick="changesAdresse(this)"  class="form-control" name="adresse" id="oldadresse" value="olddresse" >
@@ -158,21 +165,49 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                @endif
 
                                 <div>
                                     <div class="col-md-12" style="height: 35px;">
-                                        <input type="radio" style="width: 18px; height: 18px;display: inline-block;"  onclick="changesAdresse(this)" class="form-control" name="adresse"  value="newAdresse" >
-                                        <p style="transform: translateY(-103%);margin-left: 30px;">Adresse compte</p>
+                                        <input @if (Auth::user()->adresse == null || Auth::user()->ville == null) checked   @endif type="radio" style="width: 18px; height: 18px;display: inline-block;"  onclick="changesAdresse(this)" class="form-control" name="adresse"  value="newAdresse" >
+                                        <p style="transform: translateY(-103%);margin-left: 30px;">Autre adresse</p>
                                     </div>
-                                    <div id="nadresse" style="display: none">
+                                    <div id="nadresse" @if (Auth::user()->adresse != null || Auth::user()->ville != null) style="display: none"   @endif>
+
+                                        {{-- Badelha b hedhi --}}
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
-                                            <label for="">Ville</label>
-                                            <input  placeholder="Adresse de livraison" class="form-control" name="nadresseliv" type="text" value="">
+                                            <label for="ville">Ville</label>
+                                            <select  name="nville" class="form-control">
+                                                <option value="Ariana" >Ariana</option>
+                                                <option value="Ben arous" >Ben arous</option>
+                                                <option value="Béja" >Béja</option>
+                                                <option value="Bizerte" >Bizerte</option>
+                                                <option value="Gabes" >Gabes</option>
+                                                <option value="Gafsa" >Gafsa</option>
+                                                <option value="Jendouba" >Jendouba</option>
+                                                <option value="Kairouan" >Kairouan</option>
+                                                <option value="Kasserine" >Kasserine</option>
+                                                <option value="Kebili" >Kebili</option>
+                                                <option value="Mannouba" >Mannouba</option>
+                                                <option value="Kef" >Kef</option>
+                                                <option value="Mahdia" >Mahdia</option>
+                                                <option value="Medenine" >Medenine</option>
+                                                <option value="Monastir" >Monastir</option>
+                                                <option value="Nabeul" >Nabeul</option>
+                                                <option value="Sfax" >Sfax</option>
+                                                <option value="Sidi bouzid" >Sidi bouzid</option>
+                                                <option value="Siliana" >Siliana</option>
+                                                <option value="Sousse" >Sousse</option>
+                                                <option value="Tataouine" >Tataouine</option>
+                                                <option value="Tozeur" >Tozeur</option>
+                                                <option value="Tunis" >Tunis</option>
+                                                <option value="Zaghouane" >Zaghouane</option>
+                                            </select>
+
                                         </div>
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
                                             <label for="">Adreese</label>
-                                            <input  placeholder="Ville" class="form-control" name="nville" type="text"  value="">
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="nadresseliv" type="text" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -181,17 +216,45 @@
                             <div class="form-group col-lg-12">
                                 <div>
                                     <div class="col-md-12" style="height: 35px;">
-                                        <input type="checkbox" style="width: 18px; height: 18px;display: inline-block;"  onclick="changesAdresse(this)" class="form-control" name="adresse"  value="societeinfo" >
-                                        <p style="transform: translateY(-103%);margin-left: 30px;">Dommande une facturation</p>
+                                        <input onclick="changesAdresse(this)" type="checkbox" style="width: 18px; height: 18px;display: inline-block;"  class="form-control" value="adressefact" name="adressefact" >
+                                        <p style="transform: translateY(-103%);margin-left: 30px;">Adresse de facturation </p>
                                     </div>
-                                    <div id="societeinfo" style="display: none">
+                                    <div id="adressefact"  style="display: none"   >
+
+                                        {{-- Badelha b hedhi --}}
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
-                                            <label for="">Adresse Facturation</label>
-                                            <input  placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text" value="">
+                                            <label for="ville">Ville de Facturation</label>
+                                            <select  name="villefact" class="form-control">
+                                                <option value="Ariana" >Ariana</option>
+                                                <option value="Ben arous" >Ben arous</option>
+                                                <option value="Béja" >Béja</option>
+                                                <option value="Bizerte" >Bizerte</option>
+                                                <option value="Gabes" >Gabes</option>
+                                                <option value="Gafsa" >Gafsa</option>
+                                                <option value="Jendouba" >Jendouba</option>
+                                                <option value="Kairouan" >Kairouan</option>
+                                                <option value="Kasserine" >Kasserine</option>
+                                                <option value="Kebili" >Kebili</option>
+                                                <option value="Mannouba" >Mannouba</option>
+                                                <option value="Kef" >Kef</option>
+                                                <option value="Mahdia" >Mahdia</option>
+                                                <option value="Medenine" >Medenine</option>
+                                                <option value="Monastir" >Monastir</option>
+                                                <option value="Nabeul" >Nabeul</option>
+                                                <option value="Sfax" >Sfax</option>
+                                                <option value="Sidi bouzid" >Sidi bouzid</option>
+                                                <option value="Siliana" >Siliana</option>
+                                                <option value="Sousse" >Sousse</option>
+                                                <option value="Tataouine" >Tataouine</option>
+                                                <option value="Tozeur" >Tozeur</option>
+                                                <option value="Tunis" >Tunis</option>
+                                                <option value="Zaghouane" >Zaghouane</option>
+                                            </select>
+
                                         </div>
                                         <div class="form-group col-lg-11" style="margin-left: 20px" >
-                                            <label for="">Code societe</label>
-                                            <input  placeholder="Adresse de livraison" class="form-control" name="adrressliv" type="text"  value="">
+                                            <label for="">Adreese de Facturation</label>
+                                            <input  placeholder="Adresse de livraison" class="form-control" name="adressefact" type="text" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -231,7 +294,10 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">Total TTC</td>
-                                        <td class="cart_total_amount"><strong>{{Cart::total()+ $sommeTax + $fraislivreur  -  (Cart::total()*$SetCoupon /100)  .' '.getSetting('currency')}}</strong></td>
+                                        @php
+                                            $total = Cart::total(2,'.','')+ $sommeTax + $fraislivreur  -  (Cart::total(2,'.','')*$SetCoupon /100) ;
+                                        @endphp
+                                        <td class="cart_total_amount"><strong>{{ $total.' '.getSetting('currency')}}</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -260,7 +326,6 @@
         <script>
             function changesAdresse(input) {
                 if(input.checked){
-
                     if(input.value == "olddresse")
                         {
                             document.getElementById("oadreese").style.display = "block";
@@ -271,12 +336,12 @@
                             document.getElementById("oadreese").style.display = "none";
                             document.getElementById('nadresse').style.display = "block";
                         }
-                    else if(input.value == "societeinfo") {
-                        document.getElementById('societeinfo').style.display = "block";
+                    else if(input.value == "adressefact") {
+                        document.getElementById('adressefact').style.display = "block";
                     }
                 }else {
-                    if(input.value == "societeinfo") {
-                        document.getElementById('societeinfo').style.display = "none";
+                    if(input.value == "adressefact") {
+                        document.getElementById('adressefact').style.display = "none";
                     }
                 }
             }

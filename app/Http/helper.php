@@ -94,3 +94,24 @@ function aurl ($url=null) {
             return '';
         }
 
+        function getMenuCategories() {
+            return Categorie::where('id_categorie' , 0)->get();
+        }
+
+        function popularArticle($id) {
+           return Article::where("id_categorie", $id)->withCount('commande')->latest('commande_count')->take(9)->get();
+        }
+
+        function getImageFromCategorie($categorie)  {
+            $cats =    Categorie::find($categorie);
+            $images = [];
+            if($cats) {
+               $image1 =  random_int (0     , count($cats->categorie)-1 );
+               $image2 =  random_int (0     , count($cats->categorie)-1 );
+               $images[0] = $cats->categorie[$image1]->image ;
+               $images[1] = $cats->categorie[$image2]->image ;
+
+            }
+
+            return $images;
+        }

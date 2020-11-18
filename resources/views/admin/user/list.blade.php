@@ -25,7 +25,7 @@
         <!-- users filter start -->
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Filters</h4>
+                <h4 class="card-title">{{__('user.title')}}</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
@@ -41,26 +41,25 @@
                         <form>
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                    <label for="users-list-role">Role</label>
+                                    <label for="users-list-role">{{__('user.role')}}</label>
                                     <fieldset class="form-group">
                                         <select class="form-control" id="users-list-role">
-                                            <option value="">All</option>
-                                            <option value="user">User</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="employe">Employer</option>
+                                            <option value="">{{__('user.role_1')}}</option>
+                                            <option value="user">{{__('user.role_2')}}</option>
+                                            <option value="admin">{{__('user.role_3')}}</option>
+                                            <option value="employe">{{__('user.role_4')}}</option>
 
                                         </select>
                                     </fieldset>
                                 </div>
                                 <div class="col-12 col-sm-6 col-lg-3">
-                                    <label for="users-list-status">Status</label>
+                                    <label for="users-list-status">{{__('user.status')}}</label>
                                     <fieldset class="form-group">
                                         <select class="form-control" id="users-list-status">
-                                            <option value="">All</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Blocked">Blocked</option>
-                                            <option value="notconfirmed">not confirmed</option>
-                                            <option value="Deactivated">Deactivated</option>
+                                            <option value="">{{__('user.status_1')}}</option>
+                                            <option value="Active">{{__('user.status_2')}}</option>
+                                            <option value="Blocked">{{__('user.status_3')}}</option>
+                                            <option value="notconfirmed">{{__('user.status_4')}}</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -220,57 +219,57 @@
 
                 },
                 {
-                    headerName: 'Username',
+                    headerName: '{{__('user.th_1')}}',
                     field: 'username',
                     filter: true,
                     width: 175,
                     cellRenderer: customAvatarHTML,
                 },
                 {
-                    headerName: 'Email',
+                    headerName: '{{__('user.th_2')}}',
                     field: 'email',
                     filter: true,
                     width: 225,
                 },
                 {
-                    headerName: 'Name',
+                    headerName: '{{__('user.th_3')}}',
                     field: 'name',
                     filter: true,
                     width: 200,
                     cellRenderer: customNameHTML
                 },
                 {
-                    headerName: 'Ville',
+                    headerName: '{{__('user.th_4')}}',
                     field: 'ville',
                     filter: true,
                     width: 100,
                 },
                 {
-                    headerName: 'Adresse',
+                    headerName: '{{__('user.th_5')}}',
                     field: 'adresse',
                     filter: true,
                     width: 205,
                 },
                 {
-                    headerName: 'Code Postale',
+                    headerName: '{{__('user.th_6')}}',
                     field: 'code_postale',
                     filter: true,
                     width: 100,
                 },
                 {
-                    headerName: 'Telephone',
+                    headerName: '{{__('user.th_7')}}',
                     field: 'tel',
                     filter: true,
                     width: 150,
                 },
                 {
-                    headerName: 'Role',
+                    headerName: '{{__('user.th_8')}}',
                     field: 'role',
                     filter: true,
                     width: 100,
                 },
                 {
-                    headerName: 'Status',
+                    headerName: '{{__('user.th_9')}}',
                     field: 'status',
                     filter: true,
                     width: 150,
@@ -281,7 +280,7 @@
                 },
 
                 {
-                    headerName: 'Actions',
+                    headerName: '{{__('user.th_10')}}',
                     field: 'transactions',
                     width: 150,
                     cellRenderer: customIconsHTML,

@@ -32,6 +32,7 @@ class CommandeController extends Controller
         }else if ($commande->etat == 1) {
             return '
             <a href="'.aurl('refuser/commande').'/'.$commande->id.'"><span class="action-delete" style="color: red"><i class="feather icon-x"></i>Refuser</span></a>
+            <a href="'.aurl('accpeter/commande/').'/'.$commande->id.'"><span class="action-delete" style="color: green"><i class="feather icon-check"></i>Delivered</span></a>
             ';
             }else if ($commande->etat == 2){
                 return ' <a href="'.aurl('accpeter/commande/').'/'.$commande->id.'"><span class="action-delete" style="color: green"><i class="feather icon-check"></i>Accepter</span></a>
@@ -74,7 +75,37 @@ class CommandeController extends Controller
             }
             return $message ;
         })
-        ->rawColumns([ 'action' , "status" ])
+        ->addColumn('facture', function ($commande) {
+
+                    $message = '<div class="chip chip-primary">
+                            <div class="chip-body">
+                                <div class="chip-text"><a style="color:white" href="'.aurl('facture').'/'.$commande->id.'">Get Facture</a></div>
+                            </div>
+                        </div>';
+
+            return $message ;
+        })
+        ->addColumn('listProd', function ($commande) {
+
+            $message = '<div style="font-size: 20px; text-align: center;">
+
+                            <i class="feather icon-shopping-bag"></i>
+
+                        </div>';
+
+            return $message ;
+        })
+        ->addColumn('details', function ($commande) {
+
+            $message = '<div style="font-size: 20px; text-align: center;">
+
+                            <i class="feather icon-plus-circle"></i>
+
+                        </div>';
+
+            return $message ;
+        })
+        ->rawColumns([ 'action' , "status"  , "facture" , "listProd" , "details"])
 
         ->make(true);
     }
@@ -85,13 +116,21 @@ class CommandeController extends Controller
 
 
         if($commande) {
-            foreach ($commande->article as $key => $article) {
-                $article->qty -= $article->pivot->qty;
-                $article->save();
+            if($commande->etat == 1)  {
+                $commande->etat = 3;
+                alert()->success('Commande modifié', '')->toToast();
+
+            }else {
+                foreach ($commande->article as $key => $article) {
+                    $article->qty -= $article->pivot->qty;
+                    $article->save();
+                }
+                $commande->etat = 1;
+                alert()->success('Commande accéptée', '')->toToast();
             }
-            $commande->etat = 1;
+
             $commande->save();
-            alert()->success('Commande accéptée', '')->toToast();
+
 
         }
 

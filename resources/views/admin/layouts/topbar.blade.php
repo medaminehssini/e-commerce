@@ -14,7 +14,7 @@
                             <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-toggle="tooltip" data-placement="top" title="{{__('header.todo')}}"><i class="ficon feather icon-check-square"></i></a></li>
                             <!-- <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-toggle="tooltip" data-placement="top" title="Chat"><i class="ficon feather icon-message-square"></i></a></li>
                             <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html" data-toggle="tooltip" data-placement="top" title="Email"><i class="ficon feather icon-mail"></i></a></li> -->
-                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-calender.html" data-toggle="tooltip" data-placement="top" title="{{__('header.calender')}}"><i class="ficon feather icon-calendar"></i></a></li>
+                            <li class="nav-item d-none d-lg-block"><a class="nav-link" href="{{aurl('calender')}}" data-toggle="tooltip" data-placement="top" title="{{__('header.calender')}}"><i class="ficon feather icon-calendar"></i></a></li>
                         </ul>
                         <ul class="nav navbar-nav">
                             <li class="nav-item d-none d-lg-block"><a class="nav-link bookmark-star"><i class="ficon feather icon-star warning"></i></a>
@@ -32,8 +32,22 @@
                         </ul>
                     </div>
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-language nav-item"><a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span></a>
-                            <div class="dropdown-menu" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="en"><i class="flag-icon flag-icon-us"></i> English</a><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> French</a><a class="dropdown-item" href="#" data-language="de"><i class="flag-icon flag-icon-de"></i> German</a><a class="dropdown-item" href="#" data-language="pt"><i class="flag-icon flag-icon-pt"></i> Portuguese</a></div>
+                        <li class="dropdown dropdown-language nav-item">
+                            <a class="dropdown-toggle nav-link"  href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                @if (App::getLocale() == 'fr')
+                                    <i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span>
+
+                                @else
+
+                                     <i class="flag-icon flag-icon-us"></i><span class="selected-language">English</span>
+                                @endif
+
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ url('lang/en', []) }}" ><i class="flag-icon flag-icon-us"></i> English</a>
+                                <a class="dropdown-item" href="{{ url('lang/fr', []) }}"><i class="flag-icon flag-icon-fr"></i> French</a>
+                            </div>
                         </li>
                         <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
                         <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon feather icon-search"></i></a>

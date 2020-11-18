@@ -22,9 +22,9 @@
                 <h2 class="content-header-title float-left mb-0">{{__('coupon.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">{{__('coupon.breadcrumb_2')}}</a>
+                        <li class="breadcrumb-item"><a href="{{ aurl('/coupon') }}">{{__('coupon.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">{{__('coupon.breadcrumb_3')}}</a>
+                        <li class="breadcrumb-item"><a href="{{ aurl('/coupon') }}">{{__('coupon.breadcrumb_3')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__('coupon.breadcrumb_1')}}
                         </li>
@@ -76,6 +76,24 @@
                     @csrf
                 <div id="add-new-data" class="add-new-data" >
 
+                        <div id="loadingData" style="
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.5);
+                        z-index: 999;
+                        display: none
+                    ">
+
+                        <img src="{{ url('', []) }}/loading.gif" style="
+                        width: 400px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    ">
+
+                                                    </div>
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
                             <h4 class="text-uppercase">{{__('coupon.form_h')}}</h4>
@@ -89,15 +107,10 @@
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                <div id="errorContent">
+
+
                                 </div>
-                            @endif
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
@@ -127,7 +140,7 @@
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary"  onclick="document.getElementById('edit').submit()" name="btnsub" type="submit" value="{{__('coupon.btn_2')}}">
+                                <input class="btn btn-primary"   name="btnsub" type="submit" value="{{__('coupon.btn_2')}}">
 
                             </div>
                             <div class="cancel-data-btn">

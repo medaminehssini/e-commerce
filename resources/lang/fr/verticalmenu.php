@@ -17,5 +17,5 @@ return [
     'contact_1' => 'Contact',
     'contact_2' => 'Paramétres',
     'general' => 'Général',
-    'slide' => 'Glissière',
+    'slider' => 'Glissière',
 ];

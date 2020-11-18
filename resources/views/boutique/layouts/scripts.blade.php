@@ -28,4 +28,25 @@
 <!-- elevatezoom js -->
 <script src="{{url('boutique')}}/assets/js/jquery.elevatezoom.js"></script>
 <!-- scripts js -->
-<script src="{{url('boutique')}}/assets/js/scripts.js"></script>
+<script src="{{url('boutique')}}/assets/js/scripts.js" ></script>
+<script>
+    function getData(e) {
+        message = '';
+        var jqxhr = $.get( "{{ url('/get/article', []) }}?name="+e.value+"&categorie="+document.getElementById('categorieSearch').value, function(es) {
+            message = '';
+            console.log(es);
+            es.forEach(element => {
+                message += '  <li  class="form-control" onclick=\'setValueNow(this)\' style="cursor: pointer" >'+element.libelle+'</li>'
+            });
+            document.getElementById('ResultSearch').innerHTML = message ;
+
+
+        })
+    }
+    function setValueNow(val) {
+        console.log(val);
+        document.getElementById('inputSearch').value = val.innerHTML;
+        document.getElementById('ResultSearch').innerHTML ="";
+
+    }
+</script>

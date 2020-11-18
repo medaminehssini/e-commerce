@@ -19,6 +19,7 @@ class Categorie extends Model
     }
     public function categorie()
     {
-        return $this->belongsTo('App\Models\Categorie','id_categorie' );
+        return $this->hasMany('App\Models\Categorie','id_categorie' );
     }
+
 }

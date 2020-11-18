@@ -19,14 +19,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Contact et Réclamation</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('contact.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('contact.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des réclamations</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('contact.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Contact et Réclamation
+                        <li class="breadcrumb-item active">{{__('contact.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
@@ -43,11 +43,11 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Email</th>
-                        <th>Message</th>
-                        <th>Date Réception</th>
-                        <th>Publier</th>
+                        <th>{{__('contact.th_1')}}</th>
+                        <th>{{__('contact.th_2')}}</th>
+                        <th>{{__('contact.th_3')}}</th>
+                        <th>{{__('contact.th_4')}}</th>
+                        <th>{{__('contact.th_5')}}</th>
 
                     </tr>
                 </thead>

@@ -43,9 +43,9 @@
                         @foreach ($articles as $item)
                         <div class="col-md-4 col-6">
                             <div class="product">
-                                <div class="product_img">
-                                    <a href="shop-product-detail.html">
-                                        <img src="{{url('')}}/{{explode(",", $item->images)[0]}}" alt="product_img1">
+                                <div class="product_img" style="    height: 281px;">
+                                    <a href="{{ url('product/detail/', []) }}/{{$item->id}}">
+                                        <img style="margin-top: 50%; transform: translateY(-50%);" src="{{url('')}}/{{explode(",", $item->images)[0]}}" alt="product_img1">
                                     </a>
                                     <div class="product_action_box">
                                         <ul class="list_none pr_action_btn">
@@ -162,7 +162,7 @@
                             <div class="widget">
                                 <h5 class="widget_title">Filter</h5>
                                 <div class="filter_price">
-                                    <div id="price_filter" data-min="0" data-max="500" data-min-value="{{request()->prix_min}}" data-max-value="{{request()->prix_max}}" data-price-sign="{{getSetting('currency')}}"></div>
+                                    <div id="price_filter" data-min="{{$prix[0]}}" data-max="{{$prix[1]}}" data-min-value="{{request()->prix_min}}" data-max-value="{{request()->prix_max}}" data-price-sign="{{getSetting('currency')}}"></div>
                                     <div class="price_range">
                                         <span>Price: <span id="flt_price"></span></span>
                                         <input type="hidden" value="{{request()->prix_min}}" name="prix_min" id="price_first">

@@ -13,9 +13,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        app()->singleton('lang' ,function() {
+            if( session()->has('lang')) {
+                return session()->get('lang');
+            }else {
+                return 'fr';
+            }
+        });
         if ($this->app->isLocal()) {
             $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
         }
+         $this->app->bind('path.public', function() {
+          return base_path().'/../public_html';
+        });
     }
 
     /**

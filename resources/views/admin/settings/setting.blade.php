@@ -13,14 +13,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Contact et Réclamation</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('params.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('params.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des réclamations</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('params.breadcrumb_3')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Contact et Réclamation
+                        <li class="breadcrumb-item active">{{__('params.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
@@ -56,47 +56,47 @@
 
 
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="Name">Site Name</label>
-                                                    <input type="text" class="form-control" id="Name" name="name" placeholder="Site Name" value="{{getSetting('name')}}" >
+                                                    <label for="Name">{{__('params.form_1')}}</label>
+                                                    <input type="text" class="form-control" id="Name" name="name" placeholder="{{__('params.form_1')}}" value="{{getSetting('name')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="phone">phone </label>
-                                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="" value="{{getSetting('phone')}}" >
+                                                    <label for="phone">{{__('params.form_2')}} </label>
+                                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="{{__('params.form_2')}}" value="{{getSetting('phone')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="mail">mail</label>
-                                                    <input type="text" class="form-control" id="mail" name="mail" placeholder="mail" value="{{getSetting('mail')}}" >
+                                                    <label for="mail">{{__('params.form_3')}}</label>
+                                                    <input type="text" class="form-control" id="mail" name="mail" placeholder="{{__('params.form_3')}}" value="{{getSetting('mail')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="currency">currency</label>
-                                                    <input type="text" class="form-control" id="currency" name="currency" placeholder="currency" value="{{getSetting('currency')}}" >
+                                                    <label for="currency">{{__('params.form_4')}}</label>
+                                                    <input type="text" class="form-control" id="currency" name="currency" placeholder="{{__('params.form_4')}}" value="{{getSetting('currency')}}" >
                                                 </div>
                                                 <div class="col-md-12 col-12 mb-12">
-                                                    <label for="adresse">adresse  </label>
-                                                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="" value="{{getSetting('adresse')}}" >
+                                                    <label for="adresse">{{__('params.form_5')}}  </label>
+                                                    <input type="text" class="form-control" id="adresse" name="adresse" placeholder="{{__('params.form_5')}}" value="{{getSetting('adresse')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="facebook">facebook</label>
-                                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="facebook" value="{{getSetting('facebook')}}" >
+                                                    <label for="facebook">{{__('params.form_6')}}</label>
+                                                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="{{__('params.form_6')}}" value="{{getSetting('facebook')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="twitter">twitter</label>
-                                                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="twitter" value="{{getSetting('twitter')}}" >
+                                                    <label for="twitter">{{__('params.form_7')}}</label>
+                                                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="{{__('params.form_7')}}" value="{{getSetting('twitter')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="googleplus">googleplus</label>
-                                                    <input type="text" class="form-control" id="googleplus" name="googleplus" placeholder="googleplus" value="{{getSetting('googleplus')}}" >
+                                                    <label for="googleplus">{{__('params.form_8')}}</label>
+                                                    <input type="text" class="form-control" id="googleplus" name="googleplus" placeholder="{{__('params.form_8')}}" value="{{getSetting('googleplus')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="instagrame">instagrame</label>
-                                                    <input type="text" class="form-control" id="instagrame" name="instagrame" placeholder="instagrame" value="{{getSetting('instagrame')}}" >
+                                                    <label for="instagrame">{{__('params.form_9')}}</label>
+                                                    <input type="text" class="form-control" id="instagrame" name="instagrame" placeholder="{{__('params.form_9')}}" value="{{getSetting('instagrame')}}" >
                                                 </div>
                                                 <div class="col-md-12 col-12 mb-12">
-                                                    <label for="youtube">youtube</label>
-                                                    <input type="text" class="form-control" id="youtube" name="youtube" placeholder="youtube" value="{{getSetting('youtube')}}" >
+                                                    <label for="youtube">{{__('params.form_10')}}</label>
+                                                    <input type="text" class="form-control" id="youtube" name="youtube" placeholder="{{__('params.form_10')}}" value="{{getSetting('youtube')}}" >
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Update Setting</button>
+                                            <button class="btn btn-primary" type="submit">{{__('params.btn')}}</button>
                                         </form>
 
                                     </div>

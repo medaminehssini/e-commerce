@@ -30,10 +30,21 @@
                 <div class="col-xl-6 col-md-10">
                     <div class="login_wrap">
                         <div class="padding_eight_all bg-white">
+
                             <div class="heading_s1">
                                 <h3>S'inscrire</h3>
                             </div>
+
                             <form method="post">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul style="list-style-type: none">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" required="" class="form-control" name="username" placeholder="Nom utilisateur">

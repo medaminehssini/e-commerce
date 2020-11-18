@@ -8,8 +8,8 @@ return [
     'th_1' => 'Picture',
     'th_2' => 'Title',
     'th_3' => 'Description',
-    'th_4' => 'url',
-    'th_5' => 'Buttom name',
+    'th_4' => 'Url',
+    'th_5' => 'Button name',
     'th_6' => 'Status',
     'th_7' => 'Action',
     'btn_1' => 'Add',
@@ -21,7 +21,7 @@ return [
     'form_1' => 'Title',
     'form_2' => 'Description',
     'form_3' => 'Url',
-    'form_4' => 'Buttom name',
+    'form_4' => 'Button name',
     'form_5' => 'Picture',
 
 ];

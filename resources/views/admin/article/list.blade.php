@@ -33,33 +33,13 @@
             </div>
         </div>
     </div>
-    {{-- <div class="content-header-right text-md-right col-md-3 col-12 d-md-block d-none">
-        <div class="form-group breadcrum-right">
-            <div class="dropdown">
-                <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="feather icon-settings"></i></button>
-                <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href="#">Chat</a><a class="dropdown-item" href="#">Email</a><a class="dropdown-item" href="#">Calendar</a></div>
-            </div>
-        </div>
-    </div> --}}
+
 </div>
 <div class="content-body">
     <!-- Data list view starts -->
     <section id="data-thumb-view" class="data-thumb-view-header">
         <div class="action-btns d-none">
-            <div class="btn-dropdown mr-1 mb-1">
-                <div class="btn-group dropdown actions-dropodown">
-                    <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="feather icon-trash"></i>{{__('article.act_1')}}</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>{{__('article.act_2')}}</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>{{__('article.act_3')}}</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>{{__('article.act_4')}}</a>
-                    </div>
 
-                </div>
-            </div>
         </div>
         <!-- dataTable starts -->
         <div class="table-responsive">
@@ -71,7 +51,7 @@
                         <th>{{__('article.th_3')}}</th>
                         <th>{{__('article.th_4')}}</th>
                         <th>{{__('article.th_5')}}</th>
-                        <th>{{__('article.th_6')}}</th>
+                        {{-- <th>{{__('article.th_6')}}</th> --}}
                         <th>{{__('article.th_7')}}</th>
                         <th>{{__('article.th_8')}}</th>
                         <th>{{__('article.th_9')}}</th>
@@ -89,9 +69,27 @@
         <div class="add-new-data-sidebar">
             <div class="overlay-bg"></div>
             <form id="edit" action="{{aurl('add/article')}}" method="POST" enctype="multipart/form-data" >
-                    @csrf
-                <div id="add-new-data" class="add-new-data" >
+                {!! csrf_field() !!}
 
+                <div id="add-new-data" class="add-new-data" >
+                    <div id="loadingData" style="
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.5);
+                    z-index: 999;
+                    display: none
+                ">
+
+                    <img src="{{ url('', []) }}/loading.gif" style="
+                    width: 400px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                ">
+
+                                                </div>
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
                             <h4 class="text-uppercase">{{__('article.form_h')}}</h4>
@@ -105,15 +103,11 @@
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+
+                                <div id="errorContent">
+
+
                                 </div>
-                            @endif
                                 <div class="row">
 
                                     <div class="col-sm-12 data-field-col">
@@ -136,17 +130,17 @@
                                                 @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-sm-12 data-field-col">
+                                    {{-- <div class="col-sm-12 data-field-col">
                                         <label for="data-status">{{__('article.form_4')}}</label>
                                         <select name="status" class="form-control" id="data-status">
                                             <option value="0">{{__('article.opt_1')}}</option>
                                             <option value="3">{{__('article.opt_2')}}</option>
                                             <option value="1">{{__('article.opt_3')}}</option>
                                         </select>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-sm-12 data-field-col">
                                         <label for="data-price">{{__('article.form_5')}}</label>
-                                        <input type="number" name="prix" class="form-control" id="data-price">
+                                        <input type="text" name="prix" class="form-control" id="data-price">
                                     </div>
                                     <div class="col-sm-12 data-field-col">
                                         <label for="data-price">{{__('article.form_6')}}</label>
@@ -165,12 +159,15 @@
                                         <label for="data-price">{{__('article.form_9')}}</label>
                                         <input multiple type="file" name="images[]" accept="image/*" class="form-control" id="data-image">
                                     </div>
+
+
+
                                 </div>
                             </div>
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub"  onclick="document.getElementById('edit').submit()" type="submit" value="{{__('article.form_4')}}">
+                                <input class="btn btn-primary" name="btnsub"   type="submit" value="{{__('article.form_4')}}">
 
                             </div>
                             <div class="cancel-data-btn">
@@ -191,9 +188,6 @@
     <!-- Data list view end -->
 
 </div>
-
-
-
 
 
 
@@ -244,8 +238,8 @@
         {data:'libelle', name: 'libelle' , className: "product-name"},
         {data: 'categorie.nom', name: 'categorie.nom' , className: "product-category"},
         {data: 'marque.libelle', name: 'categorie.libelle' , className: "product-category"},
-        {data: 'description', name: 'description' },
-        {data: 'statusDetails', name: 'statusDetails' },
+        {data: 'description', name: 'description' , className: 'product-name' },
+        // {data: 'statusDetails', name: 'statusDetails' },
         {data: 'prix', name: 'prix' , className: "product-price"},
         {data: 'qty', name: 'qty' , className: "product-price"},
         {data: 'taux_tva', name: 'taux_tva' , className: "product-price"},
@@ -273,13 +267,15 @@
         action: function() {
           $(this).removeClass("btn-secondary")
           editForm = document.getElementById('edit');
+          document.getElementById("errorContent").innerHTML ="";
+
           editForm.action = "{{aurl('add/article')}}";
           editForm.description.value = "";
           editForm.prix.value = "";
           editForm.categorie.value = "";
           editForm.libelle.value = "";
           editForm.btnsub.value = "{{__('article.btn_2')}}";
-          editForm.status.value = "";
+        //   editForm.status.value = "";
           editForm.marque.value = "";
           editForm.qty.value = "";
           editForm.taux_tva.value = "";
@@ -300,14 +296,15 @@
 
   function openUpdate (data)  {
     editForm = document.getElementById('edit');
-
+    data = JSON.parse(data);
+    document.getElementById("errorContent").innerHTML ="";
 
     editForm.action = "{{aurl('edit/article')}}/"+data.id;
     editForm.description.value = data.description;
     editForm.prix.value = data.prix;
     editForm.categorie.value = data.id_categorie;
     editForm.libelle.value = data.libelle;
-    editForm.status.value = data.status;
+    // editForm.status.value = data.status;
     editForm.marque.value = data.id_marque;
     editForm.qty.value = data.qty;
     editForm.taux_tva.value = data.taux_tva;
@@ -316,5 +313,9 @@
     $(".overlay-bg").addClass("show")
 
   }
+
+
     </script>
+
+
 @endpush

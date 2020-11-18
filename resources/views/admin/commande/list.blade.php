@@ -22,9 +22,9 @@
                 <h2 class="content-header-title float-left mb-0">{{__('commande.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">{{__('commande.breadcrumb_2')}}</a>
+                        <li class="breadcrumb-item"><a href="{{ url('', []) }}">{{__('commande.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">{{__('commande.breadcrumb_3')}}</a>
+                        <li class="breadcrumb-item"><a href="">{{__('commande.breadcrumb_3')}}</a>
                         </li>
                         <li class="breadcrumb-item active">{{__('commande.breadcrumb_1')}}
                         </li>
@@ -48,12 +48,14 @@
             <table class="table data-thumb-view">
                 <thead>
                     <tr>
-                        <th>{{__('commande.th_1')}}</th>
-                        <th>{{__('commande.th_2')}}</th>
-                        <th>{{__('commande.th_3')}}</th>
+                        <th >{{__('commande.th_0')}}</th>
+                        <th >{{__('commande.th_1')}}</th>
+                        <th >{{__('commande.th_3')}}</th>
+                        <th >{{__('commande.th_2')}}</th>
                         <th>{{__('commande.th_4')}}</th>
-                        <th>{{__('commande.th_5')}}</th>
                         <th>{{__('commande.th_6')}}</th>
+                        <th>{{__('commande.th_8')}}</th>
+                        <th>{{__('commande.th_9')}}</th>
                         <th>{{__('commande.th_7')}}</th>
                     </tr>
                 </thead>
@@ -109,25 +111,37 @@
 
     <script>
 
+
 $(document).ready(function() {
+
           // init thumb view datatable
           var templates = Handlebars.compile($("#details-templates").html());
+          var template = Handlebars.compile($("#details-template").html());
 
   var table = $(".data-thumb-view").DataTable({
     responsive: true,
     ajax: "{{aurl('commande/list/dataTables')}}",
     columns: [
 
+        {
+            data: 'details',
+             name: 'details' ,
+                "className":      'details-controls',
+                "orderable":      false,
+                "searchable":     false,
 
-        {data: 'id', name: 'id' , className: "product-img details-control"},
-        {data:'client.username', name: 'client.username' , className: "product-name details-control"},
-        {data:'total', name: 'total' , className: "product-name details-control"},
-        {data:'description', name: 'description' , className: "product-name details-control"},
-        {data:'coupon.code', "defaultContent": ' ' , name: 'coupon.code' , className: "product-name details-control" },
 
-        {data:'status', name: 'status' , className: "product-name details-control"},
+        },
+        {data: 'id', name: 'id' , className: "product-img"},
+        {data:'client.username', name: 'client.username' , className: "product-name"},
+        {data:'total', name: 'total' , className: "product-name"},
+        {data:'created_at', name: 'created_at' , className: "product-name"},
+        {data:'status', name: 'status' , className: "product-name"},
+        {data:'facture', name: 'facture' , className: "product-name "},
+        {data: 'listProd'   , name: 'listProd' , className: "product-action details-control"},
         {data: 'action'   , name: 'action' , className: "product-action"}
     ],
+    order: [[1, 'desc']],
     columnDefs: [
 
     ],
@@ -137,13 +151,13 @@ $(document).ready(function() {
       sLengthMenu: "_MENU_",
       sSearch: ""
     },
-    aLengthMenu: [[4, 10, 15, 20], [4, 10, 15, 20]],
+    aLengthMenu: [[15, 30, 50, 100], [15, 20, 50, 100]],
     select: {
       style: "multi"
     },
-    order: [[1, "asc"]],
+    order: [[1, "desc"]],
     bInfo: false,
-    pageLength: 4,
+    pageLength: 15,
     buttons: [
 
     ],
@@ -154,6 +168,26 @@ $(document).ready(function() {
 
 
   })
+
+
+      // Add event listener for opening and closing details
+    $('.data-thumb-view tbody').on('click', 'td.details-controls', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( template(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    });
+
+
 
   $('.data-thumb-view tbody').on('click', 'td.details-control', function () {
         var tr = $(this).closest('tr');
@@ -190,6 +224,33 @@ $(document).ready(function() {
 
         });
     </script>
+
+<script id="details-template" type="text/x-handlebars-template">
+    <table class="table">
+        <tr>
+            <td>First name:</td>
+            <td>@{{client.last_name}}</td>
+            <td>Last name:</td>
+            <td>@{{client.last_name}}</td>
+        </tr>
+        <tr>
+            <td>Telephone:</td>
+            <td>@{{client.tel}}</td>
+            <td>Email:</td>
+            <td>@{{client.email}}</td>
+        </tr>
+        <tr>
+            <td>Ville:</td>
+            <td>@{{#if villeliv}} @{{villeliv}} @{{else}} @{{client.ville}} @{{/if}}</td>
+            <td>Adresse:</td>
+            <td>@{{#if adresseliv}} @{{adresseliv}} @{{else}} @{{client.adresse}} @{{/if}}</td>
+        </tr>
+        <tr>
+            <td>Coupon:</td>
+            <td>@{{coupon.code}}@{{#if coupon.code}}(@{{coupon.taux}})@{{/if}}</td>
+        </tr>
+    </table>
+</script>
 
 
 <script    id="details-templates" type="text/x-handlebars-template">

@@ -13,14 +13,14 @@
     <div class="content-header-left col-md-9 col-12 mb-2">
         <div class="row breadcrumbs-top">
             <div class="col-12">
-                <h2 class="content-header-title float-left mb-0">Contact et Réclamation</h2>
+                <h2 class="content-header-title float-left mb-0">{{__('contact.breadcrumb_1')}}</h2>
                 <div class="breadcrumb-wrapper col-12">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Accueill</a>
+                        <li class="breadcrumb-item"><a href="index.html">{{__('contact.breadcrumb_2')}}</a>
                         </li>
-                        <li class="breadcrumb-item"><a href="#">Liste des réclamations</a>
+                        <li class="breadcrumb-item"><a href="#">{{__('contact.breadcrumb_4')}}</a>
                         </li>
-                        <li class="breadcrumb-item active">Contact et Réclamation
+                        <li class="breadcrumb-item active">{{__('contact.breadcrumb_1')}}
                         </li>
                     </ol>
                 </div>
@@ -45,20 +45,20 @@
                                             @csrf
                                             <div class="form-row">
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="longitude">Longitude</label>
+                                                    <label for="longitude">{{__('contact.form_1')}}</label>
                                                     <input type="text" class="form-control" id="longitude" name="longitude" placeholder="longitude" value="{{getSetting('longitude')}}" >
                                                 </div>
                                                 <div class="col-md-6 col-12 mb-6">
-                                                    <label for="latitude">Latitude : </label>
+                                                    <label for="latitude">{{__('contact.form_2')}}</label>
                                                     <input type="text" class="form-control" id="latitude" name="latitude" placeholder="" value="{{getSetting('latitude')}}" >
                                                 </div>
                                                 <div class="col-md-12 col-12 mb-12" style="margin: 20px 0;">
-                                                        <label for="label-textarea">Description</label>
+                                                        <label for="label-textarea">{{__('contact.form_3')}}</label>
 
                                                     <textarea class="form-control" id="label-textarea" rows="3" name="description" placeholder="Description">{{getSetting('contact_description')}}</textarea>
                                                 </div>
                                             </div>
-                                            <button class="btn btn-primary" type="submit">Update Setting</button>
+                                            <button class="btn btn-primary" type="submit">{{__('contact.btn')}}</button>
                                         </form>
 
                                     </div>

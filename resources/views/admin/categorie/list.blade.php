@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/css/plugins/file-uploaders/dropzone.css">
     <link rel="stylesheet" type="text/css" href="{{url('')}}/app-assets/css/pages/data-list-view.css">
+
+    <link rel="stylesheet" href="{{ url('', []) }}/boutique/assets/css/flaticon.css">
 @endpush
 @section('content')
 
@@ -46,7 +48,7 @@
     <!-- Data list view starts -->
     <section id="data-thumb-view" class="data-thumb-view-header">
         <div class="action-btns d-none">
-            <div class="btn-dropdown mr-1 mb-1">
+            {{-- <div class="btn-dropdown mr-1 mb-1">
                 <div class="btn-group dropdown actions-dropodown">
                     <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Actions
@@ -58,7 +60,7 @@
                         <a class="dropdown-item" href="#"><i class="feather icon-save"></i>{{__('categorie.act_4')}}</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- dataTable starts -->
         <div class="table-responsive">
@@ -84,7 +86,24 @@
             <form id="edit" action="{{aurl('add/categorie')}}" method="POST" enctype="multipart/form-data" >
                     @csrf
                 <div id="add-new-data" class="add-new-data" >
+                    <div id="loadingData" style="
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.5);
+                    z-index: 999;
+                    display: none
+                ">
 
+                    <img src="{{ url('', []) }}/loading.gif" style="
+                    width: 400px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                ">
+
+                                                </div>
                     <div class="div mt-2 px-2 d-flex new-data-title justify-content-between">
                         <div>
                             <h4 class="text-uppercase">{{__('categorie.form_h')}}</h4>
@@ -100,15 +119,10 @@
 
                         <div class="data-items pb-3">
                             <div class="data-fields px-2 mt-3">
-                                @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
+                                <div id="errorContent">
+
+
                                 </div>
-                            @endif
 
                                 <div class="row">
 
@@ -130,12 +144,20 @@
                                         <label for="data-price">{{__('categorie.form_3')}}</label>
                                         <input  type="file" name="image" accept="image/*" class="form-control" id="data-image">
                                     </div>
+                                    <div class="col-sm-12 data-field-col">
+                                    <label for="data-price">Icône</label>
+                                    <button type="button" class="btn btn-outline-primary btn-lg block" data-toggle="modal" data-target="#exampleModalCenter">
+                                       <i class="feather icon-info" id="selectedIcon"></i> change icon
+
+                                    </button>
+                                    <input type="hidden" name="icon" id="inputIcon">
+                                </div>
                                 </div>
                             </div>
                         </div>
                         <div class="add-data-footer d-flex justify-content-around px-3 mt-2">
                             <div class="add-data-btn">
-                                <input class="btn btn-primary" name="btnsub"  onclick="document.getElementById('edit').submit()" type="submit" value="{{__('categorie.btn_2')}}">
+                                <input class="btn btn-primary" name="btnsub"   type="submit" value="{{__('categorie.btn_2')}}">
 
                             </div>
                             <div class="cancel-data-btn">
@@ -162,6 +184,87 @@
 
 
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Choisir iône</h5>
+                <button type="button" class="close" data-dismiss="modal" id="closeModal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="feather-icons overflow-hidden row ml-3">
+
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="feather icon-cast">
+                        <div class="fonticon-wrap">
+                            <i class="feather icon-cast"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-watch">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-watch"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-tv">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-tv"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-camera">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-camera"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-headphones">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-headphones"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-music-system">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-music-system"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-monitor">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-monitor"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-console">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-console"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-printer">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-printer"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-fax">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-fax"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="feather icon-smartphone">
+                        <div class="fonticon-wrap">
+                            <i class="feather icon-smartphone"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-12 fonticon-container categorieIcon" data-class="flaticon-mouse">
+                        <div class="fonticon-wrap">
+                            <i class="flaticon-mouse"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -189,16 +292,30 @@
     <!-- BEGIN: Page JS-->
     <script src="{{url('')}}/app-assets/js/scripts/ui/data-list-view.js"></script>
     <!-- END: Page JS-->
-    @if ($errors->any() && session('status'))
-    <script>
-        $( document ).ready(function() {
-            alert('fefefe');
-        });
-    </script>
-    @endif
+
 
 
     <script>
+
+$(document).ready(function() {
+            var elements = document.getElementsByClassName("categorieIcon");
+
+            var setIcon = function() {
+                var attribute = this.getAttribute("data-class");
+                document.getElementById('inputIcon').value = attribute;
+                document.getElementById('closeModal').click() ;
+                document.getElementById('selectedIcon').className = "" ;
+                listclass = attribute.split(' ');
+                listclass.forEach(element => {
+                    document.getElementById('selectedIcon').classList.add(element);
+
+                });
+            };
+
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].addEventListener('click', setIcon, false);
+            }
+        })
           // init thumb view datatable
   var dataThumbView = $(".data-thumb-view").DataTable({
     responsive: true,
@@ -266,5 +383,6 @@
     $(".overlay-bg").addClass("show")
 
   }
+
     </script>
 @endpush

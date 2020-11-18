@@ -77,7 +77,7 @@ class UserController extends Controller
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password ], $request->remember)) {
             if (!Auth::user()->status) {
                 Auth::logout();
-                alert()->error('You need to confirm your account. We have sent you an activation code, please check your email.')->toToast();
+                alert()->error('Vous devez confirmer votre compte. Nous vous avons envoyé un code d’activation, veuillez vérifier votre email.')->toToast();
                 return back();
             }
             return redirect('/');
@@ -95,18 +95,18 @@ class UserController extends Controller
             switch ($commande->etat) {
                 case 0:
 
-                    $commande->status = "pending";
+                    $commande->status = "En attente";
                     break;
                 case 1:
-                    $commande->status = "Accepted";
+                    $commande->status = "Acceptée";
                     break;
 
                 case 2:
-                     $commande->status = "Canceled";
+                     $commande->status = "Annulée";
                     break;
 
                 case 3:
-                   $commande->status = "Delivered";
+                   $commande->status = "Livrée";
                    break;
             }
         }
@@ -136,13 +136,14 @@ class UserController extends Controller
             $user->last_name = $request->last_name;
             $user->email = $request->email;
             $user->sexe = $request->sexe;
+            $user->tel = $request->tele;
 
             if( $request->current_password != '') {
                 $messages = [
-                    'password.required' => 'Champs obligatoire',
-                    'confirmation_password.required' => 'Champs obligatoire',
+                    'password.required' => 'Champ mot de passe obligatoire',
+                    'confirmation_password.required' => 'Confirmation du mot de passe obligatoire',
                     'password.same' => 'Mot de passe invalide',
-                    'confirmation_password.same' => 'Mot de passe invalide',
+                    'confirmation_password.same' => 'Confirmation mot de passe invalide',
 
                 ];
                 $this->validate($request, [
@@ -155,7 +156,7 @@ class UserController extends Controller
                     $user->password =  Hash::make($request->password);
 
                 }else {
-                    alert()->error('current password invalid', 'Error')->toToast();
+                    alert()->error('Mot de passe actuelle non valide', 'Erreur')->toToast();
                     $verif = false ;
                 }
 
@@ -163,7 +164,7 @@ class UserController extends Controller
 
             $user->save();
             if( $verif)
-            alert()->success('Profile Edited', 'Successfully')->toToast();
+            alert()->success('Profile bien modifié', '')->toToast();
 
 
         }
@@ -174,7 +175,21 @@ class UserController extends Controller
     public function  adresse (Request $request) {
 
         $user = User::find(Auth::user()->id);
+
         if($user) {
+            if($request->is_societe == "on" ) {
+                if($request->matricule_fiscale  && $request->code_tva){
+                    $user->is_societe = 1 ;
+                    $user->matricule_fiscale = $request->matricule_fiscale ;
+                    $user->code_tva = $request->code_tva;
+                }else {
+                    alert()->error('Matricule fiscale et code tva sont obligatoire')->toToast();
+                }
+            }else {
+                $user->is_societe = 0 ;
+                $user->matricule_fiscale = null ;
+                $user->code_tva = null;
+            }
             $user->adresse = $request->adresse;
             $user->ville = $request->ville;
             $user->code_postale = $request->code_postale;
@@ -203,12 +218,12 @@ class UserController extends Controller
           $verifyUser->user->status = 1;
           $verifyUser->user->save();
           $verifyUser->delete();
-          $status = "Your e-mail is verified. You can now login.";
+          $status = "Votre courriel est vérifié. Vous pouvez maintenant vous connecter.";
         } else {
-          $status = "Your e-mail is already verified. You can now login.";
+          $status = "Votre courriel est déja vérifié. Vous pouvez maintenant vous connecter.";
         }
       } else {
-        alert()->error( "Sorry your email cannot be identified.")->toToast();
+        alert()->error( "Désolé, votre courriel ne peut pas être identifié.")->toToast();
         return redirect()->route('login');
       }
       alert()->success( $status)->toToast();
@@ -237,7 +252,7 @@ class UserController extends Controller
             Mail::to($user->email)->send(new RestPassword($user));
             alert()->success("Mail " )->toToast();
         }else{
-            alert()->error( "Sorry your email cannot be identified.")->toToast();
+            alert()->error( "Désolé, votre courriel ne peut pas être identifié.")->toToast();
         }
 
         return back();
@@ -264,7 +279,7 @@ class UserController extends Controller
             'password.required' => 'Mot de passe obligatoire',
             'password_confirmation.required' => 'Confirmation obligatoire',
             'password.same' => 'Mot de passe invalide',
-            'password_confirmation.same' => 'Mot de passe invalide',
+            'password_confirmation.same' => 'Confirmation mot de passe invalide',
         ];
 
         $this->validate($request, [
@@ -281,7 +296,7 @@ class UserController extends Controller
         $user->save();
         alert()->success( "Password changed.")->toToast();
       } else {
-        alert()->error( "Sorry your email cannot be identified.")->toToast();
+        alert()->error( "Désolé, votre courriel ne peut pas être identifié.")->toToast();
         return redirect()->route('login');
       }
       return redirect()->route('login');

@@ -40,6 +40,9 @@ class SearchController extends Controller
             }
         }
 
+        $prix = [];
+        $prix[0] = Article::min("prix");
+        $prix[1] = Article::max("prix");
 
 
 
@@ -50,6 +53,19 @@ class SearchController extends Controller
             "articles" => $articles,
             "marques" => $marque,
             "categories" => $categorie,
+            "prix"=>$prix,
         ]);
+    }
+
+    public function getarticle()
+    {
+        if(request()->name)  {
+            if(request()->categorie != '' && request()->categorie != 0)
+                return Article::where("qty" , '>' , 0)->where('libelle','LIKE' , '%'.request()->categorie.'%')->where('id_categorie', request()->categorie)->take(6)->get();
+            else
+                return Article::where("qty" , '>' , 0)->where('libelle','LIKE' , '%'.request()->name.'%')->take(6)->get();
+        }else {
+           return  response()->json([],200);
+        }
     }
 }

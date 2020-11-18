@@ -39,10 +39,19 @@
 
                     </div>
                     <div class="rating_wrap">
-                            <div class="rating">
-                                <div class="product_rate" style="width:80%"></div>
-                            </div>
-                            <span class="rating_num">(21)</span>
+                        <div class="star_rating" style="display: inline-block;" >
+                            @for ($i = 1 ; $i <= 5 ; $i++)
+                                    @if (getArticleRate($article->id) >= $i)
+                                     <span class="selected" ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                    @else
+                                        <span ><i class="far fa-star" style="font-size: 14px"></i></span>
+
+                                    @endif
+                            @endfor
+
+                        </div>
+                            <span class="rating_num">({{count($article->commentaire)}})</span>
                         </div>
                     <div class="pr_desc" style="width: 100%;" >
                             <p> {{$article->description}}</p>
@@ -64,20 +73,22 @@
                     </div> --}}
                 </div>
                 <hr>
-                <div class="cart_extra">
-                    <div class="cart-product-quantity">
-                        <div class="quantity">
-                            <input type="button" value="-" class="minus">
-                            <input type="text" name="quantity" value="1" title="Qty" class="qty" size="4">
-                            <input type="button" value="+" class="plus">
+                    <form action="{{ url('panier/add/', []) }}/{{$article->id}}" method="get">
+                        <div class="cart_extra">
+                            <div class="cart-product-quantity">
+                                <div class="quantity">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="text" name="qty" value="1" title="Qty" class="qty" size="4">
+                                    <input type="button" value="+" class="plus">
+                                </div>
+                            </div>
+                            <div class="cart_btn">
+                                <button class="btn btn-fill-out btn-addtocart" type="submit"><i class="icon-basket-loaded"></i> Add to cart</button>
+                                <a class="add_compare" href="{{ url('compare/add/', []) }}/{{$article->id}}"><i class="icon-shuffle"></i></a>
+                                <a class="add_wishlist" href="{{ url('wish/add/', []) }}/{{$article->id}}"><i class="icon-heart"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="cart_btn">
-                        <button class="btn btn-fill-out btn-addtocart" type="button"><i class="icon-basket-loaded"></i> Add to cart</button>
-                        <a class="add_compare" href="#"><i class="icon-shuffle"></i></a>
-                        <a class="add_wishlist" href="#"><i class="icon-heart"></i></a>
-                    </div>
-                </div>
+                    </form>
                 <hr>
 
 

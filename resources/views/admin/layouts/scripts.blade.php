@@ -14,5 +14,7 @@
     <script src="{{url('')}}/app-assets/js/core/app.js"></script>
     <script src="{{url('')}}/app-assets/js/scripts/components.js"></script>
     <!-- END: Theme JS-->
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{url('')}}/app-assets/vendors/js/extensions/toastr.min.js"></script>
 
 
